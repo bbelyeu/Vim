@@ -157,3 +157,5 @@ set showtabline=2
 
 " This allows my bash aliases & functions to work in vim
 set shell=bash\ --login
+
+" Adding line to test by vim magic repo backup script
