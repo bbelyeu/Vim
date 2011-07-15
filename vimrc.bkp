@@ -100,7 +100,7 @@ nmap ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
 nnoremap ,s diw"0P
 " Copy the current file to dev
-map ,cp :w!<CR>:!scp `pwd`/% quibids@dev1.okc.quibids.com:`pwd`/%<CR>
+map ,cp :w!<CR>:!scp `pwd`/% quibids@www.dev1.okc.quibids.com:`pwd`/%<CR>
 " Paste from mac clipboard to line below vi cursor
 map ,p :r !pbpaste<CR>
 " Cut/Copy line(s) from vim to mac clipboard
