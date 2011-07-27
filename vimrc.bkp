@@ -88,11 +88,11 @@ imap <F10> {}O
 " Use omnifunc for autocompletion
 :autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " This runs lint on your current working file to check for php syntax errors
-:autocmd FileType php noremap ,l :w!<CR>:!/usr/local/zend/bin/php -l %<CR>
+:autocmd FileType php noremap ,l :w!<CR>:!php -l %<CR>
 " This runs your script via the php cli
-:autocmd FileType php noremap ,e :w!<CR>:!/usr/local/zend/bin/php %<CR>
+:autocmd FileType php noremap ,e :w!<CR>:!php %<CR>
 " This runs codesniffer against your current open file
-:autocmd FileType php noremap ,cs :w!<CR>:!/usr/local/zend/bin/php /usr/local/zend/bin/phpcs --standard=PEAR %<CR>
+:autocmd FileType php noremap ,cs :w!<CR>:!php phpcs --standard=PEAR %<CR>
 " map ,t to create a new tab
 map ,t <Esc>:tabnew<CR>
 " map ,f to display all lines with keyword under cursor and ask which one to jump to
@@ -100,7 +100,7 @@ nmap ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
 nnoremap ,s diw"0P
 " Copy the current file to dev
-map ,cp :w!<CR>:!scp `pwd`/% quibids@www.dev1.okc.quibids.com:`pwd`/%<CR>
+map ,cp :w!<CR>:!scp `pwd`/% bbelyeu@www.bbelyeu.hq.quibids.com:`pwd`/%<CR>
 " Paste from mac clipboard to line below vi cursor
 map ,p :r !pbpaste<CR>
 " Cut/Copy line(s) from vim to mac clipboard
@@ -157,5 +157,3 @@ set showtabline=2
 
 " This allows my bash aliases & functions to work in vim
 set shell=bash\ --login
-
-" Adding line to test by vim magic repo backup script
