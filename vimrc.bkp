@@ -43,9 +43,8 @@ set scrolloff=3
 
 " Always show status line, even for one window
 set laststatus=2
-
-" Show Git Branch on status line
-set statusline=%{GitBranch()}
+" A more informative status line
+:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 
 " Use with ctags
 set tags=/home/quibids/includes/.tags
@@ -99,15 +98,13 @@ map ,t <Esc>:tabnew<CR>
 nmap ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
 nnoremap ,s diw"0P
-" Copy the current file to dev
-map ,cp :w!<CR>:!scp `pwd`/% bbelyeu@www.bbelyeu.hq.quibids.com:`pwd`/%<CR>
 " Paste from mac clipboard to line below vi cursor
 map ,p :r !pbpaste<CR>
 " Cut/Copy line(s) from vim to mac clipboard
 vmap ,x :!pbcopy<CR>
 vmap ,c :!pbcopy<BAR>pbpaste<CR>
 " Lookup local php help files with lynx
-map ,h :!lynx -editor=vi<CR>
+map ,h :!lynx -editor=vi file:///Users/bbelyeu/Documents/php-net-docs/indexes.html<CR>
 " Close all folds
 map ,z zM
 
@@ -157,3 +154,14 @@ set showtabline=2
 
 " This allows my bash aliases & functions to work in vim
 set shell=bash\ --login
+
+" Instead of failing a command because of unsaved changes, instead raise a
+" dialogue asking if you wish to save changed files.
+set confirm
+
+" Enable use of the mouse for all modes
+set mouse=a
+
+" Set the command window height to 2 lines, to avoid many cases of having to
+" press <Enter> to continue
+set cmdheight=2
