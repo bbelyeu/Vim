@@ -1,5 +1,5 @@
 " This prevents a \n being added by vim at the end of every file
-autocmd FileType php setlocal noeol "binary fileformat=dos
+autocmd FileType php setlocal noeol "fileformat=dos "binary
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
 	set fileencodings=utf-8,latin1
@@ -13,6 +13,7 @@ filetype on
 au BufNewFile,BufRead *.phtml set filetype=html.php.js.css
 au BufNewFile,BufRead *.inc set filetype=php
 au BufNewFile,BufRead *.php set filetype=php.html.js.css
+au BufNewFile,BufRead *.js set filetype=javascript
 " Added this bc my snippets plugin said to
 :filetype plugin on
 :helptags ~/.vim/doc
@@ -44,7 +45,18 @@ set scrolloff=3
 " Always show status line, even for one window
 set laststatus=2
 " A more informative status line
-:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+":set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%m/%d/%y\ -\ %H:%M\")}
+set statusline=   " clear the statusline for when vimrc is reloaded
+set statusline+=%f\                          " file name
+set statusline+=%h%m%r%w                     " flags
+set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
+set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
+set statusline+=%{&fileformat}]              " file format
+set statusline+=%=                           " right align
+set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
+set statusline+=%b,0x%-8B\                   " current char
+set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 
 " Use with ctags
 set tags=/home/quibids/includes/.tags
@@ -68,10 +80,8 @@ map <F5> O/** * Method level doc block* @param   $paramname datatype descripti
 
 " This is a code-folding shortcut. Will fold everything between { }.
 map <F6> zfa}" Use F7 to toggle line numbers
-" Toggle showing me tabs & newline chars
-map <F7> :set list!<CR>
 " Use F8 to toggle 'paste' mode
-map <F8> :set paste!<CR>
+" map <F8> :set paste!<CR>
 
 " Map PageUp & PageDown keys
 map <PageUp> <CTRL-U>
@@ -98,13 +108,8 @@ map ,t <Esc>:tabnew<CR>
 nmap ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
 nnoremap ,s diw"0P
-" Paste from mac clipboard to line below vi cursor
-map ,p :r !pbpaste<CR>
-" Cut/Copy line(s) from vim to mac clipboard
-vmap ,x :!pbcopy<CR>
-vmap ,c :!pbcopy<BAR>pbpaste<CR>
 " Lookup local php help files with lynx
-map ,h :!lynx -editor=vi file:///Users/bbelyeu/Documents/php-net-docs/indexes.html<CR>
+map ,h :!lynx -editor=vi file:///usr/local/doc/php-net/indexes.html<CR>
 " Close all folds
 map ,z zM
 
@@ -149,9 +154,6 @@ set showtabline=2
 :let Tlist_Sort_Type = "name"
 :let Tlist_Exit_OnlyWindow = 1
 
-" Turning this on to make me aware of what files are using tabs
-"set list
-
 " This allows my bash aliases & functions to work in vim
 set shell=bash\ --login
 
@@ -165,3 +167,6 @@ set mouse=a
 " Set the command window height to 2 lines, to avoid many cases of having to
 " press <Enter> to continue
 set cmdheight=2
+
+set wrap
+set linebreak
