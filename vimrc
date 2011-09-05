@@ -10,8 +10,15 @@ set nocompatible
 
 " Turn filetypes on and set phtml & inc file to be of type php
 filetype on
+" Zend template files
 au BufNewFile,BufRead *.phtml set filetype=html.php.js.css
+" QB class files
 au BufNewFile,BufRead *.inc set filetype=php
+" Added following 3 lines for drupal modules
+au BufNewFile,BufRead *.module set filetype=php
+au BufRead,BufNewFile *.install set filetype=php
+autocmd BufRead,BufNewFile *.test set filetype=php
+" Standard
 au BufNewFile,BufRead *.php set filetype=php.html.js.css
 au BufNewFile,BufRead *.js set filetype=javascript
 " Added this bc my snippets plugin said to
@@ -170,3 +177,7 @@ set cmdheight=2
 
 set wrap
 set linebreak
+
+" Highlight chars that go over the 80-column limit
+:highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
+:match OverLength '\%81v.*'
