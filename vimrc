@@ -26,8 +26,8 @@ au BufNewFile,BufRead *.js set filetype=javascript
 :helptags ~/.vim/doc
 
 " Set tab & auto indent to 4 spaces also round indent to multiple of 'shiftwidth' for > and < commands
-" set expandtab
-set noexpandtab
+set expandtab
+" set noexpandtab
 set tabstop=4
 set shiftwidth=4
 set shiftround
@@ -79,16 +79,20 @@ au BufReadPost *
  \ endif
 
 " F1-F5 is mapped to javadoc style documentation blocks
-map <F1> o/** * Page level doc block - short desc** Long description* @access public* @author Brad Belyeu <bbelyeu@quibids.com>* @copyright Copyright (c) 2011, QuiBids* @link URL* @example /path/to/example.php description* @todo information string* @version Version 1.0* @filesource**/
-map <F2> O/** * @see file.ext**/
-map <F3> O/** * Class level doc block name* Description* @package Quibids/Shopee* @category Model/View/Controller* @extends extensions/implements**/
-map <F4> O/** * Property Description* @var varname datatype description* @staticvar varname datatype description**/
-map <F5> O/** * Method level doc block* @param   $paramname datatype description* @return  returntype  description**/
+" THESE SHOULD BECOME CODE SNIPPETS
+"map <F1> o/** * Page level doc block - short desc** Long description* @access public* @author Brad Belyeu <bbelyeu@quibids.com>* @copyright Copyright (c) 2011, QuiBids* @link URL* @example /path/to/example.php description* @todo information string* @version Version 1.0* @filesource**/
+"map <F2> O/** * @see file.ext**/
+"map <F3> O/** * Class level doc block name* Description* @package Quibids/Shopee* @category Model/View/Controller* @extends extensions/implements**/
+"map <F4> O/** * Property Description* @var varname datatype description* @staticvar varname datatype description**/
+"map <F5> O/** * Method level doc block* @param   $paramname datatype description* @return  returntype  description**/
 
+map <F1> :set expandtab!<CR>
+map <F2> :set list!<CR>
+" Use F3 to toggle 'paste' mode
+map <F3> :set paste!<CR>
 " This is a code-folding shortcut. Will fold everything between { }.
 map <F6> zfa}" Use F7 to toggle line numbers
-" Use F8 to toggle 'paste' mode
-" map <F8> :set paste!<CR>
+" F7 & F8 are reserved for screen tabs
 
 " Map PageUp & PageDown keys
 map <PageUp> <CTRL-U>
