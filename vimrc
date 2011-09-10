@@ -29,6 +29,7 @@ au BufNewFile,BufRead *.js set filetype=javascript
 set expandtab
 " set noexpandtab
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set shiftround
 set bs=indent,eol,start " allow backspacing over everything in insert mode
@@ -112,7 +113,7 @@ imap <F10> {}O
 " This runs your script via the php cli
 :autocmd FileType php noremap ,e :w!<CR>:!php %<CR>
 " This runs codesniffer against your current open file
-:autocmd FileType php noremap ,cs :w!<CR>:!php phpcs --standard=PEAR %<CR>
+:autocmd FileType php noremap ,cs :w!<CR>:!phpcs --standard=PEAR %<CR>
 " map ,t to create a new tab
 map ,t <Esc>:tabnew<CR>
 " map ,f to display all lines with keyword under cursor and ask which one to jump to
