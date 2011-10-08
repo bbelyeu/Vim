@@ -90,10 +90,10 @@ snippet /*p
 # Class Prop - New
 snippet prop
 	/**
-	 * ${3:undocumented class variable}
-	 * @prop ${4:string}
+	 * ${1:undocumented class variable}
+	 * @prop ${2:string}
 	 */
-	${1:var} $${2};${5}
+	${3:public} $${4};
 # Class - New
 snippet class
 	/**
@@ -139,12 +139,12 @@ snippet fun
 	 * ${1:undocumented function}
 	 * @param ${2}
 	 * @return ${3:null}
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
 	 */
 	${4:public }function ${5:FunctionName}(${6:$params}) 
 	{
 		${7://code}
 	}
+
 # Header
 snippet doc_h
 	/**
@@ -170,22 +170,6 @@ snippet doc_i
 	interface ${1:}
 	{${5}
 	} // END interface $1
-# class ...
-snippet class
-	/**
-	 * ${1:Class level doc block name}
-	 * ${2:Description}
-	 * @package ${3:Quibids}
-	 * @extends ${4:extends}
-	 */
-	class ${5:ClassName} ${6:extends }
-	{
-		${7}
-		${8:public} function ${9:__construct}(${10:argument})
-		{
-			${11:// code...}
-		}
-	} // END class $5
 # define(...)
 snippet def
 	define('${1}'${2});${3}
@@ -222,7 +206,12 @@ snippet elseif
 	}
 # Tertiary conditional
 snippet t
-	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};
+	(${2:condition}) ? ${3:a} : ${4:b};
+# if not empty
+snippet ifne
+	if (!empty(${1:var})) {
+		${2://dostuff}
+	}
 snippet switch
 	switch ($${1:variable}) {
 		case '${2:value}':
@@ -242,7 +231,7 @@ snippet for
 		${4: // code...}
 	}
 snippet foreach
-	foreach ($${1:variable} as $${2:$key}${3: => $val}) {
+	foreach ($${1:variable} as $${2:key}${3: => $val}) {
 		${4:// code...}
 	}
 # $... = array (...)
