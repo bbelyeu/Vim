@@ -124,6 +124,8 @@ nnoremap ,s diw"0P
 map ,h :!lynx -editor=vi file:///usr/local/doc/php-net/indexes.html<CR>
 " Close all folds
 map ,z zM
+" Run phpunit tests
+map ,p :!phpunit -c /home/quibids/tests/Ares/phpunit.xml %<CR>
 
 " When a bracket is inserted, briefly jump to a matching one
 set showmatch
