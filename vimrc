@@ -90,7 +90,8 @@ au BufReadPost *
 "map <F5> O/** * Method level doc block* @param   $paramname datatype description* @return  returntype  description*/
 
 map <F1> :set expandtab!<CR>
-map <F2> :set list!<CR>
+"map <F2> :set list!<CR>
+map <F2> "zyw:exe "!php --rfunction ".@z.""<CR>
 " Use F3 to toggle 'paste' mode
 map <F3> :set paste!<CR>
 " Toggle Nerd Tree plugin
