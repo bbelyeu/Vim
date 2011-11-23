@@ -93,6 +93,8 @@ map <F1> :set expandtab!<CR>
 map <F2> :set list!<CR>
 " Use F3 to toggle 'paste' mode
 map <F3> :set paste!<CR>
+" Toggle Nerd Tree plugin
+map <F4> :NERDTreeToggle<CR>
 " This is a code-folding shortcut. Will fold everything between { }.
 map <F6> zfa}
 " F7 & F8 are reserved for screen tabs
@@ -128,6 +130,8 @@ map ,h :!lynx -editor=vi file:///usr/local/doc/php-net/indexes.html<CR>
 map ,z zM
 " Run phpunit tests
 map ,p :!phpunit -c /home/quibids/tests/Ares/phpunit.xml %<CR>
+" cd to the local dir that your file being edited is in
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 " Get help for a specific function
 "map ,
 
@@ -165,12 +169,14 @@ vnoremap > >gv
 set showtabline=2
 
 " Open Tag list when vim opens and close it when file is closed
-let Tlist_Auto_Open = 1
-let Tlist_Auto_Update = 1
-let Tlist_Enable_Fold_Column = 1
-let Tlist_Show_One_File = 1
-let Tlist_Sort_Type = "name"
-let Tlist_Exit_OnlyWindow = 1
+"let Tlist_Auto_Open = 1
+"let Tlist_Auto_Update = 1
+"let Tlist_Enable_Fold_Column = 1
+"let Tlist_Show_One_File = 1
+"let Tlist_Sort_Type = "name"
+"let Tlist_Exit_OnlyWindow = 1
+"let Tlist_Use_Right_Window = 1 " split to the right side of the screen
+"let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
 
 " This allows my bash aliases & functions to work in vim
 set shell=bash\ --login
@@ -204,3 +210,17 @@ set errorformat=%m\ in\ %f\ on\ line\ %l
 
 " Highlight SQL syntax in strings
 let php_sql_query=1
+
+" --------------------
+" ShowMarks Plugin
+" --------------------
+let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let g:showmarks_enable = 1
+" For marks a-z
+highlight ShowMarksHLl gui=bold guibg=LightBlue guifg=Blue
+" For marks A-Z
+highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
+" For all other marks
+highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
+" For multiple marks on the same line.
+highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
