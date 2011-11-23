@@ -95,6 +95,8 @@ map <F2> :set list!<CR>
 map <F3> :set paste!<CR>
 " Toggle Nerd Tree plugin
 map <F4> :NERDTreeToggle<CR>
+" Toggle Tag bar plugin
+map <F5> :TagbarToggle<CR>
 " This is a code-folding shortcut. Will fold everything between { }.
 map <F6> zfa}
 " F7 & F8 are reserved for screen tabs
