@@ -35,8 +35,10 @@ set shiftround
 set bs=indent,eol,start " allow backspacing over everything in insert mode
 
 " Highlight search and enable incremental searching
+" Also make search case insensitive by default
 set hlsearch
 set incsearch
+set ignorecase
 
 " Set indention, line numbers, and enable syntax highlighting
 set ai
@@ -67,7 +69,7 @@ set statusline+=%b,0x%-8B\                   " current char
 set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 
 " Use with ctags
-set tags=/home/quibids/includes/.tags
+set tags=~/.vim/tags
 
 " Make a custom view for the file on exit (saves folds) and load view when opening file
 au BufWinLeave * mkview
@@ -81,18 +83,18 @@ au BufReadPost *
 
 " F1-F5 is mapped to javadoc style documentation blocks
 " THESE SHOULD BECOME CODE SNIPPETS
-"map <F1> o/** * Page level doc block - short desc** Long description* @access public* @author Brad Belyeu <bbelyeu@quibids.com>* @copyright Copyright (c) 2011, QuiBids* @link URL* @example /path/to/example.php description* @todo information string* @version Version 1.0* @filesource**/
-"map <F2> O/** * @see file.ext**/
-"map <F3> O/** * Class level doc block name* Description* @package Quibids/Shopee* @category Model/View/Controller* @extends extensions/implements**/
-"map <F4> O/** * Property Description* @var varname datatype description* @staticvar varname datatype description**/
-"map <F5> O/** * Method level doc block* @param   $paramname datatype description* @return  returntype  description**/
+"map <F1> o/** * Page level doc block - short desc** Long description* @access public* @author Brad Belyeu <bbelyeu@quibids.com>* @copyright Copyright (c) 2011, QuiBids* @link URL* @example /path/to/example.php description* @todo information string* @version Version 1.0* @filesource*/
+"map <F2> O/** * @see file.ext*/
+"map <F3> O/** * Class level doc block name* Description* @package Quibids/Shopee* @category Model/View/Controller* @extends extensions/implements*/
+"map <F4> O/** * Property Description* @var varname datatype description* @staticvar varname datatype description*/
+"map <F5> O/** * Method level doc block* @param   $paramname datatype description* @return  returntype  description*/
 
 map <F1> :set expandtab!<CR>
 map <F2> :set list!<CR>
 " Use F3 to toggle 'paste' mode
 map <F3> :set paste!<CR>
 " This is a code-folding shortcut. Will fold everything between { }.
-map <F6> zfa}" Use F7 to toggle line numbers
+map <F6> zfa}
 " F7 & F8 are reserved for screen tabs
 
 " Map PageUp & PageDown keys
@@ -126,6 +128,8 @@ map ,h :!lynx -editor=vi file:///usr/local/doc/php-net/indexes.html<CR>
 map ,z zM
 " Run phpunit tests
 map ,p :!phpunit -c /home/quibids/tests/Ares/phpunit.xml %<CR>
+" Get help for a specific function
+"map ,
 
 " When a bracket is inserted, briefly jump to a matching one
 set showmatch
@@ -161,12 +165,12 @@ vnoremap > >gv
 set showtabline=2
 
 " Open Tag list when vim opens and close it when file is closed
-:let Tlist_Auto_Open = 1
-:let Tlist_Auto_Update = 1
-:let Tlist_Enable_Fold_Column = 1
-:let Tlist_Show_One_File = 1
-:let Tlist_Sort_Type = "name"
-:let Tlist_Exit_OnlyWindow = 1
+let Tlist_Auto_Open = 1
+let Tlist_Auto_Update = 1
+let Tlist_Enable_Fold_Column = 1
+let Tlist_Show_One_File = 1
+let Tlist_Sort_Type = "name"
+let Tlist_Exit_OnlyWindow = 1
 
 " This allows my bash aliases & functions to work in vim
 set shell=bash\ --login
@@ -188,3 +192,15 @@ set linebreak
 " Highlight chars that go over the 80-column limit
 :highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
 :match OverLength '\%81v.*'
+
+" Fix common typos
+" Using AutoCorrect Plugin for this now
+" :iab tihs this
+" :iab teh the
+
+" Set vim make command to work with php lint 
+set makeprg=php\ -l\ %
+set errorformat=%m\ in\ %f\ on\ line\ %l
+
+" Highlight SQL syntax in strings
+let php_sql_query=1
