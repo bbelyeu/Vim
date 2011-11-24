@@ -46,7 +46,7 @@ snippet $_ SESSION['...']
 snippet /*
 	/**
 	 * ${1}
-	 **/
+	 */
 # Class - post doc
 snippet doc_cp
 	/**
@@ -55,21 +55,21 @@ snippet doc_cp
 	 * @package ${2:default}
 	 * @extends extensions/implements
 	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 **/${4}
+	 */${4}
 # Class Variable - post doc
 snippet doc_vp
 	/**
 	 * ${1:undocumented class variable}
 	 *
 	 * @var ${2:string}
-	 **/${3}
+	 */${3}
 # Class Variable
 snippet doc_v
 	/**
 	 * ${3:undocumented class variable}
 	 *
 	 * @var ${4:string}
-	 **/
+	 */
 	${1:var} $${2};${5}
 # Class
 snippet doc_c
@@ -79,7 +79,7 @@ snippet doc_c
 	 * @package ${3:Quibids}
 	 * @author Brad Belyeu <bbelyeu@quibids.com>
 	 * @extends ${4:extends}
-	 **/
+	 */
 	class ${5:ClassName} ${6:extends }
 	{
 		${7}
@@ -92,12 +92,12 @@ snippet doc_c
 snippet doc_dp
 	/**
 	 * ${1:undocumented constant}
-	 **/${2}
+	 */${2}
 # Constant Definition
 snippet doc_d
 	/**
 	 * ${3:undocumented constant}
-	 **/
+	 */
 	define(${1}, ${2});${4}
 # Function - post doc
 snippet doc_fp
@@ -106,7 +106,7 @@ snippet doc_fp
 	 *
 	 * @return ${2:void}
 	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 **/${4}
+	 */${4}
 # Function signature
 snippet doc_s
 	/**
@@ -114,7 +114,7 @@ snippet doc_s
 	 *
 	 * @return ${5:void}
 	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 **/
+	 */
 	${1}function ${2}(${3});${7}
 # Function
 snippet doc_f
@@ -123,7 +123,7 @@ snippet doc_f
 	 *
 	 * @return ${5:void}
 	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 **/
+	 */
 	${1}function ${2}(${3})
 	{${7}
 	}
@@ -136,11 +136,11 @@ snippet doc_h
 	 * @version ${3:$Id$}
 	 * @copyright ${4:$2}, `strftime('%d %B, %Y')`
 	 * @package ${5:default}
-	 **/
+	 */
 	
 	/**
 	 * Define DocBlock
-	 *//
+	 */
 # Interface
 snippet doc_i
 	/**
@@ -148,7 +148,7 @@ snippet doc_i
 	 *
 	 * @package ${3:default}
 	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 **/
+	 */
 	interface ${1:}
 	{${5}
 	} // END interface $1
@@ -159,7 +159,7 @@ snippet class
 	 * ${2:Description}
 	 * @package ${3:Quibids}
 	 * @extends ${4:extends}
-	 **/
+	 */
 	class ${5:ClassName} ${6:extends }
 	{
 		${7}
