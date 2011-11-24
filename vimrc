@@ -29,13 +29,16 @@ au BufNewFile,BufRead *.js set filetype=javascript
 " set expandtab
 set noexpandtab
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set shiftround
 set bs=indent,eol,start " allow backspacing over everything in insert mode
 
 " Highlight search and enable incremental searching
+" Also make search case insensitive by default
 set hlsearch
 set incsearch
+set ignorecase
 
 " Set indention, line numbers, and enable syntax highlighting
 set ai
@@ -66,7 +69,7 @@ set statusline+=%b,0x%-8B\                   " current char
 set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 
 " Use with ctags
-set tags=/home/quibids/includes/.tags
+set tags=~/.vim/tags
 
 " Make a custom view for the file on exit (saves folds) and load view when opening file
 au BufWinLeave * mkview
@@ -79,16 +82,25 @@ au BufReadPost *
  \ endif
 
 " F1-F5 is mapped to javadoc style documentation blocks
-map <F1> o/** * Page level doc block - short desc** Long description* @access public* @author Brad Belyeu <bbelyeu@quibids.com>* @copyright Copyright (c) 2011, QuiBids* @link URL* @example /path/to/example.php description* @todo information string* @version Version 1.0* @filesource**/
-map <F2> O/** * @see file.ext**/
-map <F3> O/** * Class level doc block name* Description* @package Quibids/Shopee* @category Model/View/Controller* @extends extensions/implements**/
-map <F4> O/** * Property Description* @var varname datatype description* @staticvar varname datatype description**/
-map <F5> O/** * Method level doc block* @param   $paramname datatype description* @return  returntype  description**/
+" THESE SHOULD BECOME CODE SNIPPETS
+"map <F1> o/** * Page level doc block - short desc** Long description* @access public* @author Brad Belyeu <bbelyeu@quibids.com>* @copyright Copyright (c) 2011, QuiBids* @link URL* @example /path/to/example.php description* @todo information string* @version Version 1.0* @filesource*/
+"map <F2> O/** * @see file.ext*/
+"map <F3> O/** * Class level doc block name* Description* @package Quibids/Shopee* @category Model/View/Controller* @extends extensions/implements*/
+"map <F4> O/** * Property Description* @var varname datatype description* @staticvar varname datatype description*/
+"map <F5> O/** * Method level doc block* @param   $paramname datatype description* @return  returntype  description*/
 
+map <F1> :set expandtab!<CR>
+"map <F2> :set list!<CR>
+map <F2> "zyw:exe "!php --rfunction ".@z.""<CR>
+" Use F3 to toggle 'paste' mode
+map <F3> :set paste!<CR>
+" Toggle Nerd Tree plugin
+map <F4> :NERDTreeToggle<CR>
+" Toggle Tag bar plugin
+map <F5> :TagbarToggle<CR>
 " This is a code-folding shortcut. Will fold everything between { }.
-map <F6> zfa}" Use F7 to toggle line numbers
-" Use F8 to toggle 'paste' mode
-" map <F8> :set paste!<CR>
+map <F6> zfa}
+" F7 & F8 are reserved for screen tabs
 
 " Map PageUp & PageDown keys
 map <PageUp> <CTRL-U>
@@ -108,7 +120,7 @@ imap <F10> {}O
 " This runs your script via the php cli
 :autocmd FileType php noremap ,e :w!<CR>:!php %<CR>
 " This runs codesniffer against your current open file
-:autocmd FileType php noremap ,cs :w!<CR>:!php phpcs --standard=PEAR %<CR>
+:autocmd FileType php noremap ,cs :w!<CR>:!phpcs --standard=PEAR %<CR>
 " map ,t to create a new tab
 map ,t <Esc>:tabnew<CR>
 " map ,f to display all lines with keyword under cursor and ask which one to jump to
@@ -119,6 +131,12 @@ nnoremap ,s diw"0P
 map ,h :!lynx -editor=vi file:///usr/local/doc/php-net/indexes.html<CR>
 " Close all folds
 map ,z zM
+" Run phpunit tests
+map ,p :!phpunit -c /home/quibids/tests/Ares/phpunit.xml %<CR>
+" cd to the local dir that your file being edited is in
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+" Get help for a specific function
+"map ,
 
 " When a bracket is inserted, briefly jump to a matching one
 set showmatch
@@ -154,12 +172,14 @@ vnoremap > >gv
 set showtabline=2
 
 " Open Tag list when vim opens and close it when file is closed
-:let Tlist_Auto_Open = 1
-:let Tlist_Auto_Update = 1
-:let Tlist_Enable_Fold_Column = 1
-:let Tlist_Show_One_File = 1
-:let Tlist_Sort_Type = "name"
-:let Tlist_Exit_OnlyWindow = 1
+"let Tlist_Auto_Open = 1
+"let Tlist_Auto_Update = 1
+"let Tlist_Enable_Fold_Column = 1
+"let Tlist_Show_One_File = 1
+"let Tlist_Sort_Type = "name"
+"let Tlist_Exit_OnlyWindow = 1
+"let Tlist_Use_Right_Window = 1 " split to the right side of the screen
+"let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
 
 " This allows my bash aliases & functions to work in vim
 set shell=bash\ --login
@@ -181,3 +201,29 @@ set linebreak
 " Highlight chars that go over the 80-column limit
 :highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
 :match OverLength '\%81v.*'
+
+" Fix common typos
+" Using AutoCorrect Plugin for this now
+" :iab tihs this
+" :iab teh the
+
+" Set vim make command to work with php lint 
+set makeprg=php\ -l\ %
+set errorformat=%m\ in\ %f\ on\ line\ %l
+
+" Highlight SQL syntax in strings
+let php_sql_query=1
+
+" --------------------
+" ShowMarks Plugin
+" --------------------
+let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let g:showmarks_enable = 1
+" For marks a-z
+highlight ShowMarksHLl gui=bold guibg=LightBlue guifg=Blue
+" For marks A-Z
+highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
+" For all other marks
+highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
+" For multiple marks on the same line.
+highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
