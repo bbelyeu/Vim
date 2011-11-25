@@ -83,7 +83,7 @@ snippet doc_c
 	class ${5:ClassName} ${6:extends }
 	{
 		${7}
-		${8:public} function ${9:__construct}( ${10:argument} )
+		${8:public} function ${9:__construct}(${10:argument})
 		{
 			${11:// code...}
 		}
@@ -163,32 +163,32 @@ snippet class
 	class ${5:ClassName} ${6:extends }
 	{
 		${7}
-		${8:public} function ${9:__construct}( ${10:argument} )
+		${8:public} function ${9:__construct}(${10:argument})
 		{
 			${11:// code...}
 		}
 	} // END class $5
 # define(...)
 snippet def
-	define( '${1}'${2} );${3}
+	define('${1}'${2});${3}
 # defined(...)
 snippet def?
-	${1}defined( '${2}' )${3}
+	${1}defined('${2}')${3}
 snippet wh
-	while ( ${1:/* condition */} ) {
+	while (${1:/* condition */}) {
 		${2:// code...}
 	}
 # do ... while
 snippet do
 	do {
 		${2:// code... }
-	} while ( ${1:/* condition */} );
+	} while (${1:/* condition */});
 snippet if
-	if ( ${1:/* condition */} ) {
+	if (${1:/* condition */}) {
 		${2:// code...}
 	}
 snippet ife
-	if ( ${1:/* condition */} ) {
+	if (${1:/* condition */}) {
 		${2:// code...}
 	} else {
 		${3:// code...}
@@ -199,14 +199,14 @@ snippet else
 		${1:// code...}
 	}
 snippet elseif
-	elseif ( ${1:/* condition */} ) {
+	elseif (${1:/* condition */}) {
 		${2:// code...}
 	}
 # Tertiary conditional
 snippet t
-	$${1:retVal} = ( ${2:condition} ) ? ${3:a} : ${4:b};
+	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};
 snippet switch
-	switch ( $${1:variable} ) {
+	switch ($${1:variable}) {
 		case '${2:value}':
 			${3:// code...}
 			break;
@@ -220,11 +220,11 @@ snippet case
 		${2:// code...}
 		break;${3}
 snippet for
-	for ( $${2:i} = 0; $$2 < ${1:count}; $$2${3:++} ) {
+	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
 		${4: // code...}
 	}
 snippet foreach
-	foreach ( $${1:variable} as $${2:key} ) {
+	foreach ($${1:variable} as $${2:key}) {
 		${3:// code...}
 	}
 snippet fun
@@ -234,7 +234,7 @@ snippet fun
 	 * @return ${3:void}
 	 * @author Brad Belyeu <bbelyeu@quibids.com>
 	 **/
-	${4:public }function ${5:FunctionName}( ${6} )
+	${4:public }function ${5:FunctionName}(${6})
 	{
 		${7:// code...}
 	}
@@ -242,7 +242,7 @@ snippet fun
 snippet array
 	$${1:arrayName} = array('${2}' => ${3});${4}
 snippet row
-	while( $row = $db_${1:master}->next_record() ) {
+	while($row = $db_${1:master}->next_record()) {
 		${2} = $row;
 	}
 snippet vd
