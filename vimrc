@@ -35,10 +35,11 @@ set shiftround
 set bs=indent,eol,start " allow backspacing over everything in insert mode
 
 " Highlight search and enable incremental searching
-" Also make search case insensitive by default
 set hlsearch
 set incsearch
-set ignorecase
+" Also make search case insensitive by default
+" This ended up being bad and messing up auto find and replaces
+"set ignorecase
 
 " Set indention, line numbers, and enable syntax highlighting
 set ai
