@@ -90,7 +90,7 @@ au BufReadPost *
 "map <F4> O/** * Property Description* @var varname datatype description* @staticvar varname datatype description*/
 "map <F5> O/** * Method level doc block* @param   $paramname datatype description* @return  returntype  description*/
 
-map <F1> :set expandtab!<CR>
+imap <F1> <ESC>:AcpLock<CR>a
 "map <F2> :set list!<CR>
 map <F2> "zyw:exe "!php --rfunction ".@z.""<CR>
 " Use F3 to toggle 'paste' mode
@@ -228,3 +228,6 @@ highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
 highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
 " For multiple marks on the same line.
 highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
+
+" For AutoComplPop to find Snips; see http://www.vim.org/scripts/script.php?script_id=1879
+let g:acp_behaviorSnipmateLength = 1
