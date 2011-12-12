@@ -24,7 +24,7 @@ snippet inc1
 snippet req
 	require '/home/quibids/includes/${1:file}';${2}
 snippet req1
-	require_once '/home/quibids/includes/${1:file}';${2}
+	require_once INCLUDE_PATH.'/${1:file}';${2}
 # $GLOBALS['...']
 snippet globals
 	$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${5}
