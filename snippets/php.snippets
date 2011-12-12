@@ -16,11 +16,11 @@ snippet php
 snippet ec
 	echo "${1:string}"${2};
 snippet inc
-	include '/home/quibids/includes/${1:file}';${2}
+	include INCLUDE_PATH.'/${1:file}';${2}
 snippet inc1
-	include_once '/home/quibids/includes/${1:file}';${2}
+	include_once INCLUDE_PATH.'/${1:file}';${2}
 snippet req
-	require '/home/quibids/includes/${1:file}';${2}
+	require INCLUDE_PATH.'/${1:file}';${2}
 snippet req1
 	require_once INCLUDE_PATH.'/${1:file}';${2}
 # $GLOBALS['...']
