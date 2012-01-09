@@ -1,18 +1,3 @@
-snippet p
-	<?php
-	/**
-	 * ${1:Page level doc block - short desc}
-	 *
-	 * ${2:Long description}
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 * @copyright Copyright (c) 2011, QuiBids
-	 * @link ${3:URL}
-	 * @todo ${4:todo list}
-	 * @filesource
-	 **/
-
-	${5}
-	?>
 snippet ec
 	echo "${1:string}"${2};
 snippet inc
@@ -50,14 +35,12 @@ snippet /*
 	 * ${1}
 	 */
 # Class - post doc
-snippet doc_cp
+snippet doc_c
 	/**
 	 * ${1:undocumented class}
 	 *
-	 * @package ${2:default}
-	 * @extends extensions/implements
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 */${4}
+	 * @extends ${2:extensions/implements}
+	 */${3}
 # Class Variable - post doc
 snippet doc_vp
 	/**
@@ -73,28 +56,6 @@ snippet doc_v
 	 * @var ${4:string}
 	 */
 	${1:var} $${2};${5}
-# Class
-snippet doc_c
-	/**
-	 * ${1:Class level doc block name}
-	 * ${2:Description}
-	 * @package ${3:Quibids}
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 * @extends ${4:extends}
-	 */
-	class ${5:ClassName} ${6:extends }
-	{
-		${7}
-		${8:public} function ${9:__construct}(${10:argument})
-		{
-			${11:// code...}
-		}
-	} // END class $5
-# Constant Definition - post doc
-snippet doc_dp
-	/**
-	 * ${1:undocumented constant}
-	 */${2}
 # Constant Definition
 snippet doc_d
 	/**
@@ -102,43 +63,31 @@ snippet doc_d
 	 */
 	define(${1}, ${2});${4}
 # Function - post doc
-snippet doc_fp
-	/**
-	 * ${1:undocumented function}
-	 *
-	 * @return ${2:void}
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 */${4}
-# Function signature
-snippet doc_s
-	/**
-	 * ${4:undocumented function}
-	 *
-	 * @return ${5:void}
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 */
-	${1}function ${2}(${3});${7}
-# Function
 snippet doc_f
 	/**
-	 * ${4:undocumented function}
-	 *
-	 * @return ${5:void}
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 */
-	${1}function ${2}(${3})
-	{${7}
-	}
+	 * ${1:undocumented function}
+	 * ${2:@param}
+	 * @return ${3:null}
+	 */${4}
 # Header
 snippet doc_h
+	<?php
 	/**
-	 * ${1}
+	 * ${1:Long desc}
 	 *
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 * @copyright ${2}, `strftime('%d %B, %Y')`
+	 * ${2:Short desc}
+	 *
+	 * PHP version 5
+	 *
+	 * @category Games
 	 * @package ${3:default}
+	 * @author Brad Belyeu <bbelyeu@quibids.com>
+	 * @copyright Copyright (c) `strftime('%d %B, %Y')`, QuiBids LLC
+	 * @filesource
 	 */
-	
+
+	${4}
+	?>
 # Interface
 snippet doc_i
 	/**
@@ -149,23 +98,23 @@ snippet doc_i
 	 */
 	interface ${1:}
 	{${5}
-	} // END interface $1
+	}
 # class ...
 snippet cl
 	/**
 	 * ${1:Class level doc block name}
-	 * ${2:Description}
-	 * @package ${3:Quibids}
-	 * @extends ${4:extends}
+	 * ${2:Short Description}
+	 *
+	 * @extends ${3:extends}
 	 */
-	class ${5:ClassName} ${6:extends }
+	class ${4:ClassName} ${5:extends }
 	{
-		${7}
-		${8:public} function ${9:__construct}(${10:argument})
+		${6}
+		${7:public} function ${8:__construct}(${9:argument})
 		{
-			${11:// code...}
+			${10:// code...}
 		}
-	} // END class $5
+	}
 # define(...)
 snippet def
 	define('${1}'${2});${3}
@@ -177,11 +126,11 @@ snippet wh
 		${2:// code...}
 	}
 # do ... while
-snippet do
+snippet dow
 	do {
 		${2:// code... }
 	} while (${1:/* condition */});
-snippet if
+snippet iff
 	if (${1:/* condition */}) {
 		${2:// code...}
 	}
@@ -227,14 +176,12 @@ snippet fe
 	}
 snippet pf
 	/**
-	 * ${1:undocumented function}
-	 * @param $${2:x}
-	 * @return ${3:void}
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
+	 * ${4:undocumented function}
+	 * ${5:@param}
+	 * @return ${6:void}
 	 */
-	${4:public }function ${5:FunctionName}(${6})
-	{
-		${7:// code...}
+	${1:public} function ${2:FunctionName}(${3})
+	{${7}
 	}
 # $... = array (...)
 snippet arr
