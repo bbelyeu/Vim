@@ -26,13 +26,13 @@ au BufNewFile,BufRead *.js set filetype=javascript
 :helptags ~/.vim/doc
 
 " Set tab & auto indent to 4 spaces also round indent to multiple of 'shiftwidth' for > and < commands
-" set expandtab
-set noexpandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set shiftround
 set bs=indent,eol,start " allow backspacing over everything in insert mode
+set expandtab
+" set noexpandtab
 
 " Highlight search and enable incremental searching
 set hlsearch
