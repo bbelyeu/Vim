@@ -82,6 +82,14 @@ au BufReadPost *
  \   exe "normal g`\"" |
  \ endif
 
+" Fix files with mixed line endings (DOS)
+" http://vim.wikia.com/wiki/VimTip1662
+autocmd BufReadPost * nested
+      \ if !exists('b:reload_dos') && !&binary && &ff=='unix' && (0 < search('\r$', 'nc')) |
+      \   let b:reload_dos = 1 |
+      \   e ++ff=dos |
+      \ endif
+
 " F1-F5 is mapped to javadoc style documentation blocks
 " THESE SHOULD BECOME CODE SNIPPETS
 "map <F1> o/** * Page level doc block - short desc** Long description* @access public* @author Brad Belyeu <bbelyeu@quibids.com>* @copyright Copyright (c) 2011, QuiBids* @link URL* @example /path/to/example.php description* @todo information string* @version Version 1.0* @filesource*/
