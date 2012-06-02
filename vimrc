@@ -84,11 +84,11 @@ au BufReadPost *
 
 " Fix files with mixed line endings (DOS)
 " http://vim.wikia.com/wiki/VimTip1662
-autocmd BufReadPost * nested
-      \ if !exists('b:reload_dos') && !&binary && &ff=='unix' && (0 < search('\r$', 'nc')) |
-      \   let b:reload_dos = 1 |
-      \   e ++ff=dos |
-      \ endif
+"autocmd BufReadPost * nested
+"      \ if !exists('b:reload_dos') && !&binary && &ff=='unix' && (0 < search('\r$', 'nc')) |
+"      \   let b:reload_dos = 1 |
+"      \   e ++ff=dos |
+"      \ endif
 
 " F1-F5 is mapped to javadoc style documentation blocks
 " THESE SHOULD BECOME CODE SNIPPETS
@@ -239,3 +239,15 @@ highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 
 " For AutoComplPop to find Snips; see http://www.vim.org/scripts/script.php?script_id=1879
 let g:acp_behaviorSnipmateLength = 1
+
+" -------------------------------------------
+" Set a highlight on the cursors current line
+" -------------------------------------------
+"set cursorline
+" Even better only set the cursor inside the active window
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+:hi CursorLine   cterm=NONE ctermbg=LightBlue
+"ctermfg=white guibg=darkred guifg=white
+":hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:nnoremap ,cl :set cursorline!<CR>
