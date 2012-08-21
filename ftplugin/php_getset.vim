@@ -256,7 +256,7 @@ else
   let s:phpgetset_getterTemplate =
     \ "\t\tn" .
     \ "\t\t**\n" .
-    \ "\t\t * Get %varname%\n" .
+    \ "\t\t * Get %varname% property\n" .
     \ "\t\t *\n" .
     \ "\t\t * @return %varname%\n" .
     \ "\t\t */\n" .
@@ -274,7 +274,7 @@ else
   let s:phpgetset_setterTemplate =
   \ "\t\t\n" .
   \ "\t\t/**\n" .
-  \ "\t\t * Set %varname%\n" .
+  \ "\t\t * Set %varname% property\n" .
   \ "\t\t *\n" .
   \ "\t\t * @param %varname% the value to set\n" .
   \ "\t\t */\n" .
