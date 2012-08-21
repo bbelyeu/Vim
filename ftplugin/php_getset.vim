@@ -604,7 +604,7 @@ if !exists("*s:MoveToInsertPosition")
     " 0 indicates end of class (and is default)
     else
       "execute "normal! ?{\<CR>w99[{%k" | nohls
-      execute "normal! ?}\<CR>nn" | nohls
+      execute "normal! G?}\<CR>2n" | nohls
 
     endif
 
