@@ -277,10 +277,12 @@ else
   \ "\t\t * Set %varname% property\n" .
   \ "\t\t *\n" .
   \ "\t\t * @param %varname% the value to set\n" .
+  \ "\t\t * @return self\n" .
   \ "\t\t */\n" .
   \ "\t\tpublic function %funcname%($%varname%)\n" .
   \ "\t\t{\n" .
   \ "\t\t\t$this->%varname% = $%varname%;\n" .
+  \ "\t\t\treturn $this;\n" .
   \ "\t\t}"
 endif
 
