@@ -254,16 +254,16 @@ if exists("b:phpgetset_getterTemplate")
   let s:phpgetset_getterTemplate = b:phpgetset_getterTemplate
 else
   let s:phpgetset_getterTemplate =
-    \ "    \n" .
-    \ "    /**\n" .
-    \ "     * Get %varname%.\n" .
-    \ "     *\n" .
-    \ "     * @return %varname%.\n" .
-    \ "     */\n" .
-    \ "    public function %funcname%()\n" .
-    \ "    {\n" .
-    \ "        return $this->%varname%;\n" .
-    \ "    }"
+    \ "\t\tn" .
+    \ "\t\t**\n" .
+    \ "\t\t * Get %varname%.\n" .
+    \ "\t\t *\n" .
+    \ "\t\t * @return %varname%.\n" .
+    \ "\t\t */\n" .
+    \ "\t\tpublic function %funcname%()\n" .
+    \ "\t\t\n" .
+    \ "\t\t\treturn $this->%varname%;\n" .
+    \ "\t\t"
 endif
 
 
@@ -272,16 +272,16 @@ if exists("b:phpgetset_setterTemplate")
   let s:phpgetset_setterTemplate = b:phpgetset_setterTemplate
 else
   let s:phpgetset_setterTemplate =
-  \ "    \n" .
-  \ "    /**\n" .
-  \ "     * Set %varname%.\n" .
-  \ "     *\n" .
-  \ "     * @param %varname% the value to set.\n" .
-  \ "     */\n" .
-  \ "    public function %funcname%($%varname%)\n" .
-  \ "    {\n" .
-  \ "        $this->%varname% = $%varname%;\n" .
-  \ "    }"
+  \ "\t\t\n" .
+  \ "\t\t/**\n" .
+  \ "\t\t * Set %varname%.\n" .
+  \ "\t\t *\n" .
+  \ "\t\t * @param %varname% the value to set.\n" .
+  \ "\t\t */\n" .
+  \ "\t\tpublic function %funcname%($%varname%)\n" .
+  \ "\t\t{\n" .
+  \ "\t\t\t$this->%varname% = $%varname%;\n" .
+  \ "\t\t}"
 endif
 
 
@@ -603,7 +603,8 @@ if !exists("*s:MoveToInsertPosition")
 
     " 0 indicates end of class (and is default)
     else
-      execute "normal! ?{\<CR>w99[{%k" | nohls
+      "execute "normal! ?{\<CR>w99[{%k" | nohls
+      execute "normal! ?}\<CR>nn" | nohls
 
     endif
 
