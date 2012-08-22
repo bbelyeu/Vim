@@ -254,16 +254,16 @@ if exists("b:phpgetset_getterTemplate")
   let s:phpgetset_getterTemplate = b:phpgetset_getterTemplate
 else
   let s:phpgetset_getterTemplate =
-    \ "\t\tn" .
-    \ "\t\t**\n" .
+    \ "\t\t\n" .
+    \ "\t\t/**\n" .
     \ "\t\t * Get %varname% property\n" .
     \ "\t\t *\n" .
     \ "\t\t * @return %varname%\n" .
     \ "\t\t */\n" .
     \ "\t\tpublic function %funcname%()\n" .
-    \ "\t\t\n" .
+    \ "\t\t{\n" .
     \ "\t\t\treturn $this->%varname%;\n" .
-    \ "\t\t"
+    \ "\t\t}"
 endif
 
 
@@ -606,7 +606,7 @@ if !exists("*s:MoveToInsertPosition")
     " 0 indicates end of class (and is default)
     else
       "execute "normal! ?{\<CR>w99[{%k" | nohls
-      execute "normal! G?}\<CR>2n" | nohls
+      execute "normal! G?}\<CR>n" | nohls
 
     endif
 
