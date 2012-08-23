@@ -1,15 +1,16 @@
 " Vim filetype plugin file for adding getter/setter methods
 " Language:	PHP 5
-" Maintainer: Florian Klein <florian.klein@free.fr>
-" Last Change: 2012 Sep
+" Maintainer: Brad Belyeu <bradleylamar@gmail.com>
+" Last Change: 2012 Aug
 " Revision: $Id$
 " Credit:
 "    - Antoni Jakubiak (antek AT clubbing czest pl)
 "    - It's modification java_getset.vim by Pete Kazmier
+"    - Forked & mod of Florian Klein <florian.klein@free.fr>
 "
 " =======================================================================
 "
-" Copyright 2011 by Florian Klein
+" Copyright 2012 by Brad Belyeu
 "
 " Redistribution and use in source and binary forms, with or without
 " modification, are permitted provided that the following conditions
@@ -52,11 +53,11 @@
 "
 " class Test
 " {
-"    var $count;
+"    public $count;
 "
-"    var $name;
+"    protected $name;
 "
-"    var $address;
+"    private $address;
 " }
 "
 "
@@ -69,11 +70,11 @@
 " value for s:phpgetset_getterTemplate is:
 "
 "     /**
-"      * Get %varname%.
+"      * Get %varname% property
 "      *
 "      * @return %varname%
 "      */
-"     function %funcname%()
+"     public function %funcname%()
 "     {
 "         return %varname%;
 "     }
@@ -210,7 +211,7 @@
 "
 "     The defaults for these variables are defined in the script.  For
 "     both the getterTemplate and setterTemplate, there is a corresponding
-"     array-baded template that is invoked if a property is array-based.
+"     array-based template that is invoked if a property is array-based.
 "     This allows you to set indexed-based getters/setters if you desire.
 "     This is the default behavior.
 "
@@ -226,15 +227,12 @@
 "
 " =======================================================================
 "
-" NOTE:
-" This is my first VIM script.  I do not read any documentation.
-" I make only some modifications in the original code java_getset.vim.
-
+"
 " Only do this when not done yet for this buffer
-if exists("b:did_phpgetset_ftplugin")
-  finish
-endif
-let b:did_phpgetset_ftplugin = 1
+"if exists("b:did_phpgetset_ftplugin")
+"  finish
+"endif
+"let b:did_phpgetset_ftplugin = 1
 
 " Make sure we are in vim mode
 let s:save_cpo = &cpo
@@ -425,14 +423,14 @@ endif
 " For example, if the following lines were selected:
 "
 "     // Age
-"     var $age;
+"     protected $age;
 "
 "     // Name
-"     var $name;
+"     protected $name;
 "
 " Then, the following string would be returned:
 "
-"     // Age    var $age;    // Name    var $name;
+"     // Age    protected $age;    // Name    protected $name;
 "
 if !exists("*s:GetRangeAsString")
   function s:GetRangeAsString(first, last)
@@ -461,12 +459,12 @@ endif
 " regexp).  Each property is then processed.  For example, if the region
 " was:
 "
-"     // Age    var $age;    // Name    var $name;
+"     // Age    protected $age;    // Name    protected $name;
 "
 " Then, the following strings would be processed one at a time:
 "
-" var $age;
-" var $name;
+" protected $age;
+" protected $name;
 "
 if !exists("*s:ProcessRegion")
   function s:ProcessRegion(region)
@@ -491,7 +489,7 @@ endif
 " In addition, the following other components are then derived
 " from the previous: funcname. For example, if the specified variable was:
 "
-" var $name;
+" protected $name;
 "
 " Then the following would be set for the global variables:
 "
