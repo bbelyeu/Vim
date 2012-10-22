@@ -5200,6 +5200,8 @@ ia FIrts First
 ia fisionable fissionable
 ia Fisionable Fissionable
 ia FIsionable Fissionable
+ia Flahs Flash
+ia flahs flash
 ia flamable flammable
 ia Flamable Flammable
 ia FLamable Flammable
@@ -7259,6 +7261,8 @@ ia MEditerainnean Mediterranean
 ia meerkrat meerkat
 ia Meerkrat Meerkat
 ia MEerkrat Meerkat
+ia Mehtod Method
+ia mehtod method
 ia melieux milieux
 ia Melieux Milieux
 ia MElieux Milieux
