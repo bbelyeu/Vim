@@ -200,8 +200,9 @@ set wrap
 set linebreak
 
 " Highlight chars that go over the 80-column limit
+" Modified to allow 100 columns
 :highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
-:match OverLength '\%81v.*'
+:match OverLength '\%101v.*'
 
 " Fix common typos
 " Using AutoCorrect Plugin for this now
