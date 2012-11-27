@@ -1,8 +1,8 @@
 " This prevents a \n being added by vim at the end of every file
-autocmd FileType php setlocal noeol "fileformat=dos "binary
+autocmd FileType php setlocal noeol
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-	set fileencodings=utf-8,latin1
+    set fileencodings=utf-8,latin1
 endif
 
 " Use Vim defaults (much better!) also required for snippets
@@ -12,8 +12,6 @@ set nocompatible
 filetype on
 " Zend template files
 au BufNewFile,BufRead *.phtml set filetype=html.php.js.css
-" QB class files
-au BufNewFile,BufRead *.inc set filetype=php
 " Added following 3 lines for drupal modules
 au BufNewFile,BufRead *.module set filetype=php
 au BufRead,BufNewFile *.install set filetype=php
@@ -31,8 +29,7 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 set bs=indent,eol,start " allow backspacing over everything in insert mode
-" set expandtab
-set noexpandtab
+set expandtab
 
 " Highlight search and enable incremental searching
 set hlsearch
@@ -90,14 +87,6 @@ au BufReadPost *
 "      \   e ++ff=dos |
 "      \ endif
 
-" F1-F5 is mapped to javadoc style documentation blocks
-" THESE SHOULD BECOME CODE SNIPPETS
-"map <F1> o/** * Page level doc block - short desc** Long description* @access public* @author Brad Belyeu <bbelyeu@quibids.com>* @copyright Copyright (c) 2011, QuiBids* @link URL* @example /path/to/example.php description* @todo information string* @version Version 1.0* @filesource*/
-"map <F2> O/** * @see file.ext*/
-"map <F3> O/** * Class level doc block name* Description* @package Quibids/Shopee* @category Model/View/Controller* @extends extensions/implements*/
-"map <F4> O/** * Property Description* @var varname datatype description* @staticvar varname datatype description*/
-"map <F5> O/** * Method level doc block* @param   $paramname datatype description* @return  returntype  description*/
-
 imap <F1> <ESC>:AcpLock<CR>a
 "map <F2> :set list!<CR>
 map <F2> "zyw:exe "!php --rfunction ".@z.""<CR>
@@ -141,7 +130,7 @@ map ,h :!lynx -editor=vi file:///usr/local/doc/php-net/indexes.html<CR>
 " Close all folds
 map ,z zM
 " Run phpunit tests
-map ,p :!phpunit -c /home/quibids/tests/Ares/phpunit.xml %<CR>
+"map ,p :!phpunit -c /home/quibids/tests/Ares/phpunit.xml %<CR>
 " cd to the local dir that your file being edited is in
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 " Get help for a specific function

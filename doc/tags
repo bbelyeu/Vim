@@ -168,6 +168,8 @@ acp-thanks	acp.txt	/*acp-thanks*
 acp-usage	acp.txt	/*acp-usage*
 acp.txt	acp.txt	/*acp.txt*
 autocomplpop	acp.txt	/*autocomplpop*
+cs	surround.txt	/*cs*
+ds	surround.txt	/*ds*
 g:SuperTabCompletionContexts	supertab.txt	/*g:SuperTabCompletionContexts*
 g:SuperTabContextDefaultCompletionType	supertab.txt	/*g:SuperTabContextDefaultCompletionType*
 g:SuperTabDefaultCompletionType	supertab.txt	/*g:SuperTabDefaultCompletionType*
@@ -223,6 +225,8 @@ git-vim-contents	git-vim.txt	/*git-vim-contents*
 git-vim-keymaps	git-vim.txt	/*git-vim-keymaps*
 git-vim-license	git-vim.txt	/*git-vim-license*
 git-vim.txt	git-vim.txt	/*git-vim.txt*
+i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
+i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
 i_CTRL-R_<Tab>	snipMate.txt	/*i_CTRL-R_<Tab>*
 list-snippets	snipMate.txt	/*list-snippets*
 multi_snip	snipMate.txt	/*multi_snip*
@@ -271,6 +275,14 @@ supertab-midword	supertab.txt	/*supertab-midword*
 supertab-options	supertab.txt	/*supertab-options*
 supertab-usage	supertab.txt	/*supertab-usage*
 supertab.txt	supertab.txt	/*supertab.txt*
+surround	surround.txt	/*surround*
+surround-author	surround.txt	/*surround-author*
+surround-customizing	surround.txt	/*surround-customizing*
+surround-issues	surround.txt	/*surround-issues*
+surround-mappings	surround.txt	/*surround-mappings*
+surround-replacements	surround.txt	/*surround-replacements*
+surround-targets	surround.txt	/*surround-targets*
+surround.txt	surround.txt	/*surround.txt*
 tagbar	tagbar.txt	/*tagbar*
 tagbar-autoopen	tagbar.txt	/*tagbar-autoopen*
 tagbar-bugs	tagbar.txt	/*tagbar-bugs*
@@ -308,3 +320,10 @@ taglist-session	taglist.txt	/*taglist-session*
 taglist-todo	taglist.txt	/*taglist-todo*
 taglist-using	taglist.txt	/*taglist-using*
 taglist.txt	taglist.txt	/*taglist.txt*
+vS	surround.txt	/*vS*
+vgS	surround.txt	/*vgS*
+vs	surround.txt	/*vs*
+yS	surround.txt	/*yS*
+ySS	surround.txt	/*ySS*
+ys	surround.txt	/*ys*
+yss	surround.txt	/*yss*
