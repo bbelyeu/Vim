@@ -121,38 +121,47 @@ snippet def
 snippet def?
 	${1}defined('${2}')${3}
 snippet wh
-	while (${1:/* condition */}) {
+	while (${1:/* condition */})
+	{
 		${2:// code...}
 	}
 # do ... while
 snippet dow
-	do {
+	do
+	{
 		${2:// code... }
 	} while (${1:/* condition */});
 snippet iff
-	if (${1:/* condition */}) {
+	if (${1:/* condition */})
+	{
 		${2:// code...}
 	}
 snippet ife
-	if (${1:/* condition */}) {
+	if (${1:/* condition */})
+	{
 		${2:// code...}
-	} else {
+	}
+	else
+	{
 		${3:// code...}
 	}
 	${4}
 snippet el
-	else {
+	else
+	{
 		${1:// code...}
 	}
 snippet elif
-	elseif (${1:/* condition */}) {
+	elseif (${1:/* condition */})
+	{
 		${2:// code...}
 	}
 # Tertiary conditional
 snippet t
 	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};
 snippet swi
-	switch ($${1:variable}) {
+	switch ($${1:variable})
+	{
 		case '${2:value}':
 			${3:// code...}
 			break;
@@ -166,11 +175,13 @@ snippet cas
 		${2:// code...}
 		break;${3}
 snippet fr
-	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
+	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++})
+	{
 		${4: // code...}
 	}
 snippet fe
-	foreach ($${1:variable} as $${2:key}) {
+	foreach ($${1:variable} as $${2:key})
+	{
 		${3:// code...}
 	}
 snippet pf
@@ -186,10 +197,6 @@ snippet pf
 # $... = array (...)
 snippet arr
 	$${1:arrayName} = array('${2}' => ${3});${4}
-snippet row
-	while($row = $db_${1:master}->next_record()) {
-		${2} = $row;
-	}
 snippet vd
 	echo '<pre>';var_dump(${1});die;
 snippet ns
@@ -199,6 +206,7 @@ snippet ns
 	}
 # Adding js snippets
 snippet rdy
-	$(document).ready(function() {
+	$(document).ready(function()
+	{
 		${1}
 	});

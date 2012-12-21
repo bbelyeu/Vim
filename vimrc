@@ -29,7 +29,6 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 set bs=indent,eol,start " allow backspacing over everything in insert mode
-set expandtab
 
 " Highlight search and enable incremental searching
 set hlsearch
@@ -66,9 +65,6 @@ set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
 set statusline+=%b,0x%-8B\                   " current char
 set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 
-" Use with ctags
-set tags=~/.vim/tags
-
 " Make a custom view for the file on exit (saves folds) and load view when opening file
 au BufWinLeave * mkview
 au BufWinEnter * silent loadview
@@ -88,8 +84,7 @@ au BufReadPost *
 "      \ endif
 
 imap <F1> <ESC>:AcpLock<CR>a
-"map <F2> :set list!<CR>
-map <F2> "zyw:exe "!php --rfunction ".@z.""<CR>
+" <F2> is set to language specific lint in ftplugin
 " Use F3 to toggle 'paste' mode
 map <F3> :set paste!<CR>
 " Toggle Nerd Tree plugin
@@ -109,36 +104,23 @@ set nostartofline
 
 " Custom F9 script to create parens for functions & F10 for loops/conditionals
 imap <F9> {}O
-imap <F10> {}O
+"imap <F10> {}O
 
-" Use omnifunc for autocompletion
-:autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-" This runs lint on your current working file to check for php syntax errors
-:autocmd FileType php noremap ,l :w!<CR>:!php -l %<CR>
-" This runs your script via the php cli
-:autocmd FileType php noremap ,e :w!<CR>:!php %<CR>
-" This runs codesniffer against your current open file
-:autocmd FileType php noremap ,cs :w!<CR>:!phpcs --standard=PEAR %<CR>
 " map ,t to create a new tab
 map ,t <Esc>:tabnew<CR>
 " map ,f to display all lines with keyword under cursor and ask which one to jump to
 nmap ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
 nnoremap ,s diw"0P
-" Lookup local php help files with lynx
-map ,h :!lynx -editor=vi file:///usr/local/doc/php-net/indexes.html<CR>
 " Close all folds
 map ,z zM
-" Run phpunit tests
-"map ,p :!phpunit -c /home/quibids/tests/Ares/phpunit.xml %<CR>
 " cd to the local dir that your file being edited is in
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
-" Get help for a specific function
-"map ,
+" Copy currently edited file to dev server
+map ,cp :!~/bin/rsync_dev.sh<CR>
 
 " When a bracket is inserted, briefly jump to a matching one
 set showmatch
-
 " Jump to matching bracket for 5/10th of a second (works with showmatch)
 set matchtime=5
 
@@ -197,21 +179,14 @@ set wrap
 set linebreak
 
 " Highlight chars that go over the 80-column limit
-" Modified to allow 100 columns
+" Modified to allow 120 columns
 :highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
-:match OverLength '\%101v.*'
+:match OverLength '\%121v.*'
 
 " Fix common typos
 " Using AutoCorrect Plugin for this now
 " :iab tihs this
 " :iab teh the
-
-" Set vim make command to work with php lint 
-set makeprg=php\ -l\ %
-set errorformat=%m\ in\ %f\ on\ line\ %l
-
-" Highlight SQL syntax in strings
-let php_sql_query=1
 
 " --------------------
 " ShowMarks Plugin
@@ -237,7 +212,13 @@ let g:acp_behaviorSnipmateLength = 1
 " Even better only set the cursor inside the active window
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
-:hi CursorLine   cterm=NONE ctermbg=LightBlue
+:hi CursorLine   cterm=NONE ctermbg=LightGrey
 "ctermfg=white guibg=darkred guifg=white
 ":hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 :nnoremap ,cl :set cursorline!<CR>
+
+" Added this line for vim 7.3 on Mac to support using Mac's clipboard
+set clipboard=unnamed
+
+" Moved this to the bottom of vimrc to make sure it was working correctly
+set expandtab
