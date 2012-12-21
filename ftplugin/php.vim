@@ -1,7 +1,7 @@
 " PHP specific vimrc settings
 
 " Use with ctags
-set tags=~/.vim/tags
+set tags=~/repos/youversionapi.com/.tags
 
 map <F2> "zyw:exe "!php --rfunction ".@z.""<CR>
 
