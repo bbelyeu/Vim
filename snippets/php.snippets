@@ -73,16 +73,16 @@ snippet doc_f
 snippet doc_h
 	<?php
 	/**
-	 * ${1:Long desc}
-	 *
 	 * ${2:Short desc}
+	 *
+	 * ${1:Long desc}
 	 *
 	 * PHP version 5
 	 *
-	 * @category Games
-	 * @package ${3:default}
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
-	 * @copyright Copyright (c) `strftime('%d %B, %Y')`, QuiBids LLC
+	 * @category ${3:default}
+	 * @package ${4:default}
+	 * @author Brad Belyeu <bradley.belyeu@lifechurch.tv>
+	 * @copyright Copyright (c) `strftime('%d %B, %Y')`, LifeChurch.tv
 	 * @filesource
 	 */
 
@@ -93,7 +93,7 @@ snippet doc_i
 	 * ${2:undocumented class}
 	 *
 	 * @package ${3:default}
-	 * @author Brad Belyeu <bbelyeu@quibids.com>
+	 * @author Brad Belyeu <bradley.belyeu@lifechurch.tv>
 	 */
 	interface ${1:}
 	{${5}
@@ -198,7 +198,7 @@ snippet pf
 snippet arr
 	$${1:arrayName} = array('${2}' => ${3});${4}
 snippet vd
-	echo '<pre>';var_dump(${1});die;
+	var_dump(${1});die;
 snippet ns
 	namespace Core\${1:PATH}
 	{
