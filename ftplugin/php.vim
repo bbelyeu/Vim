@@ -4,6 +4,7 @@
 set tags=~/repos/youversionapi.com/.tags
 
 map <F2> "zyw:exe "!php --rfunction ".@z.""<CR>
+map <F6> zfa}
 
 " Use omnifunc for autocompletion
 ":autocmd FileType php set omnifunc=phpcomplete#CompletePHP
