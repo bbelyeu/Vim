@@ -19,8 +19,12 @@ autocmd BufRead,BufNewFile *.test set filetype=php
 " Standard
 au BufNewFile,BufRead *.php set filetype=php.html.js.css
 au BufNewFile,BufRead *.js set filetype=javascript
+au BufNewFile,BufRead *.py set filetype=python
 " Added this bc my snippets plugin said to
 :filetype plugin on
+" Added indent on for python-mode plugin to work correctly
+" @see https://github.com/klen/python-mode
+:filetype indent on
 :helptags ~/.vim/doc
 
 " Set tab & auto indent to 4 spaces also round indent to multiple of 'shiftwidth' for > and < commands
@@ -104,6 +108,7 @@ set nostartofline
 
 " Custom F9 script to create parens for functions & F10 for loops/conditionals
 imap <F9> {}O
+" Commented out F10 b/c of yv standards
 "imap <F10> {}O
 
 " map ,t to create a new tab
@@ -180,8 +185,10 @@ set linebreak
 
 " Highlight chars that go over the 80-column limit
 " Modified to allow 120 columns
-:highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
-:match OverLength '\%121v.*'
+":highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
+":match OverLength '\%121v.*'
+" Changed the 2 above lines to only use a colorcolumn instead of highlighting all code beyond column count
+set colorcolumn=100
 
 " Fix common typos
 " Using AutoCorrect Plugin for this now
@@ -222,3 +229,16 @@ set clipboard=unnamed
 
 " Moved this to the bottom of vimrc to make sure it was working correctly
 set expandtab
+
+" Fix Mac issue with not being able to write/create a crontab
+" @link http://vim.wikia.com/wiki/Editing_crontab
+au BufEnter /private/tmp/crontab.* setl backupcopy=yes
+
+" Open NERD tree if no files were specified when starting vim
+autocmd vimenter * if !argc() | NERDTree | endif
+
+" Remap window movements
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
