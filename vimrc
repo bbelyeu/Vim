@@ -89,14 +89,13 @@ au BufReadPost *
 
 imap <F1> <ESC>:AcpLock<CR>a
 " <F2> is set to language specific lint in ftplugin
-" Use F3 to toggle 'paste' mode
-map <F3> :set paste!<CR>
+" Use F3 to toggle Gundo plugin
+map <F3> :GundoToggle<CR>
 " Toggle Nerd Tree plugin
 map <F4> :NERDTreeToggle<CR>
 " Toggle Tag bar plugin
 map <F5> :TagbarToggle<CR>
-" This is a code-folding shortcut. Will fold everything between { }.
-map <F6> zfa}
+" <F6> is used for language specific code-folding shortcut. Will fold everything between { }.
 " F7 & F8 are reserved for screen tabs
 
 " Map PageUp & PageDown keys
@@ -123,6 +122,12 @@ map ,z zM
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 " Copy currently edited file to dev server
 map ,cp :!~/bin/rsync_dev.sh<CR>
+" Setup find in buffer for cntrlp
+nmap ,p :CtrlPBufTagAll<CR>
+" Copied these from JT
+let g:ctrlp_extensions = ['buffertag']
+let g:ctrlp_mruf_case_sensitive = 0
+let g:ctrlp_mruf_relative = 1
 
 " When a bracket is inserted, briefly jump to a matching one
 set showmatch
