@@ -1,4 +1,9 @@
-" This prevents a \n being added by vim at the end of every file
+" change the mapleader from \ to , it's important that this
+" is at/near the top of the file so that other mapped comamnds
+" use this leader
+let mapleader=","
+
+"This prevents a \n being added by vim at the end of every file
 autocmd FileType php setlocal noeol
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
@@ -110,20 +115,19 @@ imap <F9> {}O
 " Commented out F10 b/c of yv standards
 "imap <F10> {}O
 
-" map ,t to create a new tab
-map ,t <Esc>:tabnew<CR>
-" map ,f to display all lines with keyword under cursor and ask which one to jump to
-nmap ,f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+" map <leader>f to display all lines with keyword under cursor and ask which one to jump to
+nmap <leader>f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
-nnoremap ,s diw"0P
+nnoremap <leader>s diw"0P
 " Close all folds
-map ,z zM
+map <leader>z zM
 " cd to the local dir that your file being edited is in
-nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Copy currently edited file to dev server
-map ,cp :!~/bin/rsync_dev.sh<CR>
+map <leader>cp :!~/bin/rsync_dev.sh<CR>
 " Setup find in buffer for cntrlp
-nmap ,p :CtrlPBufTagAll<CR>
+nmap <leader>cb :CtrlPBufTagAll<CR>
+nmap <leader>cm :CtrlPMixed<CR>
 " Copied these from JT
 let g:ctrlp_extensions = ['buffertag']
 let g:ctrlp_mruf_case_sensitive = 0
@@ -247,3 +251,6 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
+" Got this from Kevin to close NERDTree if it's the last window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif

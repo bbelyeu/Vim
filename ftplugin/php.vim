@@ -19,13 +19,13 @@ set omnifunc=phpcomplete#CompletePHP
 ":autocmd FileType php noremap ,cs :w!<CR>:!phpcs --standard=PEAR %<CR>
 
 " Lookup local php help files with lynx
-map ,h :!lynx -editor=vi file:///usr/local/doc/php-net/indexes.functions.html<CR>
+map <leader>h :!lynx -editor=vi file:///usr/local/doc/php-net/indexes.functions.html<CR>
 " Run phpunit tests
 "map ,p :!phpunit -c /home/quibids/tests/Ares/phpunit.xml %<CR>
 " Lint the file for syntax errors
-map ,l :w!<CR>:!/Applications/mampstack-5.4.11-0/php/bin/php -l %<CR>
+map <leader>l :w!<CR>:!/Applications/mampstack-5.4.11-0/php/bin/php -l %<CR>
 " This runs your script via the php cli
-map ,e :w!<CR>:!/Applications/mampstack-5.4.11-0/php/bin/php %<CR>
+map <leader>e :w!<CR>:!/Applications/mampstack-5.4.11-0/php/bin/php %<CR>
 
 " Set vim make command to work with php lint 
 set makeprg=/Applications/mampstack-5.4.11-0/php/bin/php\ -l\ %
