@@ -3,8 +3,14 @@
 " Use with ctags
 set tags=~/repos/youversionapi.com/.tags
 
+" Show function documentation
 map <F2> "zyw:exe "!php --rfunction ".@z.""<CR>
+" Use to fold up a function
 map <F6> zfa}
+" Custom F9 script to create parens for functions & F10 for loops/conditionals
+imap <F9> {}O
+" Commented out F10 b/c of yv standards
+"imap <F10> {}O
 
 " Use omnifunc for autocompletion
 ":autocmd FileType php set omnifunc=phpcomplete#CompletePHP

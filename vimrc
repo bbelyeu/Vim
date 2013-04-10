@@ -75,8 +75,8 @@ set statusline+=%b,0x%-8B\                   " current char
 set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 
 " Make a custom view for the file on exit (saves folds) and load view when opening file
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
 
 " Go back to the position the cursor was on the last time this file was edited
 au BufReadPost *
@@ -102,18 +102,7 @@ map <F4> :NERDTreeToggle<CR>
 map <F5> :TagbarToggle<CR>
 " <F6> is used for language specific code-folding shortcut. Will fold everything between { }.
 " F7 & F8 are reserved for screen tabs
-
-" Map PageUp & PageDown keys
-map <PageUp> <CTRL-U>
-map <PageDown> <CTRL-D>
-imap <PageUp> <CTRL-O><CTRL-U>
-imap <PageDown> <CTRL-O><CTRL-D>
-set nostartofline
-
-" Custom F9 script to create parens for functions & F10 for loops/conditionals
-imap <F9> {}O
-" Commented out F10 b/c of yv standards
-"imap <F10> {}O
+" F9 & F10 are language specific
 
 " map <leader>f to display all lines with keyword under cursor and ask which one to jump to
 nmap <leader>f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
@@ -183,7 +172,8 @@ set shell=bash\ --login
 set confirm
 
 " Enable use of the mouse for all modes
-set mouse=a
+" Commented this out b/c it broke MacOS copy/paste with mouse
+"set mouse=a
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " press <Enter> to continue
@@ -193,11 +183,10 @@ set wrap
 set linebreak
 
 " Highlight chars that go over the 80-column limit
-" Modified to allow 120 columns
 ":highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
 ":match OverLength '\%121v.*'
 " Changed the 2 above lines to only use a colorcolumn instead of highlighting all code beyond column count
-set colorcolumn=100
+set colorcolumn=80
 
 " Fix common typos
 " Using AutoCorrect Plugin for this now
@@ -224,17 +213,13 @@ let g:acp_behaviorSnipmateLength = 1
 " -------------------------------------------
 " Set a highlight on the cursors current line
 " -------------------------------------------
-"set cursorline
 " Even better only set the cursor inside the active window
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 :hi CursorLine   cterm=NONE ctermbg=LightGrey
 "ctermfg=white guibg=darkred guifg=white
 ":hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-:nnoremap ,cl :set cursorline!<CR>
-
-" Added this line for vim 7.3 on Mac to support using Mac's clipboard
-set clipboard=unnamed
+:nnoremap <leader>cl :set cursorline!<CR>
 
 " Moved this to the bottom of vimrc to make sure it was working correctly
 set expandtab
@@ -254,3 +239,16 @@ map <c-h> <c-w>h
 
 " Got this from Kevin to close NERDTree if it's the last window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Added this line for vim 7.3 on Mac to support using Mac's clipboard
+set clipboard=unnamed
+
+" Powerline
+source /Library/Python/2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+
+" Solarized
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+colorscheme solarized
