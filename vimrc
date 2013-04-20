@@ -101,7 +101,7 @@ map <F4> :NERDTreeToggle<CR>
 " Toggle Tag bar plugin
 map <F5> :TagbarToggle<CR>
 " <F6> is used for language specific code-folding shortcut. Will fold everything between { }.
-" F7 & F8 are reserved for screen tabs
+" F7 & F8 are reserved for screen/tmux tab movement
 " F9 & F10 are language specific
 
 " map <leader>f to display all lines with keyword under cursor and ask which one to jump to
