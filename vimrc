@@ -156,13 +156,14 @@ set showtabline=2
 
 " Open Tag list when vim opens and close it when file is closed
 "let Tlist_Auto_Open = 1
-"let Tlist_Auto_Update = 1
-"let Tlist_Enable_Fold_Column = 1
+let Tlist_Auto_Update = 1
+let Tlist_Enable_Fold_Column = 1
 "let Tlist_Show_One_File = 1
-"let Tlist_Sort_Type = "name"
-"let Tlist_Exit_OnlyWindow = 1
+let Tlist_Sort_Type = "name"
+let Tlist_Exit_OnlyWindow = 1
 "let Tlist_Use_Right_Window = 1 " split to the right side of the screen
-"let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
+let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
+let Tlist_Ctags_Cmd = "/opt/local/bin/ctags"
 
 " This allows my bash aliases & functions to work in vim
 set shell=bash\ --login
