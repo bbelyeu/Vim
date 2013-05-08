@@ -285,6 +285,7 @@ class VimUtils(environment.Environment):
                           prekey=self.get('global_prefix'))
 
     def add_hook(self, name, callback, hook):
+        return
         mapping = {'before_save': 'FileWritePre,BufWritePre',
                    'after_save': 'FileWritePost,BufWritePost',
                    'exit': 'VimLeave'}
