@@ -25,6 +25,8 @@ autocmd BufRead,BufNewFile *.test set filetype=php
 au BufNewFile,BufRead *.php set filetype=php.html.js.css
 au BufNewFile,BufRead *.js set filetype=javascript
 au BufNewFile,BufRead *.py set filetype=python
+" Jinja templating for json
+au BufNewFile,BufRead *.json set filetype=jsonjinja
 " Added this bc my snippets plugin said to
 :filetype plugin on
 " Added indent on for python-mode plugin to work correctly
