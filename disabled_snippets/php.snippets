@@ -1,0 +1,212 @@
+snippet ec
+	echo "${1:string}"${2};
+snippet inc
+	include INCLUDE_PATH.'/${1:file}';${2}
+snippet inc1
+	include_once INCLUDE_PATH.'/${1:file}';${2}
+snippet req
+	require INCLUDE_PATH.'/${1:file}';${2}
+snippet req1
+	require_once '/home/quibids/includes/${1:file}';${2}
+snippet req2
+	require_once INCLUDE_PATH.'/${1:file}';${2}
+# $GLOBALS['...']
+snippet globals
+	$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${5}
+snippet $_ COOKIE['...']
+	$_COOKIE['${1:variable}']${2}
+snippet $_ ENV['...']
+	$_ENV['${1:variable}']${2}
+snippet $_ FILES['...']
+	$_FILES['${1:variable}']${2}
+snippet $_ Get['...']
+	$_GET['${1:variable}']${2}
+snippet $_ POST['...']
+	$_POST['${1:variable}']${2}
+snippet $_ REQUEST['...']
+	$_REQUEST['${1:variable}']${2}
+snippet $_ SERVER['...']
+	$_SERVER['${1:variable}']${2}
+snippet $_ SESSION['...']
+	$_SESSION['${1:variable}']${2}
+# Start Docblock
+snippet /*
+	/**
+	 * ${1}
+	 */
+# Class - post doc
+snippet doc_c
+	/**
+	 * ${1:undocumented class}
+	 *
+	 * @extends ${2:extensions/implements}
+	 */${3}
+# Class Variable - post doc
+snippet doc_vp
+	/**
+	 * ${1:undocumented class variable}
+	 *
+	 * @var ${2:string}
+	 */${3}
+# Class Variable
+snippet doc_v
+	/**
+	 * ${3:undocumented class variable}
+	 *
+	 * @var ${4:string}
+	 */
+	${1:var} $${2};${5}
+# Constant Definition
+snippet doc_d
+	/**
+	 * ${3:undocumented constant}
+	 */
+	define(${1}, ${2});${4}
+# Function - post doc
+snippet doc_f
+	/**
+	 * ${1:undocumented function}
+	 * ${2:@param}
+	 * @return ${3:null}
+	 */${4}
+# Header
+snippet doc_h
+	<?php
+	/**
+	 * ${2:Short desc}
+	 *
+	 * ${1:Long desc}
+	 *
+	 * PHP version 5
+	 *
+	 * @category ${3:default}
+	 * @package ${4:default}
+	 * @author Brad Belyeu <bradley.belyeu@lifechurch.tv>
+	 * @copyright Copyright (c) `strftime('%d %B, %Y')`, LifeChurch.tv
+	 * @filesource
+	 */
+
+	${4}
+# Interface
+snippet doc_i
+	/**
+	 * ${2:undocumented class}
+	 *
+	 * @package ${3:default}
+	 * @author Brad Belyeu <bradley.belyeu@lifechurch.tv>
+	 */
+	interface ${1:}
+	{${5}
+	}
+# class ...
+snippet cl
+	/**
+	 * ${1:Class level doc block name}
+	 * ${2:Short Description}
+	 *
+	 * @extends ${3:extends}
+	 */
+	class ${4:ClassName} ${5:extends }
+	{
+		${6}
+		${7:public} function ${8:__construct}(${9:argument})
+		{
+			${10:// code...}
+		}
+	}
+# define(...)
+snippet def
+	define('${1}'${2});${3}
+# defined(...)
+snippet def?
+	${1}defined('${2}')${3}
+snippet wh
+	while (${1:/* condition */})
+	{
+		${2:// code...}
+	}
+# do ... while
+snippet dow
+	do
+	{
+		${2:// code... }
+	} while (${1:/* condition */});
+snippet iff
+	if (${1:/* condition */})
+	{
+		${2:// code...}
+	}
+snippet ife
+	if (${1:/* condition */})
+	{
+		${2:// code...}
+	}
+	else
+	{
+		${3:// code...}
+	}
+	${4}
+snippet el
+	else
+	{
+		${1:// code...}
+	}
+snippet elif
+	elseif (${1:/* condition */})
+	{
+		${2:// code...}
+	}
+# Tertiary conditional
+snippet t
+	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};
+snippet swi
+	switch ($${1:variable})
+	{
+		case '${2:value}':
+			${3:// code...}
+			break;
+		${5}
+		default:
+			${4:// code...}
+			break;
+	}
+snippet cas
+	case '${1:value}':
+		${2:// code...}
+		break;${3}
+snippet fr
+	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++})
+	{
+		${4: // code...}
+	}
+snippet fe
+	foreach ($${1:variable} as $${2:key})
+	{
+		${3:// code...}
+	}
+snippet pf
+	/**
+	 * ${4:undocumented function}
+	 *
+	 * ${5:@param}
+	 * @return ${6:null}
+	 */
+	${1:public} function ${2:FunctionName}(${3})
+	{${7}
+	}
+# $... = array (...)
+snippet arr
+	$${1:arrayName} = array('${2}' => ${3});${4}
+snippet vd
+	var_dump(${1});die;
+snippet ns
+	namespace Core\${1:PATH}
+	{
+		${2}
+	}
+# Adding js snippets
+snippet rdy
+	$(document).ready(function()
+	{
+		${1}
+	});
