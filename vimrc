@@ -17,6 +17,8 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'bbelyeu/php-getter-setter.vim'
+Bundle 'bbelyeu/vim-python'
 Bundle 'ghewgill/vim-scmdiff'
 Bundle 'kien/ctrlp.vim'
 Bundle 'klen/python-mode'
@@ -40,7 +42,6 @@ Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/ShowMarks'
 Bundle 'vim-scripts/UltiSnips'
 Bundle 'vim-scripts/nginx.vim'
-"Bundle 'vim-scripts/taglist.vim'
 Bundle 'vsushkov/vim-phpcs'
 
 filetype plugin indent on     " required!
@@ -286,6 +287,8 @@ source /Library/Python/2.7/site-packages/powerline/bindings/vim/plugin/powerline
 " Added this line for vim 7.3 on Mac to support using Mac's clipboard
 " set clipboard=unnamed
 
-" Modified these key bindings to make them play nice together
-" Ultisnips
+" Ultisnips modified snippets dir
+let g:UltiSnipsSnippetsDir        = '~/.vim/snippets/'
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets']
+" Modified expand trigger key binding to work nicely with YouCompleteMe
 let g:UltiSnipsExpandTrigger="<c-j>"
