@@ -65,22 +65,20 @@ let mapleader=","
 
 " Set indention, line numbers, and enable syntax highlighting
 set ai
-" set smartindent " I think this was causing 2 tabs when used with pymode
+set smartindent
+set copyindent
 set number
 syntax enable
 set background=dark
+
+" Customize solarized scheme
 let g:solarized_termtrans=1
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 colorscheme solarized
 
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-    set fileencodings=utf-8,latin1
-endif
+set encoding=utf-8
 
-"This prevents a \n being added by vim at the end of the file
-autocmd FileType php setlocal noeol
-autocmd FileType python setlocal noeol
 " Zend template files
 au BufNewFile,BufRead *.phtml set filetype=html.php.js.css
 " Added following 3 lines for drupal modules
@@ -106,11 +104,16 @@ set bs=indent,eol,start " allow backspacing over everything in insert mode
 set hlsearch
 set incsearch
 
-" Show line, column number, and relative position within a file in the status line
-set ruler
-
 " Scroll when cursor gets within 3 characters of top/bottom edge
 set scrolloff=3
+
+" THIS GETS COVERED UP BY POWERLINE SO COMMENTING OUT
+" Show line, column number, and relative position within a file in the status line
+"set ruler
+
+" THIS GETS COVERED UP BY POWERLINE SO COMMENTING OUT
+" Show (partial) commands (or size of selection in Visual mode) in the status line
+"set showcmd
 
 " REPLACED MY CUSTOM STATUSLINE WITH POWERLINE PLUGIN
 " Always show status line, even for one window
@@ -155,6 +158,8 @@ map <F5> :TagbarToggle<CR>
 nmap <leader>f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
 nnoremap <leader>s diw"0P
+" Get a timestamp
+nmap <leader>t "=strftime('%s')<C-M>p"
 " Close all folds
 map <leader>z zM
 " cd to the local dir that your file being edited is in
@@ -174,17 +179,14 @@ set showmatch
 " Jump to matching bracket for 5/10th of a second (works with showmatch)
 set matchtime=5
 
-" Show (partial) commands (or size of selection in Visual mode) in the status line
-set showcmd
-
 " Remember things between sessions
 "
-" '20  - remember marks for 20 previous files
+" '50  - remember marks for 20 previous files
 " \"100 - save 100 lines for each register
 " :20  - remember 20 items in command-line history 
 " %    - remember the buffer list (if vim started without a file arg)
 " n    - set name of viminfo file
-set viminfo='20,\"100,:20,%,n~/.viminfo
+set viminfo='50,\"100,:20,%,n~/.viminfo
 
 " Use menu to show command-line completion (in 'full' case)
 set wildmenu
@@ -291,4 +293,15 @@ source /Library/Python/2.7/site-packages/powerline/bindings/vim/plugin/powerline
 let g:UltiSnipsSnippetsDir        = '~/.vim/snippets/'
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets']
 " Modified expand trigger key binding to work nicely with YouCompleteMe
-let g:UltiSnipsExpandTrigger="<c-j>"
+" Changed to Shift-J b/c it's easier to reach
+let g:UltiSnipsExpandTrigger="<s-j>"
+
+" Delete trailing white space on save, useful for Python
+" Copied this function from Josh's vimrc
+func! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.php :call DeleteTrailingWS()`"
