@@ -169,6 +169,15 @@ map <leader>cp :!~/bin/rsync_dev.sh<CR>
 " Setup find in buffer for cntrlp
 nmap <leader>cb :CtrlPBufTagAll<CR>
 nmap <leader>cm :CtrlPMixed<CR>
+" Toggle cursor line
+:nnoremap <leader>cl :set cursorline!<CR>
+" Go to next quickfix result
+nnoremap <leader>qn :cn<CR>
+" Close quickfix result window
+nnoremap <leader>qc :ccl<CR>
+" Sort
+map <leader>so :sort<CR>
+
 " Copied these from JT
 let g:ctrlp_extensions = ['buffertag']
 let g:ctrlp_mruf_case_sensitive = 0
@@ -258,10 +267,9 @@ highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 " Even better only set the cursor inside the active window
 "autocmd WinEnter * setlocal cursorline
 "autocmd WinLeave * setlocal nocursorline
-:hi CursorLine   cterm=NONE ctermbg=LightGrey
+":hi CursorLine   cterm=NONE ctermbg=LightGrey
 "ctermfg=white guibg=darkred guifg=white
 ":hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-:nnoremap <leader>cl :set cursorline!<CR>
 " Disabled this b/c I found it annoying
 set nocursorline
 
@@ -293,8 +301,7 @@ source /Library/Python/2.7/site-packages/powerline/bindings/vim/plugin/powerline
 let g:UltiSnipsSnippetsDir        = '~/.vim/snippets/'
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets']
 " Modified expand trigger key binding to work nicely with YouCompleteMe
-" Changed to Shift-J b/c it's easier to reach
-let g:UltiSnipsExpandTrigger="<s-j>"
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Delete trailing white space on save, useful for Python
 " Copied this function from Josh's vimrc
@@ -305,3 +312,7 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.php :call DeleteTrailingWS()`"
+
+" Upload file to dev server if saved with :W
+:command Upload :!upload.py %;
+:command Wu w | Upload
