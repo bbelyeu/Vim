@@ -1,7 +1,7 @@
 snippet vd "Var dump variable" b
 print '==================================='
-from pprint import pprint
-pprint(${1})
+import logging
+logging.debug(${1})
 print '==================================='
 endsnippet
 
