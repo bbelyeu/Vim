@@ -35,6 +35,7 @@ Bundle 'tomtom/tlib_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'troydm/pb.vim'
@@ -306,13 +307,13 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Delete trailing white space on save, useful for Python
 " Copied this function from Josh's vimrc
-func! DeleteTrailingWS()
-    exe "normal mz"
-    %s/\s\+$//ge
-    exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.php :call DeleteTrailingWS()`"
+" func! DeleteTrailingWS()
+"     exe "normal mz"
+"     %s/\s\+$//ge
+"     exe "normal `z"
+" endfunc
+" autocmd BufWrite *.py :call DeleteTrailingWS()
+" autocmd BufWrite *.php :call DeleteTrailingWS()`"
 
 " Upload file to dev server if saved with :W
 :command Upload :!upload.py %;
