@@ -1,8 +1,8 @@
 snippet vd "Var dump variable" b
-print '==================================='
-from libs.youversionapi import logger
-logger.debug(${1})
-print '==================================='
+print '=========================================='
+from logger import logger
+logger.${1:debug}(${2})
+print '=========================================='
 endsnippet
 
 snippet mcs "Memcache set" b
