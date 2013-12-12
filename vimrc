@@ -248,6 +248,8 @@ set linebreak
 ":match OverLength '\%121v.*'
 " Changed the 2 above lines to only use a colorcolumn instead of highlighting all code beyond column count
 set colorcolumn=80
+" If you only want to show it on lines that exceed 80 chars use the following line instead
+"call matchadd('ColorColumn', '\%81v', 100)
 
 " --------------------
 " ShowMarks Plugin
@@ -318,3 +320,28 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 " Upload file to dev server if saved with :W
 :command Upload :!upload.py %;
 :command Wu w | Upload
+
+" Found the following features @link http://programming.oreilly.com/2013/10/more-instantly-better-vim.html
+highlight WhiteOnRed ctermbg=white ctermfg=darkred
+function! HLNext (blinktime)
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('WhiteOnRed', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
+
+" This rewires n and N to do the highlighing...
+nnoremap <silent> n   n:call HLNext(0.4)<cr>
+nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+"====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
+
+"====[ Swap : and ; to make colon commands easier to type ]======
+nnoremap  ;  :
+"nnoremap  :  ;
