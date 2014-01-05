@@ -294,7 +294,7 @@ map <c-h> <c-w>h
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Powerline
-source /Library/Python/2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+source /Users/bradley.belyeu/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
 
 " COMMENTED THIS OUT B/C IT WAS ANNOYING WHEN IT ALWAYS PUT YOUR VIM DELETES
 " IN THE MAC PASTEBOARD
