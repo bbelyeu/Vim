@@ -31,4 +31,19 @@ ${1}
 '''
 endsnippet
 
+snippet cap "Logger Sentry capture" b
+logger.capture(
+    '${1:raven.events.Message}',
+    message='${2}',
+    exc_info=sys.exc_info(),
+    data={
+        'sentry.interfaces.Http': {
+            'env': dict(os.environ),
+        },
+        'culprit': '${3:full.module.name}'
+    },
+    extra=${4:dict}
+)
+endsnippet
+
 # vim:ft=snippets:
