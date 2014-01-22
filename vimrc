@@ -345,6 +345,3 @@ set list
 "====[ Swap : and ; to make colon commands easier to type ]======
 nnoremap  ;  :
 "nnoremap  :  ;
-
-let g:pymode_lint_ignore = "W0611"
-let g:pymode_lint_checkers = ['pyflakes', 'pep8']
