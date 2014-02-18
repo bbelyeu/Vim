@@ -319,8 +319,8 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 " autocmd BufWrite *.php :call DeleteTrailingWS()`"
 
 " Upload file to dev server if saved with :W
-:command Upload :!upload.py %;
-:command Wu w | Upload
+":command Upload :!upload.py %;
+":command Wu w | Upload
 
 " Found the following features @link http://programming.oreilly.com/2013/10/more-instantly-better-vim.html
 highlight WhiteOnRed ctermbg=white ctermfg=darkred
