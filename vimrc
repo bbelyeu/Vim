@@ -14,7 +14,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/powerline'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'Raimondi/delimitMate'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bbelyeu/php-getter-setter.vim'
@@ -181,7 +181,6 @@ nnoremap <leader>qc :ccl<CR>
 " Sort
 map <leader>so :sort<CR>
 
-" Copied these from JT
 let g:ctrlp_extensions = ['buffertag']
 let g:ctrlp_mruf_case_sensitive = 0
 let g:ctrlp_mruf_relative = 1

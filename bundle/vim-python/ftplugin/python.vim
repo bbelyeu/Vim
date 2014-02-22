@@ -17,3 +17,7 @@ let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_lint_ignore = "W0611"
 
 map <F2> "zyw:exe "!python -c 'help(".@z.")'""<CR>
+
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_autoimport = 0
