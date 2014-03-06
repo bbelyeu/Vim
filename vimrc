@@ -247,8 +247,8 @@ set linebreak
 ":highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
 ":match OverLength '\%121v.*'
 " Changed the 2 above lines to only use a colorcolumn instead of highlighting all code beyond column count
-set colorcolumn=80
-" If you only want to show it on lines that exceed 80 chars use the following line instead
+set colorcolumn=100
+" If you only want to show it on lines that exceed 100 chars use the following line instead
 "call matchadd('ColorColumn', '\%81v', 100)
 
 " --------------------
