@@ -14,6 +14,7 @@ let g:pyindent_nested_paren = '&sw'
 let g:pyindent_continue = '&sw'
 " Only use these 2 linters
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+let g:pymode_lint_ignore = "E501"
 "let g:pymode_lint_ignore = "W0611"
 
 map <F2> "zyw:exe "!python -c 'help(".@z.")'""<CR>
