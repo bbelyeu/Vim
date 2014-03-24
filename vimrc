@@ -14,12 +14,13 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/powerline'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'Raimondi/delimitMate'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bbelyeu/php-getter-setter.vim'
 Bundle 'bbelyeu/vim-python'
 Bundle 'bbelyeu/vim-custom'
+"Bundle 'dag/vim-fish'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'ghewgill/vim-scmdiff'
 Bundle 'kien/ctrlp.vim'
@@ -226,6 +227,7 @@ let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
 let Tlist_Ctags_Cmd = "/opt/local/bin/ctags"
 
 " This allows my bash aliases & functions to work in vim
+" Also vim doesn't work well with Fish shell so this fixes that
 set shell=bash\ --login
 
 " Instead of failing a command because of unsaved changes, instead raise a
@@ -294,7 +296,7 @@ map <c-h> <c-w>h
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Powerline
-source /Users/bradley.belyeu/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+" source /Users/bradley.belyeu/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
 
 " COMMENTED THIS OUT B/C IT WAS ANNOYING WHEN IT ALWAYS PUT YOUR VIM DELETES
 " IN THE MAC PASTEBOARD
