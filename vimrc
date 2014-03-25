@@ -20,7 +20,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'bbelyeu/php-getter-setter.vim'
 Bundle 'bbelyeu/vim-python'
 Bundle 'bbelyeu/vim-custom'
-"Bundle 'dag/vim-fish'
+" Bundle 'dag/vim-fish'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'ghewgill/vim-scmdiff'
 Bundle 'kien/ctrlp.vim'
@@ -119,9 +119,11 @@ set scrolloff=3
 " Show (partial) commands (or size of selection in Visual mode) in the status line
 "set showcmd
 
+set laststatus=2 " Always display the statusline in all windows
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
+
 " REPLACED MY CUSTOM STATUSLINE WITH POWERLINE PLUGIN
 " Always show status line, even for one window
-"set laststatus=2
 " A more informative status line
 ":set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%m/%d/%y\ -\ %H:%M\")}
@@ -296,10 +298,9 @@ map <c-h> <c-w>h
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Powerline
-" source /Users/bradley.belyeu/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+source /Users/bradley.belyeu/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
 
-" COMMENTED THIS OUT B/C IT WAS ANNOYING WHEN IT ALWAYS PUT YOUR VIM DELETES
-" IN THE MAC PASTEBOARD
+" COMMENTED THIS OUT B/C IT WAS ANNOYING WHEN IT ALWAYS PUT YOUR VIM DELETES IN THE MAC PASTEBOARD
 " Added this line for vim 7.3 on Mac to support using Mac's clipboard
 " set clipboard=unnamed
 
@@ -347,3 +348,14 @@ set list
 "====[ Swap : and ; to make colon commands easier to type ]======
 nnoremap  ;  :
 "nnoremap  :  ;
+
+" Fix terminal timeout when pressing escape
+" https://powerline.readthedocs.org/en/latest/tipstricks.html
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
