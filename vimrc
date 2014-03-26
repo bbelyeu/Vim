@@ -31,6 +31,8 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'panozzaj/vim-autocorrect'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
 Bundle 'tomtom/tlib_vim'
@@ -162,6 +164,8 @@ map <F5> :TagbarToggle<CR>
 
 " map <leader>f to display all lines with keyword under cursor and ask which one to jump to
 nmap <leader>f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+" map <leader>h to Dash search of word currently under cursor
+nmap <silent> <leader>h :Dash<CR>
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
 nnoremap <leader>s diw"0P
 " Get a timestamp
@@ -176,7 +180,7 @@ map <leader>cp :!~/bin/rsync_dev.sh<CR>
 nmap <leader>cb :CtrlPBufTagAll<CR>
 nmap <leader>cm :CtrlPMixed<CR>
 " Toggle cursor line
-:nnoremap <leader>cl :set cursorline!<CR>
+nnoremap <leader>cl :set cursorline!<CR>
 " Go to next quickfix result
 nnoremap <leader>qn :cn<CR>
 " Close quickfix result window
@@ -359,3 +363,10 @@ if ! has('gui_running')
         au InsertLeave * set timeoutlen=1000
     augroup END
 endif
+
+" Dash configuration
+" https://github.com/rizzatti/dash.vim/blob/master/doc/dash.txt
+let g:dash_map = {
+        \ 'ruby'       : 'rails',
+        \ 'python'     : 'python2'
+        \ }
