@@ -370,3 +370,5 @@ let g:dash_map = {
         \ 'ruby'       : 'rails',
         \ 'python'     : 'python2'
         \ }
+
+set tags=~/repos/youversionapi.com/.tags
