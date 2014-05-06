@@ -7,22 +7,23 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle - required! 
+" let Vundle manage Vundle - required!
 Bundle 'gmarik/vundle'
 
 " original repos on github
+Bundle 'AutoComplPop'
 Bundle 'Lokaltog/powerline'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'Raimondi/delimitMate'
-"Bundle 'Valloric/YouCompleteMe'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bbelyeu/php-getter-setter.vim'
 Bundle 'bbelyeu/vim-python'
 Bundle 'bbelyeu/vim-custom'
-" Bundle 'dag/vim-fish'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'garbas/vim-snipmate'
 Bundle 'ghewgill/vim-scmdiff'
+Bundle 'hallettj/jslint.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'klen/python-mode'
@@ -30,10 +31,11 @@ Bundle 'lepture/vim-jinja'
 Bundle 'majutsushi/tagbar'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
-Bundle 'mileszs/ack.vim'
+Bundle 'pangloss/vim-javascript'
 Bundle 'panozzaj/vim-autocorrect'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
+Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
 Bundle 'tomtom/tlib_vim'
@@ -47,7 +49,6 @@ Bundle 'troydm/pb.vim'
 Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'vim-scripts/L9'
 Bundle 'vim-scripts/ShowMarks'
-Bundle 'vim-scripts/UltiSnips'
 Bundle 'vim-scripts/nginx.vim'
 Bundle 'vsushkov/vim-phpcs'
 
