@@ -11,17 +11,17 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " original repos on github
-Bundle 'AutoComplPop'
 Bundle 'Lokaltog/powerline'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'Raimondi/delimitMate'
+Bundle 'SirVer/ultisnips'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bbelyeu/php-getter-setter.vim'
 Bundle 'bbelyeu/vim-python'
 Bundle 'bbelyeu/vim-custom'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'garbas/vim-snipmate'
+" Bundle 'derekwyatt/vim-scala'
 Bundle 'ghewgill/vim-scmdiff'
 Bundle 'hallettj/jslint.vim'
 Bundle 'kchmck/vim-coffee-script'
@@ -63,7 +63,6 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 "
-"
 " The rest is my custom stuff
 "
 " change the mapleader from \ to , it's important that this
@@ -79,7 +78,10 @@ set number
 syntax enable
 set background=dark
 
-" Customize solarized scheme
+" =========================
+" Solarized plugin
+" Customize solarized theme
+" =========================
 let g:solarized_termtrans=1
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
@@ -115,32 +117,8 @@ set incsearch
 " Scroll when cursor gets within 3 characters of top/bottom edge
 set scrolloff=3
 
-" THIS GETS COVERED UP BY POWERLINE SO COMMENTING OUT
-" Show line, column number, and relative position within a file in the status line
-"set ruler
-
-" THIS GETS COVERED UP BY POWERLINE SO COMMENTING OUT
-" Show (partial) commands (or size of selection in Visual mode) in the status line
-"set showcmd
-
 set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
-
-" REPLACED MY CUSTOM STATUSLINE WITH POWERLINE PLUGIN
-" Always show status line, even for one window
-" A more informative status line
-":set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%m/%d/%y\ -\ %H:%M\")}
-"set statusline=   " clear the statusline for when vimrc is reloaded
-"set statusline+=%f\                          " file name
-"set statusline+=%h%m%r%w                     " flags
-"set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
-"set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
-"set statusline+=%{&fileformat}]              " file format
-"set statusline+=%=                           " right align
-"set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
-"set statusline+=%b,0x%-8B\                   " current char
-"set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 
 " Make a custom view for the file on exit (saves folds) and load view when opening file
 au BufWinLeave ?* mkview
@@ -190,6 +168,9 @@ nnoremap <leader>qc :ccl<CR>
 " Sort
 map <leader>so :sort<CR>
 
+" ============
+" Ctrlp plugin
+" ============
 let g:ctrlp_extensions = ['buffertag']
 let g:ctrlp_mruf_case_sensitive = 0
 let g:ctrlp_mruf_relative = 1
@@ -222,17 +203,6 @@ vnoremap > >gv
 
 " show tab line all the time
 set showtabline=2
-
-" Open Tag list when vim opens and close it when file is closed
-"let Tlist_Auto_Open = 1
-let Tlist_Auto_Update = 1
-let Tlist_Enable_Fold_Column = 1
-"let Tlist_Show_One_File = 1
-let Tlist_Sort_Type = "name"
-let Tlist_Exit_OnlyWindow = 1
-"let Tlist_Use_Right_Window = 1 " split to the right side of the screen
-let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
-let Tlist_Ctags_Cmd = "/opt/local/bin/ctags"
 
 " This allows my bash aliases & functions to work in vim
 " Also vim doesn't work well with Fish shell so this fixes that
@@ -287,28 +257,16 @@ highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 " Disabled this b/c I found it annoying
 set nocursorline
 
-" Fix Mac issue with not being able to write/create a crontab
-" @link http://vim.wikia.com/wiki/Editing_crontab
-au BufEnter /private/tmp/crontab.* setl backupcopy=yes
-
 " Open NERD tree if no files were specified when starting vim
 autocmd vimenter * if !argc() | NERDTree | endif
+" Got this from Kevin to close NERDTree if it's the last window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Remap window movements
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-
-" Got this from Kevin to close NERDTree if it's the last window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" Powerline
-source /Users/bradley.belyeu/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
-
-" COMMENTED THIS OUT B/C IT WAS ANNOYING WHEN IT ALWAYS PUT YOUR VIM DELETES IN THE MAC PASTEBOARD
-" Added this line for vim 7.3 on Mac to support using Mac's clipboard
-" set clipboard=unnamed
 
 " Ultisnips modified snippets dir
 let g:UltiSnipsSnippetsDir        = '~/.vim/snippets/'
@@ -325,10 +283,6 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 " endfunc
 " autocmd BufWrite *.py :call DeleteTrailingWS()
 " autocmd BufWrite *.php :call DeleteTrailingWS()`"
-
-" Upload file to dev server if saved with :W
-":command Upload :!upload.py %;
-":command Wu w | Upload
 
 " Found the following features @link http://programming.oreilly.com/2013/10/more-instantly-better-vim.html
 highlight WhiteOnRed ctermbg=white ctermfg=darkred
@@ -366,11 +320,20 @@ if ! has('gui_running')
     augroup END
 endif
 
-" Dash configuration
-" https://github.com/rizzatti/dash.vim/blob/master/doc/dash.txt
-let g:dash_map = {
-        \ 'ruby'       : 'rails',
-        \ 'python'     : 'python2'
-        \ }
+set tags=tags;
 
-set tags=~/repos/youversionapi.com/.tags
+if !empty($MACRC)
+    " Dash configuration
+    " https://github.com/rizzatti/dash.vim/blob/master/doc/dash.txt
+    let g:dash_map = {
+            \ 'ruby'       : 'rails',
+            \ 'python'     : 'python2'
+            \ }
+
+    " Powerline
+    source $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+
+    " Fix Mac issue with not being able to write/create a crontab
+    " @link http://vim.wikia.com/wiki/Editing_crontab
+    au BufEnter /private/tmp/crontab.* setl backupcopy=yes
+endif
