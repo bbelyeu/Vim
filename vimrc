@@ -63,7 +63,17 @@ filetype plugin indent on     " required!
 " NOTE: comments after Bundle command are not allowed..
 "
 " The rest is my custom stuff
-"
+
+if has("multi_byte")
+    if &termencoding == ""
+        let &termencoding = &encoding
+    endif
+    set encoding=utf-8
+    setglobal fileencoding=utf-8
+    "setglobal bomb
+    set fileencodings=ucs-bom,utf-8,latin1
+endif
+
 " change the mapleader from \ to , it's important that this
 " is at/near the top of the file so that other mapped comamnds
 " use this leader
@@ -86,20 +96,50 @@ let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 colorscheme solarized
 
-set encoding=utf-8
+" Only do this part when compiled with support for autocommands
+if has("autocmd")
+    " Create a group to namespace my autocmds
+    augroup BradCustom
+        " Zend template files
+        autocmd BufNewFile,BufRead *.phtml set filetype=html.php.js.css
+        " Added following 3 lines for drupal modules
+        autocmd BufNewFile,BufRead *.module set filetype=php
+        autocmd BufRead,BufNewFile *.install set filetype=php
+        autocmd BufRead,BufNewFile *.test set filetype=php
+        " Standard
+        autocmd BufNewFile,BufRead *.php set filetype=php.html.js.css
+        autocmd BufNewFile,BufRead *.js set filetype=javascript
+        autocmd BufNewFile,BufRead *.py set filetype=python
+        " Jinja templating for json
+        autocmd BufNewFile,BufRead *.json set filetype=jsonjinja
 
-" Zend template files
-au BufNewFile,BufRead *.phtml set filetype=html.php.js.css
-" Added following 3 lines for drupal modules
-au BufNewFile,BufRead *.module set filetype=php
-au BufRead,BufNewFile *.install set filetype=php
-autocmd BufRead,BufNewFile *.test set filetype=php
-" Standard
-au BufNewFile,BufRead *.php set filetype=php.html.js.css
-au BufNewFile,BufRead *.js set filetype=javascript
-au BufNewFile,BufRead *.py set filetype=python
-" Jinja templating for json
-au BufNewFile,BufRead *.json set filetype=jsonjinja
+        " Make a custom view for the file on exit (saves folds) and load view when opening file
+        autocmd BufWinLeave ?* mkview
+        autocmd BufWinEnter ?* silent loadview
+
+        " Go back to the position the cursor was on the last time this file was edited
+        autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
+
+        " -------------------------------------------
+        " Set a highlight on the cursors current line
+        " -------------------------------------------
+        " Even better only set the cursor inside the active window
+        "autocmd WinEnter * setlocal cursorline
+        "autocmd WinLeave * setlocal nocursorline
+        ":hi CursorLine   cterm=NONE ctermbg=LightGrey
+        "ctermfg=white guibg=darkred guifg=white
+        ":hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+        " Disabled this b/c I found it annoying
+
+        " Open NERD tree if no files were specified when starting vim
+        autocmd vimenter * if !argc() | NERDTree | endif
+        " Got this from Kevin to close NERDTree if it's the last window open
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    augroup END
+endif
 
 " Set tab & auto indent to 4 spaces also round indent to multiple of 'shiftwidth' for > and < commands
 set expandtab
@@ -109,25 +149,19 @@ set shiftwidth=4
 set shiftround
 set bs=indent,eol,start " allow backspacing over everything in insert mode
 
-" Highlight search and enable incremental searching
-set hlsearch
-set incsearch
+" Switch syntax highlighting on, when the terminal has colors
+if &t_Co > 2 || has("gui_running")
+    syntax on
+    " Highlight search and enable incremental searching
+    set hlsearch
+    set incsearch
+endif
 
 " Scroll when cursor gets within 3 characters of top/bottom edge
 set scrolloff=3
 
 set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
-
-" Make a custom view for the file on exit (saves folds) and load view when opening file
-au BufWinLeave ?* mkview
-au BufWinEnter ?* silent loadview
-
-" Go back to the position the cursor was on the last time this file was edited
-au BufReadPost *
- \ if line("'\"") > 0 && line("'\"") <= line("$") |
- \   exe "normal g`\"" |
- \ endif
 
 " imap <F1> Available
 " <F2> is set to language specific lint in ftplugin
@@ -244,22 +278,7 @@ highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
 " For multiple marks on the same line.
 highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 
-" -------------------------------------------
-" Set a highlight on the cursors current line
-" -------------------------------------------
-" Even better only set the cursor inside the active window
-"autocmd WinEnter * setlocal cursorline
-"autocmd WinLeave * setlocal nocursorline
-":hi CursorLine   cterm=NONE ctermbg=LightGrey
-"ctermfg=white guibg=darkred guifg=white
-":hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-" Disabled this b/c I found it annoying
 set nocursorline
-
-" Open NERD tree if no files were specified when starting vim
-autocmd vimenter * if !argc() | NERDTree | endif
-" Got this from Kevin to close NERDTree if it's the last window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Remap window movements
 map <c-j> <c-w>j
@@ -272,16 +291,6 @@ let g:UltiSnipsSnippetsDir        = '~/.vim/snippets/'
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets']
 " Modified expand trigger key binding to work nicely with YouCompleteMe
 let g:UltiSnipsExpandTrigger="<c-j>"
-
-" Delete trailing white space on save, useful for Python
-" Copied this function from Josh's vimrc
-" func! DeleteTrailingWS()
-"     exe "normal mz"
-"     %s/\s\+$//ge
-"     exe "normal `z"
-" endfunc
-" autocmd BufWrite *.py :call DeleteTrailingWS()
-" autocmd BufWrite *.php :call DeleteTrailingWS()`"
 
 " Found the following features @link http://programming.oreilly.com/2013/10/more-instantly-better-vim.html
 highlight WhiteOnRed ctermbg=white ctermfg=darkred
@@ -311,12 +320,14 @@ nnoremap  ;  :
 " Fix terminal timeout when pressing escape
 " https://powerline.readthedocs.org/en/latest/tipstricks.html
 if ! has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
+    if has("autocmd")
+        set ttimeoutlen=10
+        augroup FastEscape
+            autocmd!
+            autocmd InsertEnter * set timeoutlen=0
+            autocmd InsertLeave * set timeoutlen=1000
+        augroup END
+    endif
 endif
 
 set tags=tags;
@@ -332,7 +343,16 @@ if !empty($MACRC)
     " Powerline
     source $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
 
-    " Fix Mac issue with not being able to write/create a crontab
-    " @link http://vim.wikia.com/wiki/Editing_crontab
-    au BufEnter /private/tmp/crontab.* setl backupcopy=yes
+    augroup BradMacCustom
+        " Fix Mac issue with not being able to write/create a crontab
+        " @link http://vim.wikia.com/wiki/Editing_crontab
+        autocmd BufEnter /private/tmp/crontab.* setl backupcopy=yes
+    augroup END
+endif
+
+" xterm improvements
+if &term=="xterm"
+    set t_Co=8
+    set t_Sb=^[[4%dm
+    set t_Sf=^[[3%dm
 endif
