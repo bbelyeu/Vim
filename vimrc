@@ -332,6 +332,7 @@ endif
 
 set tags=tags;
 
+" If mac shell env var is set
 if !empty($MACRC)
     " Dash configuration
     " https://github.com/rizzatti/dash.vim/blob/master/doc/dash.txt
@@ -348,6 +349,33 @@ if !empty($MACRC)
         " @link http://vim.wikia.com/wiki/Editing_crontab
         autocmd BufEnter /private/tmp/crontab.* setl backupcopy=yes
     augroup END
+endif
+
+" If my server env var is set
+if !empty($SERVERRC)
+    if has("autocmd")
+        augroup BradLinuxCustom
+            " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+            autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+            " start with spec file template
+            autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
+        augroup END
+    endif
+
+    if has("cscope") && filereadable("/usr/bin/cscope")
+        set csprg=/usr/bin/cscope
+        set csto=0
+        set cst
+        set nocsverb
+        " add any database in current directory
+        if filereadable("cscope.out")
+            cs add $PWD/cscope.out
+            " else add database pointed to by environment
+        elseif $CSCOPE_DB != ""
+            cs add $CSCOPE_DB
+        endif
+        set csverb
+    endif
 endif
 
 " xterm improvements
