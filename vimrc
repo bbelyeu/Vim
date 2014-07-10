@@ -15,7 +15,10 @@ Plugin 'Lokaltog/powerline'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
+" Only use YouCompleteMe on my macs b/c the ec2 servers can't compile it
+if !empty($MACRC)
+    Plugin 'Valloric/YouCompleteMe'
+endif
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bbelyeu/php-getter-setter.vim'
