@@ -345,7 +345,7 @@ if !empty($MACRC)
             \ }
 
     " Powerline
-    source $HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+    source $HOME/repos/powerline/powerline/bindings/vim/plugin/powerline.vim
 
     augroup BradMacCustom
         " Fix Mac issue with not being able to write/create a crontab
