@@ -203,6 +203,8 @@ nnoremap <leader>qn :cn<CR>
 nnoremap <leader>qc :ccl<CR>
 " Sort
 map <leader>so :sort<CR>
+" Remove trailing whitespace from all lines
+map <leader>rmtw :%s/\s\+$//<CR>
 
 " ============
 " Ctrlp plugin
