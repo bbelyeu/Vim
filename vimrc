@@ -25,6 +25,7 @@ Plugin 'bbelyeu/php-getter-setter.vim'
 Plugin 'bbelyeu/vim-python'
 Plugin 'bbelyeu/vim-custom'
 Plugin 'ghewgill/vim-scmdiff'
+Plugin 'honza/vim-snippets'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
 Plugin 'klen/python-mode'
@@ -205,6 +206,10 @@ nnoremap <leader>qc :ccl<CR>
 map <leader>so :sort<CR>
 " Remove trailing whitespace from all lines
 map <leader>rmtw :%s/\s\+$//<CR>
+" Customize YouCompleteMe Setup
+if !empty($MACRC)
+    nnoremap <leader>goto :YcmCompleter GoTo<CR>
+endif
 
 " ============
 " Ctrlp plugin
@@ -292,10 +297,10 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 " Ultisnips modified snippets dir
-let g:UltiSnipsSnippetsDir        = '~/.vim/snippets/'
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets']
+" let g:UltiSnipsSnippetsDir        = '~/.vim/snippets/'
+" let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets']
 " Modified expand trigger key binding to work nicely with YouCompleteMe
-let g:UltiSnipsExpandTrigger="<c-j>"
+" let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Found the following features @link http://programming.oreilly.com/2013/10/more-instantly-better-vim.html
 highlight WhiteOnRed ctermbg=white ctermfg=darkred
