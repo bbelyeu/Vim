@@ -393,3 +393,7 @@ if &term=="xterm"
     set t_Sb=^[[4%dm
     set t_Sf=^[[3%dm
 endif
+
+" customize pymode
+let g:pymode_options_max_line_length = 100
+let g:pymode_trim_whitespaces = 1
