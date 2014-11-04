@@ -1,8 +1,8 @@
 snippet vd "Var dump variable" b
-print '=' * 100
 from logger import logger
-logger.${1:debug}(${2})
-print '=' * 100
+logger.debug("=" * 100)
+logger.debug(${1})
+logger.debug("=" * 100)
 endsnippet
 
 snippet mcs "Memcache set" b
