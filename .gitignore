@@ -2,3 +2,5 @@ view/
 view/*
 *.swp
 tags
+bundle/*
+!bundle/Vundle.vim
