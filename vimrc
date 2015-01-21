@@ -397,3 +397,6 @@ endif
 " customize pymode
 let g:pymode_options_max_line_length = 100
 let g:pymode_trim_whitespaces = 1
+
+" get rid of newline at end of file
+set fileformats+=dos
