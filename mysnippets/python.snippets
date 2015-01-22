@@ -46,4 +46,17 @@ logger.capture(
 )
 endsnippet
 
+snippet tmpfile "Create a temporary file for use from request" b
+r = requests.get(url, stream=true)
+if r.status_code == 200:
+    tmp = tempfile.TemporaryFile()
+    for chunk in r.iter_content(chunk_size=1024):
+        if chunk:
+            tmp.write(chunk)
+            tmp.flush()
+    tmp.seek(0)
+    # Do stuff with tmp file
+    tmp.close()
+endsnippet
+
 # vim:ft=snippets:
