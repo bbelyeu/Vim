@@ -47,7 +47,7 @@ logger.capture(
 endsnippet
 
 snippet tmpfile "Create a temporary file for use from request" b
-r = requests.get(url, stream=true)
+r = requests.get(url, stream=True)
 if r.status_code == 200:
     tmp = tempfile.TemporaryFile()
     for chunk in r.iter_content(chunk_size=1024):
@@ -57,6 +57,20 @@ if r.status_code == 200:
     tmp.seek(0)
     # Do stuff with tmp file
     tmp.close()
+endsnippet
+
+snippet script-logging-stdout "Add logging module and add stdout handler" b
+import logging
+import sys
+
+root = logging.getLogger()
+root.setLevel(logging.DEBUG)
+
+ch = logging.StreamHandler(sys.stdout)
+ch.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+root.addHandler(ch)
 endsnippet
 
 # vim:ft=snippets:
