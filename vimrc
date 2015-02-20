@@ -52,6 +52,7 @@ Plugin 'troydm/pb.vim'
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'vim-scripts/L9'
 Plugin 'vim-scripts/ShowMarks'
+Plugin 'vim-scripts/TwitVim'
 Plugin 'vim-scripts/nginx.vim'
 Plugin 'vsushkov/vim-phpcs'
 
@@ -139,10 +140,11 @@ if has("autocmd")
         ":hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
         " Disabled this b/c I found it annoying
 
+        " NerdTree is commented out b/c it was causing bugs with my . redo command
         " Open NERD tree if no files were specified when starting vim
-        autocmd vimenter * if !argc() | NERDTree | endif
+        " autocmd vimenter * if !argc() | NERDTree | endif
         " Got this from Kevin to close NERDTree if it's the last window open
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+        " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
     augroup END
 endif
 
@@ -173,7 +175,8 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 " Use F3 to toggle Gundo plugin
 map <F3> :GundoToggle<CR>
 " Toggle Nerd Tree plugin
-map <F4> :NERDTreeToggle<CR>
+" NerdTree is commented out b/c it was causing bugs with my . redo command
+" map <F4> :NERDTreeToggle<CR>
 " Toggle Tag bar plugin
 map <F5> :TagbarToggle<CR>
 " <F6> is used for language specific code-folding shortcut. Will fold everything between { }.
