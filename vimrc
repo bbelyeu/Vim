@@ -39,7 +39,7 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'rking/ag.vim'
 Plugin 'ryanss/vim-hackernews'
 " For some reason nerdtree is screwing up my . redo commands!!!
-"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-fugitive'
