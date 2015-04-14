@@ -58,6 +58,7 @@ Plugin 'vim-scripts/ShowMarks'
 Plugin 'vim-scripts/TwitVim'
 Plugin 'vim-scripts/nginx.vim'
 Plugin 'vsushkov/vim-phpcs'
+" Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
 filetype plugin indent on     " required!
