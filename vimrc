@@ -411,3 +411,6 @@ let g:pymode_trim_whitespaces = 1
 
 " get rid of newline at end of file
 set fileformats+=dos
+
+" Stop that stupid window from popping up!!!
+map q: :q
