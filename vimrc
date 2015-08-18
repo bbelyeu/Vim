@@ -41,6 +41,7 @@ Plugin 'ryanss/vim-hackernews'
 " For some reason nerdtree is screwing up my . redo commands!!!
 Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
+Plugin 'sukima/xmledit'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
