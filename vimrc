@@ -415,3 +415,6 @@ set fileformats+=dos
 
 " Stop that stupid window from popping up!!!
 map q: :q
+
+" Try to make window quit flashing so much
+set lazyredraw
