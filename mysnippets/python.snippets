@@ -78,4 +78,16 @@ if __name__ == '__main__':
     main()
 endsnippet
 
+snippet debugger "Add PyCharm debugger code to api_dispatcher"
+    if os.environ['api_env'] == 'dev' and app.debug and [s for s in sys.path
+                                                         if 'pycharm-debug.egg' in s]:
+        try:
+            import pydevd
+            pydevd.settrace('192.168.50.1', port=50644, stdoutToServer=True, stderrToServer=True,
+                            suspend=False)
+            logger.debug('pydevd running')
+        except Exception as e:
+            logger.debug("Couldn't load pydevd", e)
+endsnippet
+
 # vim:ft=snippets:
