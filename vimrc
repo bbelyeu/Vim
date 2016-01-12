@@ -16,7 +16,8 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 " Only use YouCompleteMe on my macs b/c the ec2 servers can't compile it
-if !empty($MACRC)
+let ismac=$MACRC
+if ismac == 'true'
     Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'airblade/vim-gitgutter'
