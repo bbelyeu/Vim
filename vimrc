@@ -183,6 +183,8 @@ map <F3> :GundoToggle<CR>
 " Toggle Nerd Tree plugin
 " NerdTree is commented out b/c it was causing bugs with my . redo command
 " map <F4> :NERDTreeToggle<CR>
+" Close the YCM GetDoc help buffer, or whatever is above
+map <F4> <C-w>k:q<CR>
 " Toggle Tag bar plugin
 map <F5> :TagbarToggle<CR>
 " <F6> is used for language specific code-folding shortcut. Will fold everything between { }.
@@ -220,6 +222,7 @@ map <leader>rmtw :%s/\s\+$//<CR>
 if !empty($MACRC)
     nnoremap <leader>goto :YcmCompleter GoTo<CR>
 endif
+nnoremap <leader>ch <C-w>k:q<CR>
 
 " ============
 " Ctrlp plugin
