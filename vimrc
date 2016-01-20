@@ -125,6 +125,10 @@ if has("autocmd")
         autocmd BufNewFile,BufRead *.py set filetype=python
         " Jinja templating for json
         autocmd BufNewFile,BufRead *.json set filetype=jsonjinja
+        " Set .bash files to shell script
+        autocmd BufNewFile,BufRead *.bash set filetype=sh
+        " From bash-support docs
+        let g:BASH_AlsoBash = [ '*.SlackBuild' , 'rc.*' ]
 
         " Make a custom view for the file on exit (saves folds) and load view when opening file
         autocmd BufWinLeave ?* mkview
