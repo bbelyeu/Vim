@@ -91,7 +91,8 @@ snippet debugger "Add PyCharm debugger code to api_dispatcher"
 endsnippet
 
 snippet tracer "Trace code for writing nosetests"
-    set_trace()
+from nose.tools import set_trace
+set_trace()
 endsnippet
 
 # vim:ft=snippets:
