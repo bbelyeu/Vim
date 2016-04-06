@@ -36,7 +36,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'panozzaj/vim-autocorrect'
 Plugin 'rizzatti/funcoo.vim'
-Plugin 'rizzatti/dash.vim'
+"Plugin 'rizzatti/dash.vim'
 Plugin 'rking/ag.vim'
 "Plugin 'ryanss/vim-hackernews'
 " For some reason nerdtree is screwing up my . redo commands!!!
