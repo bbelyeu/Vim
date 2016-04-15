@@ -361,7 +361,7 @@ if ! has('gui_running')
     endif
 endif
 
-set tags=tags;
+set tags=./.tags;
 
 " If mac shell env var is set
 if !empty($MACRC)
