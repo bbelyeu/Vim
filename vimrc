@@ -11,7 +11,7 @@ call vundle#begin()
 Bundle 'gmarik/Vundle.vim'
 
 " original repos on github
-"Plugin 'Lokaltog/powerline'
+Plugin 'Lokaltog/powerline'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
@@ -351,16 +351,16 @@ nnoremap  ;  :
 
 " Fix terminal timeout when pressing escape
 " https://powerline.readthedocs.org/en/latest/tipstricks.html
-" if ! has('gui_running')
-"     if has("autocmd")
-"         set ttimeoutlen=10
-"         augroup FastEscape
-"             autocmd!
-"             autocmd InsertEnter * set timeoutlen=0
-"             autocmd InsertLeave * set timeoutlen=1000
-"         augroup END
-"     endif
-" endif
+if ! has('gui_running')
+    if has("autocmd")
+        set ttimeoutlen=10
+        augroup FastEscape
+            autocmd!
+            autocmd InsertEnter * set timeoutlen=0
+            autocmd InsertLeave * set timeoutlen=1000
+        augroup END
+    endif
+endif
 
 set tags=./.tags;
 
@@ -374,7 +374,7 @@ if !empty($MACRC)
             \ }
 
     " Powerline
-    " source $HOME/src/powerline/powerline/bindings/vim/plugin/powerline.vim
+    source $HOME/src/powerline/powerline/bindings/vim/plugin/powerline.vim
 
     augroup BradMacCustom
         " Fix Mac issue with not being able to write/create a crontab
