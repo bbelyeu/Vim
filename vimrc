@@ -42,7 +42,7 @@ Plugin 'rking/ag.vim'
 " For some reason nerdtree is screwing up my . redo commands!!!
 "Plugin 'scrooloose/nerdtree'
 "Plugin 'sjl/gundo.vim'
-Plugin 'sukima/xmledit'
+"Plugin 'sukima/xmledit'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-commentary'
