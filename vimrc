@@ -11,7 +11,7 @@ call vundle#begin()
 Bundle 'gmarik/Vundle.vim'
 
 " original repos on github
-Plugin 'Lokaltog/powerline'
+"Plugin 'Lokaltog/powerline'
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
@@ -20,46 +20,46 @@ let ismac=$MACRC
 if ismac == 'true'
     Plugin 'Valloric/YouCompleteMe'
 endif
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bbelyeu/vim-python'
-Plugin 'bbelyeu/vim-custom'
+"Plugin 'bbelyeu/vim-custom'
 Plugin 'fisadev/vim-isort'
 "Plugin 'ghewgill/vim-scmdiff'
 Plugin 'kien/ctrlp.vim'
 Plugin 'klen/python-mode'
-Plugin 'lepture/vim-jinja'
+"Plugin 'lepture/vim-jinja'
 Plugin 'majutsushi/tagbar'
 "Plugin 'mattn/gist-vim'
 "Plugin 'mattn/webapi-vim'
 "Plugin 'pangloss/vim-javascript'
-Plugin 'panozzaj/vim-autocorrect'
+"Plugin 'panozzaj/vim-autocorrect'
 "Plugin 'rizzatti/funcoo.vim'
 "Plugin 'rizzatti/dash.vim'
 "Plugin 'rking/ag.vim'
 "Plugin 'ryanss/vim-hackernews'
 " For some reason nerdtree is screwing up my . redo commands!!!
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
 "Plugin 'sjl/gundo.vim'
-Plugin 'sukima/xmledit'
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'sukima/xmledit'
+"Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'tomtom/tlib_vim'
-Plugin 'tpope/vim-commentary'
+"Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
+"Plugin 'tpope/vim-git'
 "Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-repeat'
 "Plugin 'tpope/vim-sensible'
 "Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 "Plugin 'troydm/pb.vim'
-Plugin 'uarun/vim-protobuf'
+"Plugin 'uarun/vim-protobuf'
 "Plugin 'vim-scripts/bash-support.vim'
 "Plugin 'vim-scripts/FuzzyFinder'
 "Plugin 'vim-scripts/L9'
 Plugin 'vim-scripts/ShowMarks'
 "Plugin 'vim-scripts/TwitVim'
-Plugin 'vim-scripts/nginx.vim'
+"Plugin 'vim-scripts/nginx.vim'
 "Plugin 'vsushkov/vim-phpcs'
 "Plugin 'Yggdroot/indentLine'
 
@@ -263,7 +263,9 @@ vnoremap < <gv
 vnoremap > >gv
 
 " show tab line all the time
-set showtabline=2
+" *actually I changed it back to 1 instead of 2 when I was troubleshooting
+" screen flashing issues*
+set showtabline=1
 
 " This allows my bash aliases & functions to work in vim
 " Also vim doesn't work well with Fish shell so this fixes that
