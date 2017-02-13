@@ -134,23 +134,6 @@ if has("autocmd")
         autocmd BufWinLeave ?* mkview
         autocmd BufWinEnter ?* silent loadview
 
-        " Go back to the position the cursor was on the last time this file was edited
-        autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal g`\"" |
-        \ endif
-
-        " -------------------------------------------
-        " Set a highlight on the cursors current line
-        " -------------------------------------------
-        " Even better only set the cursor inside the active window
-        "autocmd WinEnter * setlocal cursorline
-        "autocmd WinLeave * setlocal nocursorline
-        ":hi CursorLine   cterm=NONE ctermbg=LightGrey
-        "ctermfg=white guibg=darkred guifg=white
-        ":hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-        " Disabled this b/c I found it annoying
-
         " NerdTree is commented out b/c it was causing bugs with my . redo command
         " Open NERD tree if no files were specified when starting vim
         " autocmd vimenter * if !argc() | NERDTree | endif
@@ -351,16 +334,16 @@ nnoremap  ;  :
 
 " Fix terminal timeout when pressing escape
 " https://powerline.readthedocs.org/en/latest/tipstricks.html
-if ! has('gui_running')
-    if has("autocmd")
-        set ttimeoutlen=10
-        augroup FastEscape
-            autocmd!
-            autocmd InsertEnter * set timeoutlen=0
-            autocmd InsertLeave * set timeoutlen=1000
-        augroup END
-    endif
-endif
+"if ! has('gui_running')
+"    if has("autocmd")
+"        set ttimeoutlen=10
+"        augroup FastEscape
+"            autocmd!
+"            autocmd InsertEnter * set timeoutlen=0
+"            autocmd InsertLeave * set timeoutlen=1000
+"        augroup END
+"    endif
+"endif
 
 set tags=./.tags;
 
@@ -368,12 +351,13 @@ set tags=./.tags;
 if !empty($MACRC)
     " Dash configuration
     " https://github.com/rizzatti/dash.vim/blob/master/doc/dash.txt
-    let g:dash_map = {
-            \ 'ruby'       : 'rails',
-            \ 'python'     : 'python2'
-            \ }
+    "let g:dash_map = {
+    "        \ 'ruby'       : 'rails',
+    "        \ 'python'     : 'python2'
+    "        \ }
 
     " Powerline
+    " @TODO This line could be causing my screen flashing
     source $HOME/src/powerline/powerline/bindings/vim/plugin/powerline.vim
 
     augroup BradMacCustom
