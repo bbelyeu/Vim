@@ -113,16 +113,6 @@ colorscheme solarized
 if has("autocmd")
     " Create a group to namespace my autocmds
     augroup BradCustom
-        " Zend template files
-        autocmd BufNewFile,BufRead *.phtml set filetype=html.php.js.css
-        " Added following 3 lines for drupal modules
-        autocmd BufNewFile,BufRead *.module set filetype=php
-        autocmd BufRead,BufNewFile *.install set filetype=php
-        autocmd BufRead,BufNewFile *.test set filetype=php
-        " Standard
-        autocmd BufNewFile,BufRead *.php set filetype=php.html.js.css
-        autocmd BufNewFile,BufRead *.js set filetype=javascript
-        autocmd BufNewFile,BufRead *.py set filetype=python
         " Jinja templating for json
         autocmd BufNewFile,BufRead *.json set filetype=jsonjinja
         " Set .bash files to shell script
@@ -175,7 +165,7 @@ map <F3> <C-w>j:q<CR>
 map <F4> :NERDTreeToggle<CR>
 " Toggle Tag bar plugin
 map <F5> :TagbarToggle<CR>
-" <F6> is used for language specific code-folding shortcut. Will fold everything between { }.
+" <F6> is used for language specific code-folding shortcut
 " F7 & F8 are reserved for screen/tmux tab movement
 " F9 & F10 are language specific
 
@@ -226,12 +216,12 @@ set matchtime=5
 
 " Remember things between sessions
 "
-" '50  - remember marks for 20 previous files
+" '20  - remember marks for 20 previous files
 " \"100 - save 100 lines for each register
 " :20  - remember 20 items in command-line history 
 " %    - remember the buffer list (if vim started without a file arg)
 " n    - set name of viminfo file
-set viminfo='50,\"100,:20,%,n~/.viminfo
+set viminfo='20,\"100,:20,%,n~/.viminfo
 
 " Use menu to show command-line completion (in 'full' case)
 set wildmenu
@@ -251,7 +241,6 @@ vnoremap > >gv
 set showtabline=1
 
 " This allows my bash aliases & functions to work in vim
-" Also vim doesn't work well with Fish shell so this fixes that
 set shell=bash\ --login
 
 " Instead of failing a command because of unsaved changes, instead raise a
