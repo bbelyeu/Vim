@@ -92,9 +92,8 @@ snippet debugger "Add PyCharm debugger code to api_dispatcher"
             logger.debug("Couldn't load pydevd", e)
 endsnippet
 
-snippet tracer "Trace code for writing nosetests"
-from nose.tools import set_trace
-set_trace()
+snippet pudb "PUDB debug code"
+from pudb import set_trace; set_trace()
 endsnippet
 
 # vim:ft=snippets:
