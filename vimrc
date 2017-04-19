@@ -161,7 +161,6 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 " Close pymode error buffer, or whatever is below
 map <F3> <C-w>j:q<CR>
 " Toggle Nerd Tree plugin
-" NerdTree is commented out b/c it was causing bugs with my . redo command
 map <F4> :NERDTreeToggle<CR>
 " Toggle Tag bar plugin
 map <F5> :TagbarToggle<CR>
