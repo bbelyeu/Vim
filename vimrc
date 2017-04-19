@@ -11,55 +11,51 @@ call vundle#begin()
 Bundle 'gmarik/Vundle.vim'
 
 " original repos on github
-"Plugin 'Lokaltog/powerline'
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 " Only use YouCompleteMe on my macs b/c the ec2 servers can't compile it
 let ismac=$MACRC
 if ismac == 'true'
     Plugin 'Valloric/YouCompleteMe'
 endif
-"Plugin 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'bbelyeu/pylint.vim'
 Plugin 'bbelyeu/vim-python'
 "Plugin 'bbelyeu/vim-custom'
 Plugin 'fisadev/vim-isort'
-"Plugin 'ghewgill/vim-scmdiff'
 Plugin 'kien/ctrlp.vim'
-Plugin 'klen/python-mode'
+"Plugin 'klen/python-mode'
 "Plugin 'lepture/vim-jinja'
 Plugin 'majutsushi/tagbar'
 "Plugin 'mattn/gist-vim'
 "Plugin 'mattn/webapi-vim'
+Plugin 'nvie/vim-flake8'
 "Plugin 'pangloss/vim-javascript'
-"Plugin 'panozzaj/vim-autocorrect'
+Plugin 'panozzaj/vim-autocorrect'
+" funcoo is required by dash
 "Plugin 'rizzatti/funcoo.vim'
 "Plugin 'rizzatti/dash.vim'
-"Plugin 'rking/ag.vim'
 "Plugin 'ryanss/vim-hackernews'
-" For some reason nerdtree is screwing up my . redo commands!!!
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'sjl/gundo.vim'
+" For some reason nerdtree is screwing up my . redo commands???
+Plugin 'scrooloose/nerdtree'
+Plugin 'sjl/gundo.vim'
 "Plugin 'sukima/xmledit'
 Plugin 'terryma/vim-multiple-cursors'
-"Plugin 'tomtom/tlib_vim'
 "Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
-"Plugin 'tpope/vim-git'
-"Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-repeat'
-"Plugin 'tpope/vim-sensible'
-"Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 "Plugin 'troydm/pb.vim'
-"Plugin 'uarun/vim-protobuf'
-"Plugin 'vim-scripts/bash-support.vim'
-"Plugin 'vim-scripts/FuzzyFinder'
-"Plugin 'vim-scripts/L9'
+Plugin 'uarun/vim-protobuf'
 Plugin 'vim-scripts/ShowMarks'
 "Plugin 'vim-scripts/TwitVim'
-"Plugin 'vim-scripts/nginx.vim'
+Plugin 'vim-scripts/nginx.vim'
+"Plugin 'vim-syntastic/syntastic'
 "Plugin 'vsushkov/vim-phpcs'
 "Plugin 'Yggdroot/indentLine'
 
@@ -126,9 +122,14 @@ if has("autocmd")
 
         " NerdTree is commented out b/c it was causing bugs with my . redo command
         " Open NERD tree if no files were specified when starting vim
-        " autocmd vimenter * if !argc() | NERDTree | endif
+        autocmd vimenter * if !argc() | NERDTree | endif
         " Got this from Kevin to close NERDTree if it's the last window open
-        " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+        " Use shell's pylinter
+        autocmd FileType python compiler pylint
+        " Call Flake8 on python file save
+        autocmd BufWritePost *.py call Flake8()
     augroup END
 endif
 
@@ -154,12 +155,15 @@ set scrolloff=3
 set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
 
+let g:flake8_cmd="/Users/bbelyeu/envs/plans/bin/flake8"
+let g:flake8_show_in_gutter=1
+let g:flake8_show_in_file=1
+
 " imap <F1> Available
 " <F2> is set to language specific lint in ftplugin
+autocmd FileType python map <buffer> <F2> :call Flake8()<CR>
 " Use F3 to toggle Gundo plugin
-"map <F3> :GundoToggle<CR>
-" Close pymode error buffer, or whatever is below
-map <F3> <C-w>j:q<CR>
+map <F3> :GundoToggle<CR>
 " Toggle Nerd Tree plugin
 map <F4> :NERDTreeToggle<CR>
 " Toggle Tag bar plugin
@@ -171,7 +175,7 @@ map <F5> :TagbarToggle<CR>
 " map <leader>f to display all lines with keyword under cursor and ask which one to jump to
 nmap <leader>f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " map <leader>h to Dash search of word currently under cursor
-nmap <silent> <leader>h :Dash<CR>
+"nmap <silent> <leader>h :Dash<CR>
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
 nnoremap <leader>s diw"0P
 " Get a timestamp
@@ -235,9 +239,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " show tab line all the time
-" *actually I changed it back to 1 instead of 2 when I was troubleshooting
-" screen flashing issues*
-set showtabline=1
+set showtabline=2
 
 " This allows my bash aliases & functions to work in vim
 set shell=bash\ --login
@@ -388,10 +390,6 @@ if &term=="xterm"
     set t_Sb=^[[4%dm
     set t_Sf=^[[3%dm
 endif
-
-" customize pymode
-let g:pymode_options_max_line_length = 100
-let g:pymode_trim_whitespaces = 1
 
 " get rid of newline at end of file
 set fileformats+=dos
