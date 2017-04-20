@@ -11,7 +11,6 @@ call vundle#begin()
 Bundle 'gmarik/Vundle.vim'
 
 " original repos on github
-Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 " Only use YouCompleteMe on my macs b/c the ec2 servers can't compile it
 let ismac=$MACRC
@@ -41,21 +40,20 @@ Plugin 'panozzaj/vim-autocorrect'
 Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
 "Plugin 'sukima/xmledit'
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-speeddating'
+"Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 "Plugin 'troydm/pb.vim'
 Plugin 'uarun/vim-protobuf'
 Plugin 'vim-scripts/ShowMarks'
 "Plugin 'vim-scripts/TwitVim'
 Plugin 'vim-scripts/nginx.vim'
-"Plugin 'vim-syntastic/syntastic'
 "Plugin 'vsushkov/vim-phpcs'
 "Plugin 'Yggdroot/indentLine'
 
@@ -156,6 +154,7 @@ set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
 
 let g:flake8_cmd="/Users/bbelyeu/envs/plans/bin/flake8"
+let g:flake8_show_quickfix=1
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
 
