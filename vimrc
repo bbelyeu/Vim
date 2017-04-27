@@ -54,6 +54,7 @@ Plugin 'uarun/vim-protobuf'
 Plugin 'vim-scripts/ShowMarks'
 "Plugin 'vim-scripts/TwitVim'
 Plugin 'vim-scripts/nginx.vim'
+Plugin 'Vimjas/vim-python-pep8-indent'
 "Plugin 'vsushkov/vim-phpcs'
 "Plugin 'Yggdroot/indentLine'
 
@@ -153,10 +154,12 @@ set scrolloff=3
 set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
 
+" Configure python plugins
 let g:flake8_cmd="/Users/bbelyeu/envs/plans/bin/flake8"
 let g:flake8_show_quickfix=1
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
+let g:python_pep8_indent_multiline_string=-2
 
 " imap <F1> Available
 " <F2> is set to language specific lint in ftplugin
