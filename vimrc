@@ -23,7 +23,7 @@ Plugin 'bbelyeu/pylint.vim'
 Plugin 'bbelyeu/vim-python'
 "Plugin 'bbelyeu/vim-custom'
 Plugin 'fisadev/vim-isort'
-Plugin 'kien/ctrlp.vim'
+"Plugin 'kien/ctrlp.vim'
 "Plugin 'klen/python-mode'
 "Plugin 'lepture/vim-jinja'
 Plugin 'majutsushi/tagbar'
@@ -210,9 +210,9 @@ nnoremap <leader>ch <C-w>k:q<CR>
 " ============
 " Ctrlp plugin
 " ============
-let g:ctrlp_extensions = ['buffertag']
-let g:ctrlp_mruf_case_sensitive = 0
-let g:ctrlp_mruf_relative = 1
+"let g:ctrlp_extensions = ['buffertag']
+"let g:ctrlp_mruf_case_sensitive = 0
+"let g:ctrlp_mruf_relative = 1
 
 " When a bracket is inserted, briefly jump to a matching one
 set showmatch
@@ -350,7 +350,7 @@ if !empty($MACRC)
 
     " Powerline
     " @TODO This line could be causing my screen flashing
-    source $HOME/src/powerline/powerline/bindings/vim/plugin/powerline.vim
+    " source $HOME/src/powerline/powerline/bindings/vim/plugin/powerline.vim
 
     augroup BradMacCustom
         " Fix Mac issue with not being able to write/create a crontab
