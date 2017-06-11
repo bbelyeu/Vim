@@ -23,7 +23,7 @@ Plugin 'bbelyeu/pylint.vim'
 Plugin 'bbelyeu/vim-python'
 "Plugin 'bbelyeu/vim-custom'
 Plugin 'fisadev/vim-isort'
-"Plugin 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 "Plugin 'klen/python-mode'
 "Plugin 'lepture/vim-jinja'
 Plugin 'majutsushi/tagbar'
@@ -32,6 +32,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'nvie/vim-flake8'
 "Plugin 'pangloss/vim-javascript'
 Plugin 'panozzaj/vim-autocorrect'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 " funcoo is required by dash
 "Plugin 'rizzatti/funcoo.vim'
 "Plugin 'rizzatti/dash.vim'
@@ -349,8 +350,6 @@ if !empty($MACRC)
     "        \ }
 
     " Powerline
-    " @TODO This line could be causing my screen flashing
-    " source $HOME/src/powerline/powerline/bindings/vim/plugin/powerline.vim
 
     augroup BradMacCustom
         " Fix Mac issue with not being able to write/create a crontab
@@ -401,3 +400,6 @@ map q: :q
 
 " Try to make window quit flashing so much
 set lazyredraw
+
+" From ctrlp instructions: http://ctrlpvim.github.io/ctrlp.vim/#installation
+set runtimepath^=~/.vim/bundle/ctrlp.vim
