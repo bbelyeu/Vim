@@ -33,13 +33,9 @@ Plugin 'nvie/vim-flake8'
 "Plugin 'pangloss/vim-javascript'
 Plugin 'panozzaj/vim-autocorrect'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-" funcoo is required by dash
-"Plugin 'rizzatti/funcoo.vim'
-"Plugin 'rizzatti/dash.vim'
-"Plugin 'ryanss/vim-hackernews'
 " For some reason nerdtree is screwing up my . redo commands???
 Plugin 'scrooloose/nerdtree'
-Plugin 'sjl/gundo.vim'
+"Plugin 'sjl/gundo.vim'
 "Plugin 'sukima/xmledit'
 "Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'tpope/vim-commentary'
@@ -53,11 +49,8 @@ Plugin 'tpope/vim-surround'
 "Plugin 'troydm/pb.vim'
 Plugin 'uarun/vim-protobuf'
 Plugin 'vim-scripts/ShowMarks'
-"Plugin 'vim-scripts/TwitVim'
 Plugin 'vim-scripts/nginx.vim'
 Plugin 'Vimjas/vim-python-pep8-indent'
-"Plugin 'vsushkov/vim-phpcs'
-"Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
 filetype plugin indent on     " required!
