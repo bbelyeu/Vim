@@ -396,3 +396,12 @@ set lazyredraw
 
 " From ctrlp instructions: http://ctrlpvim.github.io/ctrlp.vim/#installation
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.mo,htmlcov/*,.git/*,*.swp
+let g:ctrlp_custom_ignore = 'htmlcov/*'
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\v[\/]\.(git|hg|svn|htmlcov)$',
+"  \ 'file': '\v\.(exe|so|dll|mo|zip)$',
+"  \ 'link': 'some_bad_symbolic_links',
+"  \ }
