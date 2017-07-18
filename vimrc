@@ -21,7 +21,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bbelyeu/pylint.vim'
 Plugin 'bbelyeu/vim-python'
-"Plugin 'bbelyeu/vim-custom'
 Plugin 'fisadev/vim-isort'
 Plugin 'kien/ctrlp.vim'
 "Plugin 'klen/python-mode'
@@ -31,9 +30,7 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'mattn/webapi-vim'
 Plugin 'nvie/vim-flake8'
 "Plugin 'pangloss/vim-javascript'
-Plugin 'panozzaj/vim-autocorrect'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-" For some reason nerdtree is screwing up my . redo commands???
 Plugin 'scrooloose/nerdtree'
 "Plugin 'sjl/gundo.vim'
 "Plugin 'sukima/xmledit'
@@ -396,7 +393,6 @@ set lazyredraw
 
 " From ctrlp instructions: http://ctrlpvim.github.io/ctrlp.vim/#installation
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-
 " Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.mo,htmlcov/*,.git/*,*.swp
 let g:ctrlp_custom_ignore = 'htmlcov/*'
@@ -405,3 +401,15 @@ let g:ctrlp_custom_ignore = 'htmlcov/*'
 "  \ 'file': '\v\.(exe|so|dll|mo|zip)$',
 "  \ 'link': 'some_bad_symbolic_links',
 "  \ }
+
+" I removed the autocorrect spelling plugin & instead opted for vim's built in
+" spell checker. Read https://robots.thoughtbot.com/vim-spell-checking
+" or use `:help spell` for more details.
+set spell spelllang=en_us
+" Since I removed the autocorrect spelling plugin. There are a few
+" autocorrections that I wanted to keep and added here.
+ia hte the
+ia thier their
+ia enviroment environment
+ia freind friend
+ia toghether together
