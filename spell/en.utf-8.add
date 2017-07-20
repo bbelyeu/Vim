@@ -14,3 +14,7 @@ postgresql
 init
 dir
 Smartling
+api
+smartling
+auth
+v2
