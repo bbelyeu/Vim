@@ -99,4 +99,12 @@ snippet pudb "PUDB debug code"
 from pudb import set_trace; set_trace()
 endsnippet
 
+snippet demo1 "Add Babel import"
+from flask.ext.babel import Babel
+endsnippet
+
+snippet demo2 "Wrap app with Babel"
+babel = Babel(app)
+endsnippet
+
 # vim:ft=snippets:
