@@ -19,3 +19,5 @@ smartling
 auth
 v2
 uri
+metadata
+namespace
