@@ -25,3 +25,7 @@ Kubernetes
 GitLab
 repo
 cdn
+proto
+json
+gzip
+utf
