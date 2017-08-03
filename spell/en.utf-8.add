@@ -29,3 +29,12 @@ proto
 json
 gzip
 utf
+uwsgi
+config
+csv
+YouVersion
+Referer
+pytest
+youversion
+youversionapi
+couchbase
