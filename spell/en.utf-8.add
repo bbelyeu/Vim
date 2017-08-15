@@ -38,3 +38,6 @@ pytest
 youversion
 youversionapi
 couchbase
+SQLAlchemy
+memcached
+sqlite
