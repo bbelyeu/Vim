@@ -1,3 +1,10 @@
+"
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+"   \_/ |_|_| |_| |_|_|  \___|
+"
+"
 " @link https://github.com/gmarik/vundle#about
 " The top of my vimrc is suggested by vundle
 
@@ -23,7 +30,6 @@ Plugin 'bbelyeu/pylint.vim'
 Plugin 'bbelyeu/vim-python'
 Plugin 'fatih/vim-go'
 Plugin 'fisadev/vim-isort'
-Plugin 'kien/ctrlp.vim'
 "Plugin 'klen/python-mode'
 "Plugin 'lepture/vim-jinja'
 Plugin 'majutsushi/tagbar'
@@ -61,9 +67,58 @@ filetype plugin indent on     " required!
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
-"
-" The rest is my custom stuff
 
+" change the mapleader from \ to , it's important that this
+" is at/near the top of the file so that other mapped comamnds
+" use this leader
+let mapleader=","
+
+" Setup vim
+set ai
+set background=dark
+set bs=indent,eol,start " allow backspacing over everything in insert mode
+set copyindent
+set expandtab
+set fileformats+=dos " get rid of newline at end of file
+set laststatus=2 " Always display the statusline in all windows
+set lazyredraw " Try to make window quit flashing so much
+set matchtime=5 " Jump to matching bracket for 5/10th of a second (works with showmatch)
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
+set number
+set scrolloff=3 " Scroll when cursor gets within 3 characters of top/bottom edge
+set shiftround " round indent to multiple of 'shiftwidth' for > and < commands
+set shiftwidth=4
+set showmatch " When a bracket is inserted, briefly jump to a matching one
+set smartindent
+set softtabstop=4
+set tabstop=4
+" Remember things between sessions...
+" '20  - remember marks for 20 previous files
+" \"100 - save 100 lines for each register
+" :20  - remember 20 items in command-line history 
+" %    - remember the buffer list (if vim started without a file arg)
+" n    - set name of viminfo file
+set viminfo='20,\"100,:20,%,n~/.viminfo
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.mo,htmlcov/*,.git/*,*.swp " Exclude files and directories
+set wildmenu " Use menu to show command-line completion (in 'full' case)
+" Set command-line completion mode:
+"   - on first <Tab>, when more than one match, list all matches and complete
+"     the longest common  string
+"   - on second <Tab>, complete the next full match and show menu
+set wildmode=list:longest,full
+syntax enable
+
+" Conditional sets - not always available
+
+" Switch syntax highlighting on, when the terminal has colors
+if &t_Co > 2 || has("gui_running")
+    syntax on
+    " Highlight search and enable incremental searching
+    set hlsearch
+    set incsearch
+endif
+
+" Encodings
 if has("multi_byte")
     if &termencoding == ""
         let &termencoding = &encoding
@@ -74,34 +129,23 @@ if has("multi_byte")
     set fileencodings=ucs-bom,utf-8,latin1
 endif
 
-" change the mapleader from \ to , it's important that this
-" is at/near the top of the file so that other mapped comamnds
-" use this leader
-let mapleader=","
-
-" Set indention, line numbers, and enable syntax highlighting
-set ai
-set smartindent
-set copyindent
-set number
-syntax enable
-set background=dark
-
 " =========================
 " Solarized plugin
 " Customize solarized theme
 " =========================
-let g:solarized_termtrans=1
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-colorscheme solarized
+try
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="high"
+    let g:solarized_visibility="high"
+    colorscheme solarized
+catch
+    echo 'Solarized not installed'
+endtry
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
     " Create a group to namespace my autocmds
     augroup BradCustom
-        " Jinja templating for json
-        autocmd BufNewFile,BufRead *.json set filetype=jsonjinja
         " Set .bash files to shell script
         autocmd BufNewFile,BufRead *.bash set filetype=sh
         " From bash-support docs
@@ -124,34 +168,14 @@ if has("autocmd")
     augroup END
 endif
 
-" Set tab & auto indent to 4 spaces also round indent to multiple of 'shiftwidth' for > and < commands
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set shiftround
-set bs=indent,eol,start " allow backspacing over everything in insert mode
-
-" Switch syntax highlighting on, when the terminal has colors
-if &t_Co > 2 || has("gui_running")
-    syntax on
-    " Highlight search and enable incremental searching
-    set hlsearch
-    set incsearch
-endif
-
-" Scroll when cursor gets within 3 characters of top/bottom edge
-set scrolloff=3
-
-set laststatus=2 " Always display the statusline in all windows
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
-
 " Configure python plugins
 let g:flake8_cmd="/Users/bbelyeu/envs/plans/bin/flake8"
 let g:flake8_show_quickfix=1
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
 let g:python_pep8_indent_multiline_string=-2
+
+" Function key mappings
 
 " imap <F1> Available
 " <F2> is set to language specific lint in ftplugin
@@ -166,67 +190,33 @@ map <F5> :TagbarToggle<CR>
 " F7 & F8 are reserved for screen/tmux tab movement
 " F9 & F10 are language specific
 
-" map <leader>f to display all lines with keyword under cursor and ask which one to jump to
-nmap <leader>f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-" map <leader>h to Dash search of word currently under cursor
-"nmap <silent> <leader>h :Dash<CR>
-" This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
-nnoremap <leader>s diw"0P
-" Get a timestamp
-nmap <leader>t "=strftime('%s')<C-M>p"
-" Close all folds
-map <leader>z zM
+" Leader mappings
+
 " cd to the local dir that your file being edited is in
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-" Copy currently edited file to dev server
-map <leader>cp :!~/bin/rsync_dev.sh<CR>
-" Setup find in buffer for cntrlp
-nmap <leader>cb :CtrlPBufTagAll<CR>
-nmap <leader>cm :CtrlPMixed<CR>
 " Toggle cursor line
 nnoremap <leader>cl :set cursorline!<CR>
-" Go to next quickfix result
-nnoremap <leader>qn :cn<CR>
-" Close quickfix result window
-nnoremap <leader>qc :ccl<CR>
-" Sort
-map <leader>so :sort<CR>
-" Remove trailing whitespace from all lines
-map <leader>rmtw :%s/\s\+$//<CR>
+" Copy currently edited file to dev server
+map <leader>cp :!~/bin/rsync_dev.sh<CR>
+" map <leader>f to display all lines with keyword under cursor and ask which one to jump to
+nmap <leader>f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " Customize YouCompleteMe Setup
 if !empty($MACRC)
     nnoremap <leader>goto :YcmCompleter GoTo<CR>
 endif
+" This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
+nnoremap <leader>s diw"0P
+" Remove trailing whitespace from all lines
+map <leader>rmtw :%s/\s\+$//<CR>
+" Get a timestamp
+nmap <leader>t "=strftime('%s')<C-M>p"
+" Close all folds
+map <leader>z zM
+" Go to next quickfix result
+nnoremap <leader>qn :cn<CR>
+" Close quickfix result window
+nnoremap <leader>qc :ccl<CR>
 nnoremap <leader>ch <C-w>k:q<CR>
-
-" ============
-" Ctrlp plugin
-" ============
-"let g:ctrlp_extensions = ['buffertag']
-"let g:ctrlp_mruf_case_sensitive = 0
-"let g:ctrlp_mruf_relative = 1
-
-" When a bracket is inserted, briefly jump to a matching one
-set showmatch
-" Jump to matching bracket for 5/10th of a second (works with showmatch)
-set matchtime=5
-
-" Remember things between sessions
-"
-" '20  - remember marks for 20 previous files
-" \"100 - save 100 lines for each register
-" :20  - remember 20 items in command-line history 
-" %    - remember the buffer list (if vim started without a file arg)
-" n    - set name of viminfo file
-set viminfo='20,\"100,:20,%,n~/.viminfo
-
-" Use menu to show command-line completion (in 'full' case)
-set wildmenu
-" Set command-line completion mode:
-"   - on first <Tab>, when more than one match, list all matches and complete
-"     the longest common  string
-"   - on second <Tab>, complete the next full match and show menu
-set wildmode=list:longest,full
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -383,25 +373,8 @@ if &term=="xterm"
     set t_Sf=^[[3%dm
 endif
 
-" get rid of newline at end of file
-set fileformats+=dos
-
 " Stop that stupid window from popping up!!!
 map q: :q
-
-" Try to make window quit flashing so much
-set lazyredraw
-
-" From ctrlp instructions: http://ctrlpvim.github.io/ctrlp.vim/#installation
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-" Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.mo,htmlcov/*,.git/*,*.swp
-let g:ctrlp_custom_ignore = 'htmlcov/*'
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir':  '\v[\/]\.(git|hg|svn|htmlcov)$',
-"  \ 'file': '\v\.(exe|so|dll|mo|zip)$',
-"  \ 'link': 'some_bad_symbolic_links',
-"  \ }
 
 " I removed the autocorrect spelling plugin & instead opted for vim's built in
 " spell checker. Read https://robots.thoughtbot.com/vim-spell-checking
