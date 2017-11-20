@@ -73,26 +73,41 @@ filetype plugin indent on     " required!
 " use this leader
 let mapleader=","
 
+" =========
 " Setup vim
+" =========
 set ai
 set background=dark
 set bs=indent,eol,start " allow backspacing over everything in insert mode
+set cmdheight=2 " Set the command window height to 2 lines, to avoid many cases of having to press <Enter> to continue
+set colorcolumn=100
+set confirm " Instead of failing a command because of unsaved changes, instead raise a dialogue asking if you wish to save changed files.
 set copyindent
 set expandtab
 set fileformats+=dos " get rid of newline at end of file
 set laststatus=2 " Always display the statusline in all windows
 set lazyredraw " Try to make window quit flashing so much
+set linebreak
+set list
+" Make tabs, trailing whitespace, and non-breaking spaces visible, idk why
+" it's set like this, but I couldn't get it to work otherwise...
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set matchtime=5 " Jump to matching bracket for 5/10th of a second (works with showmatch)
+set nocursorline
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
 set number
 set scrolloff=3 " Scroll when cursor gets within 3 characters of top/bottom edge
+set shell=bash\ --login " This allows my bash aliases & functions to work in vim
 set shiftround " round indent to multiple of 'shiftwidth' for > and < commands
 set shiftwidth=4
 set showmatch " When a bracket is inserted, briefly jump to a matching one
+set showtabline=2 " show tab line all the time
 set smartindent
 set softtabstop=4
+set spell spelllang=en_us " https://robots.thoughtbot.com/vim-spell-checking
 set tabstop=4
-" Remember things between sessions...
+set tags=./.tags; " Custom ctags file
+" Set viminfo to remember things between sessions...
 " '20  - remember marks for 20 previous files
 " \"100 - save 100 lines for each register
 " :20  - remember 20 items in command-line history 
@@ -101,19 +116,26 @@ set tabstop=4
 set viminfo='20,\"100,:20,%,n~/.viminfo
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.mo,htmlcov/*,.git/*,*.swp " Exclude files and directories
 set wildmenu " Use menu to show command-line completion (in 'full' case)
-" Set command-line completion mode:
+" Set wildmode command-line completion mode:
 "   - on first <Tab>, when more than one match, list all matches and complete
 "     the longest common  string
 "   - on second <Tab>, complete the next full match and show menu
 set wildmode=list:longest,full
-syntax enable
+set wrap
 
+" =======================================
 " Conditional sets - not always available
+" =======================================
 
-" Switch syntax highlighting on, when the terminal has colors
+" xterm improvements
+if &term=="xterm"
+    set t_Co=8
+    set t_Sb=^[[4%dm
+    set t_Sf=^[[3%dm
+endif
+
+" Highlight search and enable incremental searching when vim has colors
 if &t_Co > 2 || has("gui_running")
-    syntax on
-    " Highlight search and enable incremental searching
     set hlsearch
     set incsearch
 endif
@@ -128,19 +150,6 @@ if has("multi_byte")
     "setglobal bomb
     set fileencodings=ucs-bom,utf-8,latin1
 endif
-
-" =========================
-" Solarized plugin
-" Customize solarized theme
-" =========================
-try
-    let g:solarized_termtrans=1
-    let g:solarized_contrast="high"
-    let g:solarized_visibility="high"
-    colorscheme solarized
-catch
-    echo 'Solarized not installed'
-endtry
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -168,14 +177,9 @@ if has("autocmd")
     augroup END
 endif
 
-" Configure python plugins
-let g:flake8_cmd="/Users/bbelyeu/envs/plans/bin/flake8"
-let g:flake8_show_quickfix=1
-let g:flake8_show_in_gutter=1
-let g:flake8_show_in_file=1
-let g:python_pep8_indent_multiline_string=-2
-
+" -----------------
 " Function key mappings
+" -----------------
 
 " imap <F1> Available
 " <F2> is set to language specific lint in ftplugin
@@ -190,7 +194,9 @@ map <F5> :TagbarToggle<CR>
 " F7 & F8 are reserved for screen/tmux tab movement
 " F9 & F10 are language specific
 
+" -----------------
 " Leader mappings
+" -----------------
 
 " cd to the local dir that your file being edited is in
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -218,120 +224,84 @@ nnoremap <leader>qn :cn<CR>
 nnoremap <leader>qc :ccl<CR>
 nnoremap <leader>ch <C-w>k:q<CR>
 
-" visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
-
-" show tab line all the time
-set showtabline=2
-
-" This allows my bash aliases & functions to work in vim
-set shell=bash\ --login
-
-" Instead of failing a command because of unsaved changes, instead raise a
-" dialogue asking if you wish to save changed files.
-set confirm
-
-" Enable use of the mouse for all modes
-" Commented this out b/c it broke MacOS copy/paste with mouse
-"set mouse=a
-
-" Set the command window height to 2 lines, to avoid many cases of having to
-" press <Enter> to continue
-set cmdheight=2
-
-set wrap
-set linebreak
-
-" Highlight chars that go over the 80-column limit
-":highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
-":match OverLength '\%121v.*'
-" Changed the 2 above lines to only use a colorcolumn instead of highlighting all code beyond column count
-set colorcolumn=100
-" Set color for colorcolumn
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
-" If you only want to show it on lines that exceed 100 chars use the following line instead
-"call matchadd('ColorColumn', '\%81v', 100)
-
-" --------------------
-" ShowMarks Plugin
-" --------------------
-let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-let g:showmarks_enable = 1
-" For marks a-z
-highlight ShowMarksHLl gui=bold guibg=LightBlue guifg=Blue
-" For marks A-Z
-highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
-" For all other marks
-highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
-" For multiple marks on the same line.
-highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
-
-set nocursorline
+" -----------------
+" Other mappings
+" -----------------
 
 " Remap window movements
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-
-" Ultisnips modified snippets dir
-let g:UltiSnipsSnippetsDir        = '~/.vim/mysnippets/'
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'mysnippets']
-" Modified expand trigger key binding to work nicely with YouCompleteMe
-let g:UltiSnipsExpandTrigger="<c-j>"
-
-" Found the following features @link http://programming.oreilly.com/2013/10/more-instantly-better-vim.html
-highlight WhiteOnRed ctermbg=white ctermfg=darkred
-function! HLNext (blinktime)
-    let [bufnum, lnum, col, off] = getpos('.')
-    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
-    let target_pat = '\c\%#'.@/
-    let ring = matchadd('WhiteOnRed', target_pat, 101)
-    redraw
-    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-    call matchdelete(ring)
-    redraw
-endfunction
-
-" This rewires n and N to do the highlighing...
+" Stop that stupid window from popping up!!!
+map q: :q
+" This rewires n and N to do the highlighting
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
-
-"====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
-
-"====[ Swap : and ; to make colon commands easier to type ]======
+" Swap : and ; to make colon commands easier to type
 nnoremap  ;  :
 "nnoremap  :  ;
+" visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
 
-" Fix terminal timeout when pressing escape
-" https://powerline.readthedocs.org/en/latest/tipstricks.html
-"if ! has('gui_running')
-"    if has("autocmd")
-"        set ttimeoutlen=10
-"        augroup FastEscape
-"            autocmd!
-"            autocmd InsertEnter * set timeoutlen=0
-"            autocmd InsertLeave * set timeoutlen=1000
-"        augroup END
-"    endif
-"endif
+" -----------------
+" Configure Plugins
+" -----------------
 
-set tags=./.tags;
+" Solarized plugin
+try
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="high"
+    let g:solarized_visibility="high"
+    colorscheme solarized
+catch
+    echo 'Solarized not installed'
+endtry
+
+" ShowMarks Plugin
+try
+    let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    let g:showmarks_enable = 1
+    " For marks a-z
+    highlight ShowMarksHLl gui=bold guibg=LightBlue guifg=Blue
+    " For marks A-Z
+    highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
+    " For all other marks
+    highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
+    " For multiple marks on the same line.
+    highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
+catch
+    echo 'ShowMarks not installed'
+endtry
+
+" Ultisnips modified snippets dir
+try
+    let g:UltiSnipsSnippetsDir        = '~/.vim/mysnippets/'
+    let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'mysnippets']
+    " Modified expand trigger key binding to work nicely with YouCompleteMe
+    let g:UltiSnipsExpandTrigger="<c-j>"
+catch
+    echo 'Ultisnips not installed'
+endtry
+
+" Configure Flake8 & Pep8 plugins
+try
+    let g:flake8_cmd="/Users/bbelyeu/envs/plans/bin/flake8" " TODO: This needs fixed
+    let g:flake8_show_quickfix=1
+    let g:flake8_show_in_gutter=1
+    let g:flake8_show_in_file=1
+    let g:python_pep8_indent_multiline_string=-2
+catch
+    echo 'Unable to setup flake8 and pep8'
+endtry
+
+" =============================
+" Environment specific settings
+" =============================
 
 " If mac shell env var is set
 if !empty($MACRC)
-    " Dash configuration
-    " https://github.com/rizzatti/dash.vim/blob/master/doc/dash.txt
-    "let g:dash_map = {
-    "        \ 'ruby'       : 'rails',
-    "        \ 'python'     : 'python2'
-    "        \ }
-
-    " Powerline
-
     augroup BradMacCustom
         " Fix Mac issue with not being able to write/create a crontab
         " @link http://vim.wikia.com/wiki/Editing_crontab
@@ -366,20 +336,6 @@ if !empty($SERVERRC)
     endif
 endif
 
-" xterm improvements
-if &term=="xterm"
-    set t_Co=8
-    set t_Sb=^[[4%dm
-    set t_Sf=^[[3%dm
-endif
-
-" Stop that stupid window from popping up!!!
-map q: :q
-
-" I removed the autocorrect spelling plugin & instead opted for vim's built in
-" spell checker. Read https://robots.thoughtbot.com/vim-spell-checking
-" or use `:help spell` for more details.
-set spell spelllang=en_us
 " Since I removed the autocorrect spelling plugin. There are a few
 " autocorrections that I wanted to keep and added here.
 ia hte the
@@ -387,3 +343,24 @@ ia thier their
 ia enviroment environment
 ia freind friend
 ia toghether together
+
+" Check if already enabled so not to clobber any color highlighting already set up
+if !exists("g:syntax_on")
+    syntax enable
+endif
+
+" Set color for colorcolumn
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+
+" Found the following features @link http://programming.oreilly.com/2013/10/more-instantly-better-vim.html
+highlight WhiteOnRed ctermbg=white ctermfg=darkred
+function! HLNext (blinktime)
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('WhiteOnRed', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
