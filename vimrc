@@ -233,17 +233,25 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
 " Stop that stupid window from popping up!!!
 map q: :q
+
 " This rewires n and N to do the highlighting
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
 " Swap : and ; to make colon commands easier to type
 nnoremap  ;  :
 "nnoremap  :  ;
+"
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
+
+" Use the space key to toggle folds
+nnoremap <space> za
+vnoremap <space> zf
 
 " -----------------
 " Configure Plugins
