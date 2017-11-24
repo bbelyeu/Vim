@@ -27,34 +27,29 @@ endif
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bbelyeu/pylint.vim'
-Plugin 'bbelyeu/vim-python'
-Plugin 'fatih/vim-go'
+Plugin 'bbelyeu/vim-python' " custom ftplugin for Python
+"Plugin 'fatih/vim-go'
 Plugin 'fisadev/vim-isort'
-"Plugin 'klen/python-mode'
-"Plugin 'lepture/vim-jinja'
+Plugin 'junegunn/fzf.vim'
 Plugin 'majutsushi/tagbar'
 "Plugin 'mattn/gist-vim'
 "Plugin 'mattn/webapi-vim'
 Plugin 'nvie/vim-flake8'
-"Plugin 'pangloss/vim-javascript'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'scrooloose/nerdtree'
+Plugin 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
 "Plugin 'sjl/gundo.vim'
 "Plugin 'sukima/xmledit'
 "Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 "Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
-"Plugin 'troydm/pb.vim'
-Plugin 'uarun/vim-protobuf'
 Plugin 'vim-scripts/ShowMarks'
-Plugin 'vim-scripts/nginx.vim'
-Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'Vimjas/vim-python-pep8-indent' " modifies Vim’s indentation behavior to comply with PEP8
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -94,6 +89,7 @@ set list
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set matchtime=5 " Jump to matching bracket for 5/10th of a second (works with showmatch)
 set nocursorline
+set noeol "This prevents a \n being added by vim at the end of the file
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
 set number
 set scrolloff=3 " Scroll when cursor gets within 3 characters of top/bottom edge
@@ -256,6 +252,9 @@ vnoremap <space> zf
 " -----------------
 " Configure Plugins
 " -----------------
+
+" Set path for FZF
+set rtp+=/usr/local/opt/fzf
 
 " Solarized plugin
 try
