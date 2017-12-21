@@ -294,7 +294,7 @@ endtry
 
 " Configure Flake8 & Pep8 plugins
 try
-    let g:flake8_cmd="/Users/bbelyeu/envs/plans/bin/flake8" " TODO: This needs fixed
+    let g:flake8_cmd="flake8"
     let g:flake8_show_quickfix=1
     let g:flake8_show_in_gutter=1
     let g:flake8_show_in_file=1
