@@ -18,11 +18,11 @@ call vundle#begin()
 Bundle 'gmarik/Vundle.vim'
 
 " original repos on github
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 " Only use YouCompleteMe on my macs b/c the ec2 servers can't compile it
 let ismac=$MACRC
 if ismac == 'true'
-    Plugin 'Valloric/YouCompleteMe'
+"    Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
@@ -35,7 +35,7 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'mattn/gist-vim'
 "Plugin 'mattn/webapi-vim'
 Plugin 'nvie/vim-flake8'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'scrooloose/nerdtree'
 Plugin 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
 "Plugin 'sjl/gundo.vim'
