@@ -2,3 +2,5 @@ This is my ~/.vim directory (and .vimrc backup)
 I love vim and can't imagine programming in anything else thanks to my college professors that required us to work in VIM or Pico back in the day....
 Anyways, I digress. If I lost all my .vim files I'd be screwed, and it would probably take a day to find and reload all my plugins
 and set my rc file up how I like it. So I decided it would be a good idea to store all this in a repo.
+
+Run :PluginInstall after cloning.
