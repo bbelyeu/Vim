@@ -18,15 +18,14 @@ call vundle#begin()
 Bundle 'gmarik/Vundle.vim'
 
 " original repos on github
-"Plugin 'SirVer/ultisnips'
 " Only use YouCompleteMe on my macs b/c the ec2 servers can't compile it
 let ismac=$MACRC
 if ismac == 'true'
-"    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'bbelyeu/pylint.vim'
+"Plugin 'bbelyeu/pylint.vim'
 Plugin 'bbelyeu/vim-python' " custom ftplugin for Python
 "Plugin 'fatih/vim-go'
 Plugin 'fisadev/vim-isort'
@@ -34,12 +33,12 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'majutsushi/tagbar'
 "Plugin 'mattn/gist-vim'
 "Plugin 'mattn/webapi-vim'
-Plugin 'nvie/vim-flake8'
-"Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'nvie/vim-flake8'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'python-mode/python-mode'
 Plugin 'scrooloose/nerdtree'
 Plugin 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
 "Plugin 'sjl/gundo.vim'
-"Plugin 'sukima/xmledit'
 "Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -49,7 +48,8 @@ Plugin 'tpope/vim-sensible'
 "Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/ShowMarks'
-Plugin 'Vimjas/vim-python-pep8-indent' " modifies Vim’s indentation behavior to comply with PEP8
+Plugin 'SirVer/ultisnips'
+"Plugin 'Vimjas/vim-python-pep8-indent' " modifies Vim’s indentation behavior to comply with PEP8
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -123,6 +123,20 @@ set wrap
 " Conditional sets - not always available
 " =======================================
 
+" If Python file, check if inside a virtualenv, and if so use it
+" I know the indenting looks weird, but according to the docs EOF *CANNOT* be preceded by
+" whitespace. See http://vimdoc.sourceforge.net/htmldoc/if_pyth.html
+" Note: Pymode is now doing this for me, but I'm leaving it here in case I remove python-mode
+"if &ft=='py'
+"python << EOF
+"import os
+"if 'VIRTUAL_ENV' in os.environ:
+"    project_base_dir = os.environ['VIRTUAL_ENV']
+"    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"    execfile(activate_this, dict(__file__=activate_this))
+"EOF
+"endif
+
 " xterm improvements
 if &term=="xterm"
     set t_Co=8
@@ -167,9 +181,9 @@ if has("autocmd")
         autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
         " Use shell's pylinter
-        autocmd FileType python compiler pylint
+        " autocmd FileType python compiler pylint
         " Call Flake8 on python file save
-        autocmd BufWritePost *.py call Flake8()
+        " autocmd BufWritePost *.py call Flake8()
     augroup END
 endif
 
@@ -177,11 +191,10 @@ endif
 " Function key mappings
 " -----------------
 
-" imap <F1> Available
+" <F1> is set to language specific help in ftplugin
 " <F2> is set to language specific lint in ftplugin
-autocmd FileType python map <buffer> <F2> :call Flake8()<CR>
 " Use F3 to toggle Gundo plugin
-map <F3> :GundoToggle<CR>
+"map <F3> :GundoToggle<CR>
 " Toggle Nerd Tree plugin
 map <F4> :NERDTreeToggle<CR>
 " Toggle Tag bar plugin
@@ -204,7 +217,7 @@ map <leader>cp :!~/bin/rsync_dev.sh<CR>
 nmap <leader>f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " Customize YouCompleteMe Setup
 if !empty($MACRC)
-    nnoremap <leader>goto :YcmCompleter GoTo<CR>
+    nnoremap <leader>g2 :YcmCompleter GoTo<CR>
 endif
 " This is my 'Stamp' command. You can be at the beginning of a word and it will paste what is in your buffer over it.
 nnoremap <leader>s diw"0P
