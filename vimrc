@@ -24,7 +24,7 @@ if ismac == 'true'
     Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'bbelyeu/vim-colors-solarized'
 "Plugin 'bbelyeu/pylint.vim'
 Plugin 'bbelyeu/vim-python' " custom ftplugin for Python
 "Plugin 'fatih/vim-go'
@@ -275,6 +275,13 @@ try
     let g:solarized_contrast="high"
     let g:solarized_visibility="high"
     colorscheme solarized
+
+    " ShowMarks support in Solarized, better looking SignColumn
+    hi! link SignColumn   LineNr
+    hi! link ShowMarksHLl DiffAdd
+    hi! link ShowMarksHLu DiffChange
+    hi! link ShowMarksHLo DiffAdd
+    hi! link ShowMarksHLm DiffChange
 catch
     echo 'Solarized not installed'
 endtry
@@ -283,14 +290,6 @@ endtry
 try
     let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     let g:showmarks_enable = 1
-    " For marks a-z
-    highlight ShowMarksHLl gui=bold guibg=LightBlue guifg=Blue
-    " For marks A-Z
-    highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
-    " For all other marks
-    highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
-    " For multiple marks on the same line.
-    highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 catch
     echo 'ShowMarks not installed'
 endtry
@@ -306,15 +305,15 @@ catch
 endtry
 
 " Configure Flake8 & Pep8 plugins
-try
-    let g:flake8_cmd="flake8"
-    let g:flake8_show_quickfix=1
-    let g:flake8_show_in_gutter=1
-    let g:flake8_show_in_file=1
-    let g:python_pep8_indent_multiline_string=-2
-catch
-    echo 'Unable to setup flake8 and pep8'
-endtry
+" try
+"     let g:flake8_cmd="flake8"
+"     let g:flake8_show_quickfix=1
+"     let g:flake8_show_in_gutter=1
+"     let g:flake8_show_in_file=1
+"     let g:python_pep8_indent_multiline_string=-2
+" catch
+"     echo 'Unable to setup flake8 and pep8'
+" endtry
 
 " =============================
 " Environment specific settings
