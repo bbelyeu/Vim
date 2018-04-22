@@ -179,11 +179,20 @@ if has("autocmd")
         autocmd vimenter * if !argc() | NERDTree | endif
         " Got this from Kevin to close NERDTree if it's the last window open
         autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+        " Close Quickfix window if it is the last buffer open
+        autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | quit | endif
 
         " Use shell's pylinter
         " autocmd FileType python compiler pylint
         " Call Flake8 on python file save
         " autocmd BufWritePost *.py call Flake8()
+    augroup END
+
+    augroup MyGroup
+        autocmd!
+        if exists('##QuitPre')
+            autocmd QuitPre * if &filetype != 'qf' | silent! lclose | endif
+        endif
     augroup END
 endif
 
