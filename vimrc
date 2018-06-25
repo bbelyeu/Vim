@@ -33,7 +33,7 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'majutsushi/tagbar'
 "Plugin 'mattn/gist-vim'
 "Plugin 'mattn/webapi-vim'
-Plugin 'mechatroner/rainbow_csv'
+"Plugin 'mechatroner/rainbow_csv'
 "Plugin 'nvie/vim-flake8'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'python-mode/python-mode'
