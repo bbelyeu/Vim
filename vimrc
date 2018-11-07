@@ -48,6 +48,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 "Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
+Plugin 'udalov/kotlin-vim'
 Plugin 'vim-scripts/ShowMarks'
 Plugin 'SirVer/ultisnips'
 "Plugin 'Vimjas/vim-python-pep8-indent' " modifies Vim’s indentation behavior to comply with PEP8
