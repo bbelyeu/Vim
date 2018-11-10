@@ -305,8 +305,18 @@ catch
     echo 'ShowMarks not installed'
 endtry
 
+" Python Mode (Pymode) Plugin
+try
+    " Work around Python mode error b/c of Python version
+    " see https://github.com/python-mode/python-mode/issues/908
+    let g:pymode_python = 'python3'
+catch
+    echo 'Python-mode not installed'
+endtry
+
 " Ultisnips modified snippets dir
 try
+    let g:UltiSnipsUsePythonVersion = 3
     let g:UltiSnipsSnippetsDir        = '~/.vim/mysnippets/'
     let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'mysnippets']
     " Modified expand trigger key binding to work nicely with YouCompleteMe
