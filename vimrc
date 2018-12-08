@@ -129,15 +129,18 @@ set wrap
 " I know the indenting looks weird, but according to the docs EOF *CANNOT* be preceded by
 " whitespace. See http://vimdoc.sourceforge.net/htmldoc/if_pyth.html
 " Note: Pymode is now doing this for me, but I'm leaving it here in case I remove python-mode
-"if &ft=='py'
-"python << EOF
-"import os
-"if 'VIRTUAL_ENV' in os.environ:
-"    project_base_dir = os.environ['VIRTUAL_ENV']
-"    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"    execfile(activate_this, dict(__file__=activate_this))
-"EOF
-"endif
+" Note: Other Python plugins still need the virtualenv (like vim-isort) so
+" adding it back
+python3 << EOF
+import os
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    try:
+        execfile(activate_this, dict(__file__=activate_this))  # python2
+    except NameError:
+        exec(open(activate_this).read(), dict(__file__=activate_this))
+EOF
 
 " xterm improvements
 if &term=="xterm"
