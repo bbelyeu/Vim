@@ -27,7 +27,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'bbelyeu/vim-colors-solarized'
 "Plugin 'bbelyeu/pylint.vim'
 Plugin 'bbelyeu/vim-python' " custom ftplugin for Python
-"Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go'
 Plugin 'fisadev/vim-isort'
 Plugin 'junegunn/fzf.vim'
 Plugin 'majutsushi/tagbar'
@@ -87,13 +87,9 @@ set laststatus=2 " Always display the statusline in all windows
 set lazyredraw " Try to make window quit flashing so much
 set linebreak
 set list
-" Make tabs, trailing whitespace, and non-breaking spaces visible, idk why
-" it's set like this, but I couldn't get it to work otherwise...
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set matchtime=5 " Jump to matching bracket for 5/10th of a second (works with showmatch)
 set nocursorline
 set noeol "This prevents a \n being added by vim at the end of the file
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline))"
 set number
 set scrolloff=3 " Scroll when cursor gets within 3 characters of top/bottom edge
 set shell=bash\ --login " This allows my bash aliases & functions to work in vim
@@ -287,8 +283,8 @@ set rtp+=/usr/local/opt/fzf
 " Solarized plugin
 try
     let g:solarized_termtrans=1
-    let g:solarized_contrast="high"
-    let g:solarized_visibility="high"
+    let g:solarized_contrast="medium"
+    let g:solarized_visibility="medium"
     colorscheme solarized
 
     " ShowMarks support in Solarized, better looking SignColumn
