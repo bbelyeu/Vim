@@ -204,8 +204,8 @@ endif
 
 " <F1> is set to language specific help in ftplugin
 " <F2> is set to language specific lint in ftplugin
-" Use F3 to toggle Gundo plugin
-"map <F3> :GundoToggle<CR>
+" Use F3 to hide tab character
+map <F3> :set listchars=tab:\ \ <CR>
 " Toggle Nerd Tree plugin
 map <F4> :NERDTreeToggle<CR>
 " Toggle Tag bar plugin
@@ -404,3 +404,9 @@ function! HLNext (blinktime)
     call matchdelete(ring)
     redraw
 endfunction
+
+" Remove > char from representing tabs
+" Not sure why this isn't working
+if &filetype ==# 'go'
+    setlocal listchars=tab:\ \ 
+endif
