@@ -34,6 +34,7 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'mattn/gist-vim'
 "Plugin 'mattn/webapi-vim'
 "Plugin 'mechatroner/rainbow_csv'
+Plugin 'mrk21/yaml-vim'
 "Plugin 'nvie/vim-flake8'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'python-mode/python-mode'
@@ -410,3 +411,7 @@ endfunction
 if &filetype ==# 'go'
     setlocal listchars=tab:\ \ 
 endif
+
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
