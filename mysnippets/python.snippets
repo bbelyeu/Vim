@@ -5,26 +5,6 @@ logger.debug(${1})
 logger.debug("=" * 100)
 endsnippet
 
-snippet mcs "Memcache set" b
-ns_version = memcache.set_ns_version(ns_version_key, ns_version)
-memcache.set(cache_key, response, ns_version=ns_version)
-endsnippet
-
-snippet mcg "Memcache get" b
-ns_version = memcache.get(ns_version_key)
-cache_key = ('${1:api_version}', '${2:method}', params)
-response = memcache.get(cache_key, ns_version=ns_version)
-endsnippet
-
-snippet parms "Colander deserialize params" b
-try:
-    params = schema.deserialize(params)
-except colander.Invalid, e:
-    return self.api.build_error_response(
-        400, e.asdict(), '${1:api_name}'
-    )
-endsnippet
-
 snippet docs "Doc string" b
 """${1}.
 
@@ -64,7 +44,7 @@ if r.status_code == 200:
     tmp.close()
 endsnippet
 
-snippet script-logging-stdout "Add logging module and add stdout handler" b
+snippet logging-stdout "Add logging module and add stdout handler" b
 import logging
 import sys
 
@@ -81,18 +61,6 @@ endsnippet
 snippet main "Add __main__ to python cli script" b
 if __name__ == '__main__':
     main()
-endsnippet
-
-snippet debugger "Add PyCharm debugger code to api_dispatcher"
-    if os.environ['api_env'] == 'dev' and app.debug and [s for s in sys.path
-                                                         if 'pycharm-debug.egg' in s]:
-        try:
-            import pydevd
-            pydevd.settrace('192.168.50.1', port=50644, stdoutToServer=True, stderrToServer=True,
-                            suspend=False)
-            logger.debug('pydevd running')
-        except Exception as e:
-            logger.debug("Couldn't load pydevd", e)
 endsnippet
 
 snippet pudb "PUDB debug code"
@@ -121,6 +89,13 @@ endsnippet
 
 snippet demo5 "Import gettext"
 from flask.ext.babel import gettext, ngettext
+endsnippet
+
+snippet argparse "Argparse setup for scripts"
+import argparse
+parser = argparse.ArgumentParser(description='${1:description}')
+parser.add_argument('${2:name}', type=${3:type}, help='${4:msg}')
+args = parser.parse_args()
 endsnippet
 
 # vim:ft=snippets:
