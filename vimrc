@@ -37,6 +37,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'mrk21/yaml-vim'
 "Plugin 'nvie/vim-flake8'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'psf/black'
 Plugin 'python-mode/python-mode'
 Plugin 'scrooloose/nerdtree'
 Plugin 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
