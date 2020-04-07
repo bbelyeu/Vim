@@ -21,7 +21,7 @@ Bundle 'gmarik/Vundle.vim'
 " Only use YouCompleteMe on my macs b/c the ec2 servers can't compile it
 let ismac=$MACRC
 if ismac == 'true'
-    " Plugin 'Valloric/YouCompleteMe'
+    Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bbelyeu/vim-colors-solarized'
