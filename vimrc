@@ -266,7 +266,12 @@ nnoremap <silent> N   N:call HLNext(0.4)<cr>
 " Swap : and ; to make colon commands easier to type
 nnoremap  ;  :
 "nnoremap  :  ;
-"
+
+" Swap " and ' to make it easier to be compatible with Python's Black
+" formatter. I decided to put in here instead of my vim-python plugin so I
+" could get used to it in all files.
+nnoremap  '  "
+
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
