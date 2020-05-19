@@ -98,4 +98,9 @@ parser.add_argument('${2:name}', type=${3:type}, help='${4:msg}')
 args = parser.parse_args()
 endsnippet
 
+snippet directory "Get the directory of the current running script"
+from pathlib import Path
+_dir = Path(__file__).parent.resolve()
+endsnippet
+
 # vim:ft=snippets:
