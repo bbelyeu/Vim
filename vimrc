@@ -391,6 +391,8 @@ ia thier their
 ia enviroment environment
 ia freind friend
 ia toghether together
+ia crowind crowdin
+ia Crowind Crowdin
 
 " Check if already enabled so not to clobber any color highlighting already set up
 if !exists("g:syntax_on")
