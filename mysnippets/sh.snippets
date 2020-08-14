@@ -1,0 +1,36 @@
+snippet docs
+###
+### my-script — does one thing well
+###
+### Usage:
+###   my-script <input> <output>
+###
+### Options:
+###   <input>   Input file to read.
+###   <output>  Output file to write. Use '-' for stdout.
+###   -h        Show this message.
+
+help() {
+    awk '/^###/' "$0"
+}
+
+if [[ $# == 0 ]] || [[ "$1" == "-h" ]]; then
+    help
+    exit 1
+fi
+endsnippet
+
+snippet shebang "Bash script shebang line"
+#! /bin/bash
+endsnippet
+
+snippet statuscheck "Check if previous command exited with status 0"
+function status_check {
+    if [[ $? != 0 ]] ; then
+        echo "Rut, roh, something went wrong."
+        exit $?
+    fi
+}
+endsnippet
+
+# vim:ft=snippets:
