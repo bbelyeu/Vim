@@ -103,4 +103,9 @@ from pathlib import Path
 _dir = Path(__file__).parent.resolve()
 endsnippet
 
+snippet async "outline for an async function"
+async def ${1:name}(${2:args}):
+    """${3:docstring}."""
+endsnippet
+
 # vim:ft=snippets:
