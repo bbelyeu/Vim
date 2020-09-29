@@ -7,7 +7,6 @@
 "
 
 set nocompatible               " be iMproved
-filetype off                   " required!
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
@@ -19,7 +18,7 @@ if ismac == 'true'
 endif
 Plug 'airblade/vim-gitgutter'
 Plug 'bbelyeu/vim-colors-solarized'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'fisadev/vim-isort'
 Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'majutsushi/tagbar'
@@ -159,18 +158,18 @@ if has("autocmd")
         autocmd BufWinLeave ?* mkview
         autocmd BufWinEnter ?* silent loadview
 
-        " NerdTree is commented out b/c it was causing bugs with my . redo command
         " Open NERD tree if no files were specified when starting vim
         autocmd vimenter * if !argc() | NERDTree | endif
-        " Got this from Kevin to close NERDTree if it's the last window open
+        " Close NERDTree if it's the last window open
         autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
         " Close Quickfix window if it is the last buffer open
         autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | quit | endif
 
         " Use shell's pylinter
         " autocmd FileType python compiler pylint
-        " Call Flake8 on python file save
-        " autocmd BufWritePost *.py call Flake8()
+        " Call Black on python file save
+        autocmd BufWritePost *.py execute ':Black'
+
     augroup END
 
     augroup MyGroup

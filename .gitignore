@@ -1,5 +1,6 @@
 !bundle/Vundle.vim
 *.swp
+black
 bundle/*
 plugged
 tags
