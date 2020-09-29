@@ -5,68 +5,49 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 "
-" @link https://github.com/gmarik/vundle#about
-" The top of my vimrc is suggested by vundle
 
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle - required!
-Bundle 'gmarik/Vundle.vim'
-
-" original repos on github
-" Only use YouCompleteMe on my macs b/c the ec2 servers can't compile it
+" Only use YouCompleteMe on my macs b/c some servers can't compile it
 let ismac=$MACRC
 if ismac == 'true'
-    Plugin 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bbelyeu/vim-colors-solarized'
-"Plugin 'bbelyeu/pylint.vim'
-Plugin 'bbelyeu/vim-python' " custom ftplugin for Python
-Plugin 'fatih/vim-go'
-Plugin 'fisadev/vim-isort'
-Plugin 'junegunn/fzf.vim'
-Plugin 'majutsushi/tagbar'
-"Plugin 'mattn/gist-vim'
-"Plugin 'mattn/webapi-vim'
-"Plugin 'mechatroner/rainbow_csv'
-Plugin 'mrk21/yaml-vim'
-"Plugin 'nvie/vim-flake8'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'psf/black'
-Plugin 'python-mode/python-mode'
-Plugin 'scrooloose/nerdtree'
-Plugin 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
-"Plugin 'sjl/gundo.vim'
-"Plugin 'terryma/vim-multiple-cursors'
-"Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-sensible'
-"Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-surround'
-Plugin 'udalov/kotlin-vim'
-Plugin 'vim-scripts/ShowMarks'
-"Plugin 'vim-syntastic/syntastic'
-Plugin 'SirVer/ultisnips'
-"Plugin 'Vimjas/vim-python-pep8-indent' " modifies Vim’s indentation behavior to comply with PEP8
+Plug 'airblade/vim-gitgutter'
+Plug 'bbelyeu/vim-colors-solarized'
+Plug 'fatih/vim-go'
+Plug 'fisadev/vim-isort'
+Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'majutsushi/tagbar'
+"Plug 'mattn/gist-vim'
+"Plug 'mattn/webapi-vim'
+"Plug 'mechatroner/rainbow_csv'
+Plug 'mrk21/yaml-vim', { 'for': 'yaml' }
+Plug 'powerline/powerline', { 'rtp': 'powerline/bindings/vim/' }
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'python-mode/python-mode'
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
+"Plug 'sjl/gundo.vim'
+"Plug 'terryma/vim-multiple-cursors'
+"Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+"Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+Plug 'vim-scripts/ShowMarks'
+"Plug 'vim-syntastic/syntastic'
+Plug 'SirVer/ultisnips'
 
-call vundle#end()
-filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
 
 " change the mapleader from \ to , it's important that this
 " is at/near the top of the file so that other mapped comamnds

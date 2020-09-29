@@ -1,6 +1,7 @@
+!bundle/Vundle.vim
+*.swp
+bundle/*
+plugged
+tags
 view/
 view/*
-*.swp
-tags
-bundle/*
-!bundle/Vundle.vim
