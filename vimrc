@@ -14,7 +14,7 @@ call plug#begin('~/.vim/plugged')
 " Only use YouCompleteMe on my macs b/c some servers can't compile it
 let ismac=$MACRC
 if ismac == 'true'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
 endif
 Plug 'airblade/vim-gitgutter'
 Plug 'bbelyeu/vim-colors-solarized'
@@ -408,4 +408,7 @@ au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " js stuff for web
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType js setlocal ts=2 sts=2 sw=2 expandtab
+
+" IDK why this is necessary to startup YCM now
+"call youcompleteme#Enable()
