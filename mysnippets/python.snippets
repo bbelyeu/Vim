@@ -108,4 +108,10 @@ async def ${1:name}(${2:args}):
     """${3:docstring}."""
 endsnippet
 
+snippet csv "open a csv file for reading"
+with open(${1:_file.csv}, mode="r") as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    for row in csv_reader:
+endsnippet
+
 # vim:ft=snippets:

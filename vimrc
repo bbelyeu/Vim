@@ -169,6 +169,11 @@ if has("autocmd")
         " autocmd FileType python compiler pylint
         " Call Black on python file save
         autocmd BufWritePost *.py execute ':Black'
+        " YouCompleteMe is not longer enabled by default? Not sure why.
+        autocmd BufWinEnter *.py execute ':call youcompleteme#Enable()'
+        autocmd BufWinEnter *.go execute ':call youcompleteme#Enable()'
+        autocmd BufWinEnter *.php execute ':call youcompleteme#Enable()'
+        autocmd BufWinEnter *.js execute ':call youcompleteme#Enable()'
 
     augroup END
 
@@ -409,6 +414,3 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " js stuff for web
 autocmd FileType js setlocal ts=2 sts=2 sw=2 expandtab
-
-" IDK why this is necessary to startup YCM now
-"call youcompleteme#Enable()
