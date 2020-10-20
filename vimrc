@@ -169,6 +169,8 @@ if has("autocmd")
         " autocmd FileType python compiler pylint
         " Call Black on python file save
         autocmd BufWritePost *.py execute ':Black'
+        " Call Isort on python file save
+        autocmd BufWritePost *.py execute ':Isort'
         " YouCompleteMe is not longer enabled by default? Not sure why.
         autocmd BufWinEnter *.py execute ':call youcompleteme#Enable()'
         autocmd BufWinEnter *.go execute ':call youcompleteme#Enable()'
