@@ -13,9 +13,9 @@ call plug#begin('~/.vim/plugged')
 
 " Only use YouCompleteMe on my macs b/c some servers can't compile it
 let ismac=$MACRC
-if ismac == 'true'
-    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
-endif
+"if ismac == 'true'
+"    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
+"endif
 Plug 'airblade/vim-gitgutter'
 Plug 'bbelyeu/vim-colors-solarized'
 Plug 'fatih/vim-go', { 'for': 'go' }
