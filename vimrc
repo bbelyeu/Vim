@@ -20,7 +20,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bbelyeu/vim-colors-solarized'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'fisadev/vim-isort'
-Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
 Plug 'majutsushi/tagbar'
 "Plug 'mattn/gist-vim'
 "Plug 'mattn/webapi-vim'
