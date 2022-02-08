@@ -59,7 +59,15 @@ root.addHandler(ch)
 endsnippet
 
 snippet main "Add __main__ to python cli script" b
-if __name__ == '__main__':
+import logging
+
+
+def main():
+    "${1}."
+
+
+if __name__ == "__main__":  # pragma: no cover
+    logging.basicConfig()
     main()
 endsnippet
 
