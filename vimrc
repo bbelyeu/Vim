@@ -18,7 +18,7 @@ if ismac == 'true'
 endif
 Plug 'airblade/vim-gitgutter'
 Plug 'bbelyeu/vim-colors-solarized'
-Plug 'fatih/vim-go', { 'for': 'go' }
+"Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'fisadev/vim-isort'
 Plug 'hsanson/vim-openapi'
 Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
@@ -28,10 +28,11 @@ Plug 'majutsushi/tagbar'
 "Plug 'mechatroner/rainbow_csv'
 Plug 'mrk21/yaml-vim', { 'for': 'yaml' }
 Plug 'powerline/powerline', { 'rtp': 'powerline/bindings/vim/' }
-Plug 'psf/black', { 'branch': 'stable' }
-Plug 'python-mode/python-mode'
+Plug 'psf/black', { 'branch': 'main' }
+" commented out for now b/c it caused issue on file open
+"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
+"Plug 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
 "Plug 'sjl/gundo.vim'
 "Plug 'terryma/vim-multiple-cursors'
 "Plug 'tpope/vim-commentary'
@@ -41,7 +42,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 "Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
-Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+"Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 Plug 'vim-scripts/ShowMarks'
 "Plug 'vim-syntastic/syntastic'
 Plug 'SirVer/ultisnips'
