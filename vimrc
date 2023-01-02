@@ -22,6 +22,7 @@ Plug 'bbelyeu/vim-colors-solarized'
 Plug 'fisadev/vim-isort'
 Plug 'hsanson/vim-openapi'
 Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
+Plug 'lambdalisue/vim-pyenv', { 'autoload': { 'filetypes': ['python', 'python3'], } }
 Plug 'majutsushi/tagbar'
 "Plug 'mattn/gist-vim'
 "Plug 'mattn/webapi-vim'
@@ -167,13 +168,25 @@ if has("autocmd")
         " Close Quickfix window if it is the last buffer open
         autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | quit | endif
 
-        " Use shell's pylinter
-        " autocmd FileType python compiler pylint
-        " Call Black on python file save
-        autocmd BufWritePost *.py execute ':Black'
+        " If Python activate virtualenv
+        autocmd BufWinEnter *.py execute ':PyenvActivate'
+
+        " Setup Black
+        try
+            " TODO for now hard code Search virtualenv
+            " but in the future make this get the appropriate one
+            let g:black_virtualenv = '/Users/brad.belyeu/.pyenv/versions/search'
+
+            " Call Black on python file save
+            autocmd BufWritePre *.py execute ':Black'
+        catch
+            echo 'Black not installed'
+        endtry
+
         " Call Isort on python file save
-        autocmd BufWritePost *.py execute ':Isort'
-        " YouCompleteMe is not longer enabled by default? Not sure why.
+        autocmd BufWritePre *.py execute ':Isort'
+
+        " YouCompleteMe is no longer enabled by default? Not sure why.
         autocmd BufWinEnter *.py execute ':call youcompleteme#Enable()'
         autocmd BufWinEnter *.go execute ':call youcompleteme#Enable()'
         autocmd BufWinEnter *.php execute ':call youcompleteme#Enable()'
@@ -181,7 +194,7 @@ if has("autocmd")
 
     augroup END
 
-    augroup MyGroup
+    augroup CloseQuickFix
         autocmd!
         if exists('##QuitPre')
             autocmd QuitPre * if &filetype != 'qf' | silent! lclose | endif
