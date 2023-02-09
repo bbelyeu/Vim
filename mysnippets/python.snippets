@@ -126,4 +126,21 @@ snippet nocover "add a pragma: no cover comment"
 # pragma: no cover
 endsnippet
 
+snippet solrdebug "print solr url to console for ez web ui debugging"
+def print_solr_url(kwargs):
+    """Print the solr url for debugging."""
+    params = kwargs.copy()
+    params["fl"] = "* score"
+    for key, value in params.items():
+        if isinstance(value, list):
+            value = " ".join(value)
+            params[key] = value
+    import urllib.parse
+    qs = urllib.parse.urlencode(params)
+    url = f"http://{CFG['host']}:{CFG['port']}/solr/#/users/query?{qs}"
+    print("-------------------------------------------------------------")
+    print(url)
+    print("-------------------------------------------------------------")
+endsnippet
+
 # vim:ft=snippets:
