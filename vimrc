@@ -22,7 +22,8 @@ Plug 'bbelyeu/vim-colors-solarized'
 Plug 'fisadev/vim-isort'
 Plug 'hsanson/vim-openapi'
 Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
-Plug 'lambdalisue/vim-pyenv', { 'autoload': { 'filetypes': ['python', 'python3'], } }
+" commented out vim-pyenv b/c it makes loading vim WAY slow
+"Plug 'lambdalisue/vim-pyenv', { 'autoload': { 'filetypes': ['python', 'python3'], } }
 Plug 'majutsushi/tagbar'
 "Plug 'mattn/gist-vim'
 "Plug 'mattn/webapi-vim'
@@ -31,7 +32,7 @@ Plug 'mrk21/yaml-vim', { 'for': 'yaml' }
 Plug 'powerline/powerline', { 'rtp': 'powerline/bindings/vim/' }
 Plug 'psf/black', { 'branch': 'main' }
 " commented out for now b/c it caused issue on file open
-"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 "Plug 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
 "Plug 'sjl/gundo.vim'
@@ -169,7 +170,8 @@ if has("autocmd")
         autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | quit | endif
 
         " If Python activate virtualenv
-        autocmd BufWinEnter *.py execute ':PyenvActivate'
+        " commented out b/c it makes loading vim really slow
+        " autocmd BufWinEnter *.py execute ':PyenvActivate'
 
         " Setup Black
         try
@@ -181,6 +183,12 @@ if has("autocmd")
             autocmd BufWritePre *.py execute ':Black'
         catch
             echo 'Black not installed'
+        endtry
+
+        try
+            let g:ycm_auto_trigger = 1
+        catch
+            echo "YouCompleteMe is not installed"
         endtry
 
         " Call Isort on python file save
@@ -313,15 +321,6 @@ try
     let g:showmarks_enable = 1
 catch
     echo 'ShowMarks not installed'
-endtry
-
-" Python Mode (Pymode) Plugin
-try
-    " Work around Python mode error b/c of Python version
-    " see https://github.com/python-mode/python-mode/issues/908
-    let g:pymode_python = 'python3'
-catch
-    echo 'Python-mode not installed'
 endtry
 
 " Ultisnips modified snippets dir
