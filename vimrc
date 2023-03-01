@@ -18,6 +18,7 @@ if ismac == 'true'
 endif
 Plug 'airblade/vim-gitgutter'
 Plug 'bbelyeu/vim-colors-solarized'
+Plug 'dense-analysis/ale'
 "Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'fisadev/vim-isort'
 Plug 'hsanson/vim-openapi'
@@ -31,22 +32,21 @@ Plug 'majutsushi/tagbar'
 Plug 'mrk21/yaml-vim', { 'for': 'yaml' }
 Plug 'powerline/powerline', { 'rtp': 'powerline/bindings/vim/' }
 Plug 'psf/black', { 'branch': 'main' }
-" commented out for now b/c it caused issue on file open
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 "Plug 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
 "Plug 'sjl/gundo.vim'
 "Plug 'terryma/vim-multiple-cursors'
+Plug 'tmhedberg/SimpylFold'
 "Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 "Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
-"Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-scripts/ShowMarks'
-"Plug 'vim-syntastic/syntastic'
 Plug 'SirVer/ultisnips'
 
 " List ends here. Plugins become visible to Vim after this call.
@@ -56,6 +56,8 @@ call plug#end()
 " is at/near the top of the file so that other mapped comamnds
 " use this leader
 let mapleader=","
+cabbrev s S
+cabbrev %s %S
 
 " =========
 " Setup vim
@@ -159,8 +161,8 @@ if has("autocmd")
         let g:BASH_AlsoBash = [ '*.SlackBuild' , 'rc.*' ]
 
         " Make a custom view for the file on exit (saves folds) and load view when opening file
-        autocmd BufWinLeave ?* mkview
-        autocmd BufWinEnter ?* silent loadview
+        autocmd BufWinLeave *.py mkview
+        autocmd BufWinEnter *.py silent loadview
 
         " Open NERD tree if no files were specified when starting vim
         autocmd vimenter * if !argc() | NERDTree | endif
@@ -169,30 +171,11 @@ if has("autocmd")
         " Close Quickfix window if it is the last buffer open
         autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | quit | endif
 
-        " If Python activate virtualenv
-        " commented out b/c it makes loading vim really slow
-        " autocmd BufWinEnter *.py execute ':PyenvActivate'
-
-        " Setup Black
-        try
-            " TODO for now hard code Search virtualenv
-            " but in the future make this get the appropriate one
-            let g:black_virtualenv = '/Users/brad.belyeu/.pyenv/versions/search'
-
-            " Call Black on python file save
-            autocmd BufWritePre *.py execute ':Black'
-        catch
-            echo 'Black not installed'
-        endtry
-
         try
             let g:ycm_auto_trigger = 1
         catch
             echo "YouCompleteMe is not installed"
         endtry
-
-        " Call Isort on python file save
-        autocmd BufWritePre *.py execute ':Isort'
 
         " YouCompleteMe is no longer enabled by default? Not sure why.
         autocmd BufWinEnter *.py execute ':call youcompleteme#Enable()'
