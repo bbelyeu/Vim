@@ -18,36 +18,32 @@ if ismac == 'true'
 endif
 Plug 'airblade/vim-gitgutter'
 Plug 'bbelyeu/vim-colors-solarized'
-Plug 'dense-analysis/ale'
-"Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'fisadev/vim-isort'
 Plug 'hsanson/vim-openapi'
 Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
-" commented out vim-pyenv b/c it makes loading vim WAY slow
-"Plug 'lambdalisue/vim-pyenv', { 'autoload': { 'filetypes': ['python', 'python3'], } }
 Plug 'majutsushi/tagbar'
 "Plug 'mattn/gist-vim'
 "Plug 'mattn/webapi-vim'
 "Plug 'mechatroner/rainbow_csv'
 Plug 'mrk21/yaml-vim', { 'for': 'yaml' }
 Plug 'powerline/powerline', { 'rtp': 'powerline/bindings/vim/' }
-Plug 'psf/black', { 'branch': 'main' }
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'python-mode/python-mode'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
-"Plug 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
+Plug 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
 "Plug 'sjl/gundo.vim'
 "Plug 'terryma/vim-multiple-cursors'
-Plug 'tmhedberg/SimpylFold'
 "Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 "Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
-Plug 'udalov/kotlin-vim'
-Plug 'vim-scripts/indentpython.vim'
+Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 Plug 'vim-scripts/ShowMarks'
+"Plug 'vim-syntastic/syntastic'
 Plug 'SirVer/ultisnips'
 
 " List ends here. Plugins become visible to Vim after this call.
@@ -57,8 +53,6 @@ call plug#end()
 " is at/near the top of the file so that other mapped comamnds
 " use this leader
 let mapleader=","
-cabbrev s S
-cabbrev %s %S
 
 " =========
 " Setup vim
@@ -162,8 +156,8 @@ if has("autocmd")
         let g:BASH_AlsoBash = [ '*.SlackBuild' , 'rc.*' ]
 
         " Make a custom view for the file on exit (saves folds) and load view when opening file
-        autocmd BufWinLeave *.py mkview
-        autocmd BufWinEnter *.py silent loadview
+        autocmd BufWinLeave ?* mkview
+        autocmd BufWinEnter ?* silent loadview
 
         " Open NERD tree if no files were specified when starting vim
         autocmd vimenter * if !argc() | NERDTree | endif
@@ -172,13 +166,13 @@ if has("autocmd")
         " Close Quickfix window if it is the last buffer open
         autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | quit | endif
 
-        try
-            let g:ycm_auto_trigger = 1
-        catch
-            echo "YouCompleteMe is not installed"
-        endtry
-
-        " YouCompleteMe is no longer enabled by default? Not sure why.
+        " Use shell's pylinter
+        " autocmd FileType python compiler pylint
+        " Call Black on python file save
+        autocmd BufWritePost *.py execute ':Black'
+        " Call Isort on python file save
+        autocmd BufWritePost *.py execute ':Isort'
+        " YouCompleteMe is not longer enabled by default? Not sure why.
         autocmd BufWinEnter *.py execute ':call youcompleteme#Enable()'
         autocmd BufWinEnter *.go execute ':call youcompleteme#Enable()'
         autocmd BufWinEnter *.php execute ':call youcompleteme#Enable()'
@@ -186,7 +180,7 @@ if has("autocmd")
 
     augroup END
 
-    augroup CloseQuickFix
+    augroup MyGroup
         autocmd!
         if exists('##QuitPre')
             autocmd QuitPre * if &filetype != 'qf' | silent! lclose | endif
@@ -239,8 +233,6 @@ nnoremap <leader>qn :cn<CR>
 " Close quickfix result window
 nnoremap <leader>qc :ccl<CR>
 nnoremap <leader>ch <C-w>k:q<CR>
-" Delete all buffers - from RJ
-" :%bd|e#|bd#
 
 " -----------------
 " Other mappings
@@ -307,6 +299,15 @@ try
     let g:showmarks_enable = 1
 catch
     echo 'ShowMarks not installed'
+endtry
+
+" Python Mode (Pymode) Plugin
+try
+    " Work around Python mode error b/c of Python version
+    " see https://github.com/python-mode/python-mode/issues/908
+    let g:pymode_python = 'python3'
+catch
+    echo 'Python-mode not installed'
 endtry
 
 " Ultisnips modified snippets dir
@@ -416,11 +417,3 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " js stuff for web
 autocmd FileType js setlocal ts=2 sts=2 sw=2 expandtab
-
-" ale linters
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'python': ['autoimport', 'autopep8', 'black', 'isort'],
-\}
-let g:ale_linters = {'python': ['pylint']}

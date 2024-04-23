@@ -71,6 +71,11 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 endsnippet
 
+snippet pdb "PUDB debug code"
+import pdb; pdb.set_trace()
+pass
+endsnippet
+
 snippet pudb "PUDB debug code"
 from pudb import set_trace; set_trace()
 pass
@@ -108,7 +113,7 @@ endsnippet
 
 snippet directory "Get the directory of the current running script"
 from pathlib import Path
-_dir = Path(__file__).parent.resolve()
+dir_ = Path(__file__).parent.resolve()
 endsnippet
 
 snippet async "outline for an async function"
@@ -127,20 +132,12 @@ snippet nocover "add a pragma: no cover comment"
 endsnippet
 
 snippet solrdebug "print solr url to console for ez web ui debugging"
-def print_solr_url(kwargs):
-    """Print the solr url for debugging."""
-    params = kwargs.copy()
-    params["fl"] = "* score"
-    for key, value in params.items():
-        if isinstance(value, list):
-            value = " ".join(value)
-            params[key] = value
-    import urllib.parse
-    qs = urllib.parse.urlencode(params)
-    url = f"http://{CFG['host']}:{CFG['port']}/solr/#/users/query?{qs}"
-    print("-------------------------------------------------------------")
-    print(url)
-    print("-------------------------------------------------------------")
+import debug
+debug.print_solr_url(collection="verses", **kwargs)
+endsnippet
+
+snippet shebang "add shebang line for python script"
+#! /usr/bin/env python
 endsnippet
 
 # vim:ft=snippets:
