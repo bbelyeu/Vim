@@ -15,12 +15,15 @@ if has("autocmd")
         autocmd BufWritePre :Isort
 
         " Setup Black
-        try
-            " Call Black on python file save
-            autocmd BufWritePre *.py execute ':Black'
-        catch
-            echo 'Black not installed'
-        endtry
+        " try
+        "     " Call Black on python file save
+        "     "autocmd BufWritePre *.py execute ':Black'
+        " catch
+        "     echo 'Black not installed'
+        " endtry
+
+        " currently the plugin isn't working so just do this
+        "autocmd BufWritePre *.py execute ':!black %'
 
         let g:SimpylFold_docstring_preview=1
 

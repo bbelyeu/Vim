@@ -31,7 +31,7 @@ Plug 'majutsushi/tagbar'
 "Plug 'mechatroner/rainbow_csv'
 Plug 'mrk21/yaml-vim', { 'for': 'yaml' }
 Plug 'powerline/powerline', { 'rtp': 'powerline/bindings/vim/' }
-Plug 'psf/black', { 'branch': 'main' }
+"Plug 'psf/black', { 'branch': 'main' }
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 "Plug 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
 "Plug 'sjl/gundo.vim'
