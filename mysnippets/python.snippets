@@ -71,37 +71,13 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 endsnippet
 
-snippet pdb "PUDB debug code"
-import pdb; pdb.set_trace()
-pass
+snippet pdb "PDB debug code"
+breakpoint()
 endsnippet
 
 snippet pudb "PUDB debug code"
 from pudb import set_trace; set_trace()
 pass
-endsnippet
-
-snippet demo1 "Add Babel import"
-from flask.ext.babel import Babel
-endsnippet
-
-snippet demo2 "Wrap app with Babel"
-babel = Babel(app)
-endsnippet
-
-snippet demo3 "Import request from flask"
-from flask import request
-endsnippet
-
-snippet demo4 "Setup Babel locale selector"
-@babel.localeselector
-def get_locale():
-    locales_our_app_supports = ['en', 'es', 'fr']
-    return request.accept_languages.best_match(locales_our_app_supports)
-endsnippet
-
-snippet demo5 "Import gettext"
-from flask.ext.babel import gettext, ngettext
 endsnippet
 
 snippet argparse "Argparse setup for scripts"
@@ -122,7 +98,7 @@ async def ${1:name}(${2:args}):
 endsnippet
 
 snippet csv "open a csv file for reading"
-with open(${1:_file.csv}, mode="r") as csv_file:
+with open(${1:_file.csv}, mode="r", encoding="utf8") as csv_file:
     csv_reader = csv.DictReader(csv_file)
     for row in csv_reader:
 endsnippet
@@ -133,7 +109,7 @@ endsnippet
 
 snippet solrdebug "print solr url to console for ez web ui debugging"
 import debug
-debug.print_solr_url(collection="verses", **kwargs)
+debug.print_solr_url(collection="${1:verses}", **kwargs)
 endsnippet
 
 snippet shebang "add shebang line for python script"
