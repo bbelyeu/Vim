@@ -19,6 +19,7 @@ endif
 Plug 'airblade/vim-gitgutter'
 Plug 'bbelyeu/vim-colors-solarized'
 Plug 'dense-analysis/ale'
+Plug 'dracula/vim', { 'name': 'dracula' }
 "Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'fisadev/vim-isort'
 Plug 'hsanson/vim-openapi'
@@ -424,3 +425,5 @@ let g:ale_fixers = {
 \   'python': ['autoimport', 'autopep8', 'black', 'isort'],
 \}
 let g:ale_linters = {'python': ['pylint']}
+
+colorscheme jellybeans
