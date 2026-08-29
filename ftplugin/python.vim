@@ -12,7 +12,7 @@ exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 if has("autocmd")
     augroup PythonCustom
         " Always Isort before writing
-        autocmd BufWritePre :Isort
+        autocmd BufWritePre <buffer> Isort
 
         " Setup Black
         " try
