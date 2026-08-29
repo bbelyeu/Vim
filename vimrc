@@ -22,6 +22,7 @@ Plug 'dense-analysis/ale'
 Plug 'dracula/vim', { 'name': 'dracula' }
 "Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'fisadev/vim-isort'
+Plug 'godlygeek/tabular'
 Plug 'hsanson/vim-openapi'
 Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
 " commented out vim-pyenv b/c it makes loading vim WAY slow
@@ -31,12 +32,15 @@ Plug 'majutsushi/tagbar'
 "Plug 'mattn/webapi-vim'
 "Plug 'mechatroner/rainbow_csv'
 Plug 'mrk21/yaml-vim', { 'for': 'yaml' }
+Plug 'pasky/claude.vim'
 Plug 'powerline/powerline', { 'rtp': 'powerline/bindings/vim/' }
+Plug 'preservim/vim-markdown'
 "Plug 'psf/black', { 'branch': 'main' }
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 "Plug 'sheerun/vim-polyglot'  " Syntax highlighting for lots of languages/filetypes
 "Plug 'sjl/gundo.vim'
 "Plug 'terryma/vim-multiple-cursors'
+Plug 'tomasiser/vim-code-dark'
 Plug 'tmhedberg/SimpylFold'
 "Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
@@ -290,7 +294,7 @@ try
     let g:solarized_termtrans=1
     let g:solarized_contrast="medium"
     let g:solarized_visibility="medium"
-    colorscheme solarized
+    " colorscheme solarized
 
     " ShowMarks support in Solarized, better looking SignColumn
     hi! link SignColumn   LineNr
@@ -426,4 +430,4 @@ let g:ale_fixers = {
 \}
 let g:ale_linters = {'python': ['pylint']}
 
-colorscheme jellybeans
+colorscheme codedark
