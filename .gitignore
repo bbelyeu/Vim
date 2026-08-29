@@ -1,4 +1,5 @@
 !bundle/Vundle.vim
+.omo/
 *.swp
 black
 bundle/*
