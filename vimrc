@@ -86,7 +86,7 @@ set nocursorline
 set noeol "This prevents a \n being added by vim at the end of the file
 set number
 set scrolloff=3 " Scroll when cursor gets within 3 characters of top/bottom edge
-set shell=bash\ --login " This allows my bash aliases & functions to work in vim
+set shell=bash " Non-login shell; sources ~/.bashrc for aliases/functions without the slow login profile (keychain, yv rc)
 set shiftround " round indent to multiple of 'shiftwidth' for > and < commands
 set shiftwidth=4
 set showmatch " When a bracket is inserted, briefly jump to a matching one
@@ -210,6 +210,9 @@ map <F3> :set listchars=tab:\ \ <CR>
 " Toggle Nerd Tree plugin
 map <F4> :NERDTreeToggle<CR>
 " Toggle Tag bar plugin
+" Prevent tagbar from shelling out to ctags on every buffer open (was ~3.5s/open
+" via the login shell). It now only runs when the tagbar window is opened via <F5>.
+let g:tagbar_no_autocmds = 1
 map <F5> :TagbarToggle<CR>
 " <F6> is used for language specific code-folding shortcut
 " F7 & F8 are reserved for screen/tmux tab movement
@@ -416,7 +419,7 @@ if &filetype ==# 'go'
 endif
 
 " add yaml stuffs
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent foldlevelstart=99 nofoldenable
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " js stuff for web
